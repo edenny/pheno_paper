@@ -7,7 +7,7 @@ import sys
 import shutil
 import re
 
-inputDir = os.curdir + '../data/npn/input'
+inputDir = os.curdir + '/../data/npn/input'
 outputDir = '../data/npn/output_csv' 
 mainIndexName = 'record_id'
 
@@ -69,7 +69,8 @@ framesDict = {}
 # Loop each directory off of input directory
 for dirname in os.listdir(inputDir):
     # make sure we're just dealing with PEP directories
-    if (dirname.startswith('datasheet_') and dirname.endswith("zip") == False):
+    if (dirname.startswith('datasheet_') and dirname.endswith("zip") == False ):
+        dirname = inputDir +'/' + dirname
         print "processing " + dirname
         # loop all filenames in directory
         onlyfiles = [f for f in listdir(dirname) if isfile(join(dirname, f))]

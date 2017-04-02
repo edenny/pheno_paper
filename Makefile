@@ -37,7 +37,7 @@ ontology_IRI := https://raw.githubusercontent.com/biocodellc/ppo-fims/master/dat
 # added to the search path, but if that is not the case, you must provide their
 # location as the value of the variable "ontobuilder_bin".
 #ontobuilder_bin := ../../ontobuilder/bin
-ontobuilder_bin := ../../../biocode-fims-configurator/bin
+ontobuilder_bin := ../../biocode-fims-configurator/bin
 #ontobuilder_bin := 
 
 
