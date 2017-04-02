@@ -1,4 +1,4 @@
-#Loading the Plant Phenology Project Data
+# Phenology Paper Processing Steps
 
 This repository contains all of the scripts for processing the data sources for a Plant
 Phenology Paper, looking at Birch and Common Sunflower datasources coming from  the NPN
@@ -57,10 +57,9 @@ stored in formats that are not easily parseable and contain assumptions about th
 # Step 4: Triplification
 
 Triplifying FIMS data.  More detail to come.
-See README.md in the bin directory (https://github.com/biocodellc/ppo-fims/tree/master/data/bin)
+This, for now, must be run with then [ppo-fims java code](https://github.com/biocodellc/ppo-fims) using the generateTriplesForPaper main class.
 
 # Step 5: Reasoning
 
 Using the Ontopilot project to pre-reason data sources... More detail to come.
-
 
