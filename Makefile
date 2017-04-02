@@ -163,3 +163,9 @@ loader:
 # Set "ontology" as the default build goal.
 .DEFAULT_GOAL := ontology
 
+#--------
+# Build Reasoner 
+#--------
+.PHONY: reasoner
+reasoner:
+	../bin/runReasoner.sh $(project_name) $(file_name)
