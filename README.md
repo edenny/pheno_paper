@@ -69,7 +69,7 @@ Unpack the PEP725 file downloads using [PEP725 unpacker script] https://github.c
 
 # Step 4: Triplification
 
-Triplifying FIMS data is done using the [ppo-fims java code-base](https://github.com/biocodellc/ppo-fims).  Coming is an executable java application for this step but for now, this can be run inside yoru Java IDE and running the generateTriplesForPaper main class.
+Triplifying FIMS data is done using the [ppo-fims java code-base](https://github.com/biocodellc/ppo-fims) which loads tabular data into a temporary SQLITE database, runs a series of validation rules on the data itself, and, if it passes, calls D2RQ for creating RDF triples from the loaded data.   The general structure for the RDF triples is first configured by FIMS (in step 2) and then is run through the [D2RQ] (http://d2rq.org/) engine for the actual triple creation. Coming is an executable java application for this step but for now, this can be run inside yoru Java IDE and running the generateTriplesForPaper main class.
 
 # Step 5: Reasoning
 
