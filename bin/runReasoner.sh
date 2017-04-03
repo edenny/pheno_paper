@@ -25,7 +25,7 @@ export ontology_file_copyto=$data_dir"output_reasoned_owl/"$file_name".owl"
 # this is a hack, just waiting for standard in/out features on ontopilot
 sed -i 's|^base_ontology_file =.*|base_ontology_file = '$base_ontology_file'|' $project_file
 sed -i 's|^ontology_file =.*|ontology_file = '$ontology_file'|' $project_file
-sed -i 's|^reasoner =.*|reasoner = HermiT|' $project_file
+sed -i 's|^reasoner =.*|reasoner = hermit |' $project_file
 
 # cd to the ppo_pre_reasoner directory
 cd $ppo_pre_reasoner_dir
