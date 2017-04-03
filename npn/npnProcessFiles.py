@@ -98,10 +98,10 @@ for dirname in os.listdir(inputDir):
                 equiv = {'1,001 to 10,000':10000, '101 to 1,000':1000, '11 to 100':100, '3 to 10':10, 'Less than 3':2, 'Little':'', 'Lots':'', 'More than 10':'', 'More than 10,000':'', 'Some':'', '25-49%':'', '5-24%':'', '50-74%':'', '75-94%':'', '95% or more':'', 'Less than 25%':'', 'Less than 5%':''}
                 df['upper_count'] = df['Intensity_Value'].map(equiv)
                 # map lower percents
-                equiv = {'1,001 to 10,000':'', '101 to 1,000':'', '11 to 100':'', '3 to 10':'', 'Less than 3':'', 'Little':'', 'Lots':'', 'More than 10':'', 'More than 10,000':'', 'Some':'', '25-49%':25, '5-24%':5, '50-74%':50, '75-94%':75, '95% or more':95, 'Less than 25%':0, 'Less than 5%':0}
+                equiv = {'1,001 to 10,000':'', '101 to 1,000':'', '11 to 100':'', '3 to 10':'', 'Less than 3':'', 'Little':'', 'Lots':'', 'More than 10':'', 'More than 10,000':'', 'Some':'', '25-49%':.25, '5-24%':.05, '50-74%':.50, '75-94%':.75, '95% or more':.95, 'Less than 25%':.0, 'Less than 5%':.0}
                 df['lower_percent'] = df['Intensity_Value'].map(equiv)
                 # map upper percents
-                equiv = {'1,001 to 10,000':'', '101 to 1,000':'', '11 to 100':'', '3 to 10':'', 'Less than 3':'', 'Little':'', 'Lots':'', 'More than 10':'', 'More than 10,000':'', 'Some':'', '25-49%':49, '5-24%':24, '50-74%':74, '75-94%':94, '95% or more':100, 'Less than 25%':24, 'Less than 5%':4}
+                equiv = {'1,001 to 10,000':'', '101 to 1,000':'', '11 to 100':'', '3 to 10':'', 'Less than 3':'', 'Little':'', 'Lots':'', 'More than 10':'', 'More than 10,000':'', 'Some':'', '25-49%':.49, '5-24%':.24, '50-74%':.74, '75-94%':.94, '95% or more':1.00, 'Less than 25%':.249, 'Less than 5%':.049}
                 df['upper_percent'] = df['Intensity_Value'].map(equiv)
 
                 # In cases where the Intensity_Value = -9999 and Phenophase_Status = 0 the 'upper count' should be 0
