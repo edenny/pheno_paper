@@ -1,0 +1,11 @@
+spreadsheet sheet name,spreadsheet column name,internal uri,datatype,dataformat,defined by,displayAnnotationProperty,definition,entity alias,notes
+Samples,Observation_ID,http://rs.tdwg.org/dwc/terms/EventID,integer,,,false,Record Identifier,"plantStructurePresence",
+Samples,Latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,false,Decimal Latitude,"plantStructurePresence, measurementDatum",each column can contain multiple entity aliases where it can appear.  Use comma seperation 
+Samples,Longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,false,Decimal Longitude,"plantStructurePresence, measurementDatum",
+Samples,Phenophase_Description,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,false,Whole plant phenological stage,plantStructurePresence,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
+Samples,Observation_Date,http://rs.tdwg.org/dwc/terms/Event,date,YYYY-MM-DD,,false,The date the observation took place,"plantStructurePresence, measurementDatum",
+Samples,Day_of_Year,http://rs.tdwg.org/dwc/terms/startDayOfYear,integer,,,false,Day of year the observation took place,"plantStructurePresence, measurementDatum",
+Samples,lower_count,{lower count},integer,,,false,The lower value of an intensity value range,measurementDatum,
+Samples,upper_count,{upper count},integer,,,false,The upper value of an intensity value range,measurementDatum,
+Samples,lower_percent,{lower percent},float,,,,The lower percent of an intensity value range,measurementDatum,
+Samples,upper_percent,{upper percent},float,,,,The upper percent of an intensity value range,measurementDatum,

@@ -7,8 +7,8 @@ import sys
 import shutil
 import re
 
-inputDir = os.curdir + '/../data/npn_short/input'
-outputDir = '../data/npn_short/output_csv' 
+inputDir = os.curdir + '/../data/npn_direct/input'
+outputDir = '../data/npn_direct/output_csv' 
 mainIndexName = 'record_id'
 
 
@@ -57,6 +57,14 @@ def status0NoIntensity(row):
     else:
         # return default value
         return row['upper_count']
+
+# apply absent postfix to phenophase_Description field if status is 0
+def status0NoIntensityDescription(row):
+    if (row['Phenophase_Status'] == 0 ):
+        return row['Phenophase_Description'] + ' absent'
+    else:
+        # return default value
+        return row['Phenophase_Description']
 
 #2. Write Output to the output directory
 
@@ -109,6 +117,9 @@ for dirname in os.listdir(inputDir):
                 df['upper_count'] = df.apply(status0NoIntensity,axis=1)
                 # In cases where the Intensity_Value = -9999 and Phenophase_Status = 1 the 'lower count' should be 1
                 df['lower_count'] = df.apply(status1NoIntensity,axis=1)
+
+                # In cases where Phenophase_Status = 0 apply the word absent
+                df['Phenophase_Description'] = df.apply(status0NoIntensityDescription,axis=1)
 
                 # create output filename
                 output_filename = outputDir + '/' + outputfilename.split("_")[1] + '.csv'

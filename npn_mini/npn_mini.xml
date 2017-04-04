@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+<fims>
+    <metadata default_worksheet="Samples" doi="" eml_location="eml_location" ontology_location="ppo.owl" queryTarget="http://data.biscicol.org/ds" shortname="plantPhenologyOntology" target="http://data.biscicol.org/ds/data">
+        This is for testing the conversion of spreadsheets into instance data using the plant phenology ontology.
+    </metadata>
+    <validation>
+        <worksheet sheetname="Samples">
+            <rule column="Observation_ID" level="error" type="uniqueValue"/>
+            <rule column="Observation_ID" level="error" type="RequiredColumn"/>
+            <rule column="Individual_ID" level="error" type="RequiredColumn"/>
+            <rule column="Phenophase_Description" level="error" type="RequiredColumn"/>
+            <rule column="Latitude" level="error" type="RequiredColumn"/>
+            <rule column="Longitude" level="error" type="RequiredColumn"/>
+            <rule column="Observation_Date" level="error" type="RequiredColumn"/>
+            <rule column="Day_of_Year" level="error" type="RequiredColumn"/>
+            <rule column="Phenophase_Description" level="error" list="phenophase_description" type="controlledVocabulary"/>
+        </worksheet>
+        <lists>
+            <list alias="phenophase_description">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    &gt;=75% of full leaf size (deciduous)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    &gt;=50% of leaves colored (deciduous)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    All leaves colored (deciduous)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    &gt;=50% of leaves fallen (deciduous)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    All leaves fallen (deciduous)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    Full pollen release (angiosperms)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002008">
+                    Breaking leaf buds
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                    Ripe fruits
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002005">
+                    Increasing leaf size
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    Falling leaves
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                    Leaves
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    Colored leaves
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002011">
+                    Flowers or flower buds
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002013">
+                    Open flowers
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    Pollen release (flowers)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Recent fruit or seed drop
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002015">
+                    Fruits
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002011">
+                    Full flowering (50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    All leaves withered (herbaceous and grasses)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002013">
+                    Open flowers (1 location)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                    Ripe fruits (1 location)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002010">
+                    Initial growth (forbs)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                    Leaves (forbs)
+                </field>
+            </list>
+        </lists>
+    </validation>
+    <mapping>
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://purl.obolibrary.org/obo/PPO_0002002" uniqueKey="plantStructurePresenceHASH" worksheet="Samples">
+            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/EventID">
+                Record Identifier
+            </attribute>
+            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
+            </attribute>
+            <attribute column="Phenophase_Description" dataformat="" datatype="string" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+                Whole plant phenological stage
+            </attribute>
+            <attribute column="Observation_Date" dataformat="YYYY-MM-DD" datatype="date" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/Event">
+                The date the observation took place
+            </attribute>
+            <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+                Day of year the observation took place
+            </attribute>
+        </entity>
+        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="measurementDatumHASH" worksheet="Samples">
+            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
+            </attribute>
+            <attribute column="Observation_Date" dataformat="YYYY-MM-DD" datatype="date" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/Event">
+                The date the observation took place
+            </attribute>
+            <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+                Day of year the observation took place
+            </attribute>
+            <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="false" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
+                The lower value of an intensity value range
+            </attribute>
+            <attribute column="upper_count" dataformat="" datatype="integer" displayAnnotationProperty="false" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001001">
+                The upper value of an intensity value range
+            </attribute>
+            <attribute column="lower_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001002">
+                The lower percent of an intensity value range
+            </attribute>
+            <attribute column="upper_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001003">
+                The upper percent of an intensity value range
+            </attribute>
+        </entity>
+        <relation>
+            <subject>
+                plantStructurePresence
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/PPO_0001007
+            </predicate>
+            <object>
+                measurementDatum
+            </object>
+        </relation>
+    </mapping>
+</fims>

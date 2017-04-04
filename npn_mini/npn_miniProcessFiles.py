@@ -7,8 +7,8 @@ import sys
 import shutil
 import re
 
-inputDir = os.curdir + '/../data/npn_short/input'
-outputDir = '../data/npn_short/output_csv' 
+inputDir = os.curdir + '/../data/npn_mini/input'
+outputDir = '../data/npn_mini/output_csv' 
 mainIndexName = 'record_id'
 
 

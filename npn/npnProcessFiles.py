@@ -70,6 +70,7 @@ framesDict = {}
 for dirname in os.listdir(inputDir):
     # make sure we're just dealing with PEP directories
     if (dirname.startswith('datasheet_') and dirname.endswith("zip") == False ):
+        outputfilename = dirname
         dirname = inputDir +'/' + dirname
         print "processing " + dirname
         # loop all filenames in directory
@@ -110,6 +111,6 @@ for dirname in os.listdir(inputDir):
                 df['lower_count'] = df.apply(status1NoIntensity,axis=1)
 
                 # create output filename
-                output_filename = outputDir + '/' + dirname.split("_")[1] + '.csv'
+                output_filename = outputDir + '/' + outputfilename.split("_")[1] + '.csv'
                 # write to CSV
                 df.to_csv(output_filename,sep=',', mode='a', header=True)
