@@ -1,21 +1,21 @@
-field,defined_by,counts
-50 % autumnal leaf fall,{mature leaf presence},1041
-Autumnal coloring of leaves (50%),{mature leaf presence},142389
-Beginning of flowering ,{mature leaf presence},40826
-Beginning of sprouting,{mature leaf presence},63
-Coloring of leaves (100%),{mature leaf presence},6
-End of autumnal leaf fall (95% fallen),{mature leaf presence},2083
-End of flowering,{mature leaf presence},4
-First flower buds visible,{mature leaf presence},5176
-First leaves seperated (mouse ear),{mature leaf presence},7197
-First ripe fruits,{mature leaf presence},1
-Flowering 10% (male),{mature leaf presence},6114
-Fruits fully ripe,{mature leaf presence},29
-Full flowering,{mature leaf presence},355
-Harvest,{mature leaf presence},5659
-"Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)",{mature leaf presence},97
-Leaf unfolding (50%),{mature leaf presence},2151
-Leaf unfolding (first visible leaf stalk),{mature leaf presence},159248
-Leaves beginning to discolour,{mature leaf presence},85
-Soft dough,{mature leaf presence},2
-Sowing,{mature leaf presence},5834
+field,defined_by
+50 % autumnal leaf fall,{senescent leaves present}
+Autumnal coloring of leaves (50%),{senescent leaves present}
+Beginning of flowering,{flowers present}
+Beginning of sprouting,{new above-ground shoot-borne shoot systems present}
+Coloring of leaves (100%),{senescent leaves present}
+End of autumnal leaf fall (95% fallen),{abscised leaves present}
+End of flowering,{flowers absent}
+First flower buds visible,{breaking buds present}
+First leaves seperated (mouse ear),{leaves present}
+First ripe fruits,{ripening fruits present}
+Flowering 10% (male),{flowers present}
+Fruits fully ripe,{ripening fruits present}
+Full flowering,{flowers present}
+Harvest,{leaves present}
+"Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)",{leaves present}
+Leaf unfolding (50%),{leaves present}
+Leaf unfolding (first visible leaf stalk),{leaves present}
+Leaves beginning to discolour,{senescent leaves present}
+Soft dough,{leaves present}
+Sowing,{leaves present}

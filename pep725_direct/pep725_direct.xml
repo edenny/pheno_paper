@@ -14,8 +14,72 @@
             <rule column="DAY" level="error" type="RequiredColumn"/>
             <rule column="scientificname" level="error" type="RequiredColumn"/>
             <rule column="genus" level="error" type="RequiredColumn"/>
+            <rule column="description" level="error" list="description" type="controlledVocabulary"/>
         </worksheet>
-        <lists/>
+        <lists>
+            <list alias="description">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003005">
+                    50 % autumnal leaf fall
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003005">
+                    Autumnal coloring of leaves (50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003009">
+                    Beginning of flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003008">
+                    Beginning of sprouting
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003005">
+                    Coloring of leaves (100%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003007">
+                    End of autumnal leaf fall (95% fallen)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003049">
+                    End of flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003006">
+                    First flower buds visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    First leaves seperated (mouse ear)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003014">
+                    First ripe fruits
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003009">
+                    Flowering 10% (male)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003014">
+                    Fruits fully ripe
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003009">
+                    Full flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    Harvest
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    Leaf unfolding (50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    Leaf unfolding (first visible leaf stalk)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003005">
+                    Leaves beginning to discolour
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    Soft dough
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                    Sowing
+                </field>
+            </list>
+        </lists>
     </validation>
     <mapping>
         <entity conceptAlias="plantStructurePresence" conceptURI="http://purl.obolibrary.org/obo/PPO_0002002" uniqueKey="plantStructurePresenceHASH" worksheet="Samples">
