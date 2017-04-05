@@ -1,0 +1,12 @@
+spreadsheet sheet name,spreadsheet column name,internal uri,datatype,dataformat,defined by,displayAnnotationProperty,definition,entity alias,notes
+Samples,record_id,http://rs.tdwg.org/dwc/terms/EventID,integer,,,,Record Identifier,plantStructurePresence,
+Samples,LAT,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,,Decimal Latitude,plantStructurePresence,each column can contain multiple entity aliases where it can appear.  Use comma seperation 
+Samples,LON,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,,Decimal Longitude,plantStructurePresence,
+Samples,ALT,http://rs.tdwg.org/dwc/terms/minimumElevationInMeters,string,,,,Minimum Elevation In Meters,plantStructurePresence,
+Samples,NAME,http://rs.tdwg.org/dwc/terms/location,string,,,,Location name,plantStructurePresence,
+Samples,scientificname,http://rs.tdwg.org/dwc/terms/scientificName,string,,,,Scientific Name,plantStructurePresence,
+Samples,genus,http://rs.tdwg.org/dwc/terms/genus,string,,,,Common Name,plantStructurePresence,
+Samples,description,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,,Whole plant phenological stage,plantStructurePresence,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
+Samples,YEAR,http://rs.tdwg.org/dwc/terms/Event,date,YYYY,,,The date the observation took place,plantStructurePresence,
+Samples,DAY,http://rs.tdwg.org/dwc/terms/startDayOfYear,integer,,,,Day of year the observation took place,plantStructurePresence,
+Samples,phenophase_status,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,FALSE,,plantStructurePresence,Note that all of PEP725 is status is true

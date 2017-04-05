@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<fims>
+    <metadata default_worksheet="Samples" doi="" eml_location="eml_location" ontology_location="ppo.owl" queryTarget="http://data.biscicol.org/ds" shortname="plantPhenologyOntology" target="http://data.biscicol.org/ds/data">
+        This is for testing the conversion of spreadsheets into instance data using the plant phenology ontology.
+    </metadata>
+    <validation>
+        <worksheet sheetname="Samples">
+            <rule column="record_id" level="error" type="uniqueValue"/>
+            <rule column="record_id" level="error" type="RequiredColumn"/>
+            <rule column="description" level="error" type="RequiredColumn"/>
+            <rule column="LAT" level="error" type="RequiredColumn"/>
+            <rule column="LON" level="error" type="RequiredColumn"/>
+            <rule column="YEAR" level="error" type="RequiredColumn"/>
+            <rule column="DAY" level="error" type="RequiredColumn"/>
+            <rule column="scientificname" level="error" type="RequiredColumn"/>
+            <rule column="genus" level="error" type="RequiredColumn"/>
+        </worksheet>
+        <lists/>
+    </validation>
+    <mapping>
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://purl.obolibrary.org/obo/PPO_0002002" uniqueKey="plantStructurePresenceHASH" worksheet="Samples">
+            <attribute column="record_id" dataformat="" datatype="integer" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/EventID">
+                Record Identifier
+            </attribute>
+            <attribute column="LAT" dataformat="" datatype="float" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="LON" dataformat="" datatype="float" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
+            </attribute>
+            <attribute column="ALT" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/minimumElevationInMeters">
+                Minimum Elevation In Meters
+            </attribute>
+            <attribute column="NAME" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/location">
+                Location name
+            </attribute>
+            <attribute column="scientificname" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/scientificName">
+                Scientific Name
+            </attribute>
+            <attribute column="genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/genus">
+                Common Name
+            </attribute>
+            <attribute column="description" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+                Whole plant phenological stage
+            </attribute>
+            <attribute column="YEAR" dataformat="YYYY" datatype="date" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/Event">
+                The date the observation took place
+            </attribute>
+            <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+                Day of year the observation took place
+            </attribute>
+            <attribute column="phenophase_status" dataformat="" datatype="string" displayAnnotationProperty="FALSE" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+        </entity>
+    </mapping>
+</fims>
