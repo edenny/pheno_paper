@@ -168,7 +168,7 @@ loader:
 #--------
 .PHONY: reasoner
 reasoner:
-	../bin/runReasoner.sh $(project_name) $(file_name)
+	../bin/runReasoner.sh $(project_name) $(file_name) $(ontopilot) $(ppo_pre_reasoner_dir) $(base_input_dir) $(output_file)
 
 #--------
 # Run triplifier
