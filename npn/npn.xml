@@ -231,17 +231,6 @@
         </relation>
         <relation>
             <subject>
-                plantStructurePresence
-            </subject>
-            <predicate>
-                http://purl.obolibrary.org/obo/RO_0000080
-            </predicate>
-            <object>
-                wholePlant
-            </object>
-        </relation>
-        <relation>
-            <subject>
                 identificationAssertion
             </subject>
             <predicate>

@@ -3,6 +3,5 @@ phenologicalObservingProcess,http://purl.obolibrary.org/obo/BFO_0000066,location
 phenologicalObservingProcess,{has_specified_input},wholePlant,
 wholePlant,{has quality},plantStructurePresence,
 plantStructurePresence,{has quality measurement},measurementDatum,
-plantStructurePresence,{quality of},wholePlant,
 identificationAssertion,{of organism},wholePlant,
 identificationAssertion,{to taxon},taxon,
