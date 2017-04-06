@@ -90,6 +90,9 @@ for dirname in os.listdir(inputDir):
                 phenologyDataFrame = pd.read_csv(dirname+'/'+filename, sep=';', header=0)
                 # rename bbch to BBCH so it doesn't duplicate later
                 phenologyDataFrame = phenologyDataFrame.rename(columns={'bbch':'BBCH'})
+
+                # strip whitespace from characters in description field
+                phenologyDataFrame['description'] = phenologyDataFrame['description'].map(str.strip)
                 #list_.append(phenologyDataFrame)
             # location data frame
             elif (filename == 'PEP725_'+countrycode+'_stations.csv'):
@@ -102,6 +105,7 @@ for dirname in os.listdir(inputDir):
 
                 # extract the scientificname from the filename
                 scientificname = filename[10:len(filename)-4].replace("_"," ")
+
 
                 # extract genus from scientificname
                 genus = scientificname.split(" ")[0]
@@ -136,6 +140,8 @@ for genusName,genusDataFrames in framesDict.iteritems():
         printHeader = True
     else:
         printHeader = False
+
+    print 'writing output to ' + outputFilename
     # name output files according to genus
     allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
 

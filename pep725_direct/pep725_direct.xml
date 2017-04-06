@@ -113,7 +113,6 @@
             <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
             </attribute>
-            <attribute column="phenophase_status" dataformat="" datatype="string" displayAnnotationProperty="FALSE" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
         </entity>
     </mapping>
 </fims>

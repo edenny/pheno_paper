@@ -7,7 +7,8 @@ import sys
 import shutil
 import re
 
-outputDir = 'output_csv' 
+inputDir = os.curdir + '/../data/pep725/input'
+outputDir = '../data/pep725/output_csv' 
 mainIndexName = 'record_id'
 
 # python program to read PEP files, stored in directories 
@@ -68,14 +69,16 @@ os.makedirs(outputDir)
 
 framesDict = {}
 # Loop each directory off of the current directory
-for dirname in os.listdir(os.curdir):
+for dirname in os.listdir(inputDir):
     # make sure we're just dealing with PEP directories
     if (dirname.startswith('PEP') and dirname.endswith("tar") == False):
-        print "processing " + dirname
         # obtain country code from directory name pattern
         countrycode = dirname.split("_")[1]
         # obtain country name from countrycode
         countryname = countries.get(countrycode)
+
+        dirname = inputDir + '/' + dirname
+        print "processing " + dirname
         # loop all filenames in directory
         onlyfiles = [f for f in listdir(dirname) if isfile(join(dirname, f))]
         #list_ = []
@@ -87,6 +90,9 @@ for dirname in os.listdir(os.curdir):
                 phenologyDataFrame = pd.read_csv(dirname+'/'+filename, sep=';', header=0)
                 # rename bbch to BBCH so it doesn't duplicate later
                 phenologyDataFrame = phenologyDataFrame.rename(columns={'bbch':'BBCH'})
+
+                # strip whitespace from characters in description field
+                phenologyDataFrame['description'] = phenologyDataFrame['description'].map(str.strip)
                 #list_.append(phenologyDataFrame)
             # location data frame
             elif (filename == 'PEP725_'+countrycode+'_stations.csv'):
@@ -99,6 +105,7 @@ for dirname in os.listdir(os.curdir):
 
                 # extract the scientificname from the filename
                 scientificname = filename[10:len(filename)-4].replace("_"," ")
+
 
                 # extract genus from scientificname
                 genus = scientificname.split(" ")[0]
@@ -114,7 +121,7 @@ for dirname in os.listdir(os.curdir):
         merged_all['scientificname'] = scientificname
         merged_all['genus'] = genus
         merged_all['countryname'] = countryname
-        merged_all['phenophase_status'] = 'urn:occurring'
+        # merged_all['phenophase_status'] = 'urn:occurring'
 
         # add to dictionary of lists
         if genus not in framesDict:
@@ -133,6 +140,8 @@ for genusName,genusDataFrames in framesDict.iteritems():
         printHeader = True
     else:
         printHeader = False
+
+    print 'writing output to ' + outputFilename
     # name output files according to genus
     allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
 
