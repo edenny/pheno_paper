@@ -72,10 +72,10 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0003005">
                     Leaves beginning to discolour
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003000">
                     Soft dough
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003002">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003040">
                     Sowing
                 </field>
             </list>

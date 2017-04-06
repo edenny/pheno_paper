@@ -172,6 +172,9 @@
             <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
                 Decimal Longitude
             </attribute>
+            <attribute column="Genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/genus">
+                Genus
+            </attribute>
             <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/scientificName">
                 Scientific Name
             </attribute>

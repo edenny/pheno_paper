@@ -12,7 +12,6 @@
             <rule column="LON" level="error" type="RequiredColumn"/>
             <rule column="YEAR" level="error" type="RequiredColumn"/>
             <rule column="DAY" level="error" type="RequiredColumn"/>
-            <rule column="phenophase_status" level="error" type="RequiredColumn"/>
             <rule column="scientificname" level="error" type="RequiredColumn"/>
             <rule column="genus" level="error" type="RequiredColumn"/>
         </worksheet>
