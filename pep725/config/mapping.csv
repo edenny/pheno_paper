@@ -9,4 +9,3 @@ Samples,genus,http://rs.tdwg.org/dwc/terms/genus,string,,,,Common Name,taxon,
 Samples,description,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,,Whole plant phenological stage,plantStructurePresence,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
 Samples,YEAR,http://rs.tdwg.org/dwc/terms/Event,date,YYYY,,,The date the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,DAY,http://rs.tdwg.org/dwc/terms/startDayOfYear,integer,,,,Day of year the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
-Samples,phenophase_status,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,FALSE,,plantStructurePresence,Note that all of PEP725 is status is true

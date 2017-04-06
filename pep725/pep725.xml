@@ -70,7 +70,6 @@
             <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
             </attribute>
-            <attribute column="phenophase_status" dataformat="" datatype="string" displayAnnotationProperty="FALSE" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
         </entity>
         <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="measurementDatumHASH" worksheet="Samples">
             <attribute column="LAT" dataformat="" datatype="float" displayAnnotationProperty="false" group="location" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
