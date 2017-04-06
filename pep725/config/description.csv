@@ -17,5 +17,5 @@ Harvest,{mature leaf presence},5659
 Leaf unfolding (50%),{mature leaf presence},2151
 Leaf unfolding (first visible leaf stalk),{mature leaf presence},159248
 Leaves beginning to discolour,{mature leaf presence},85
-Soft dough,{mature leaf presence},2
-Sowing,{mature leaf presence},5834
+Soft dough,{plant structure presence},2
+Sowing,{plant structure absence},5834
