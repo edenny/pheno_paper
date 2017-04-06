@@ -164,8 +164,15 @@ loader:
 .DEFAULT_GOAL := ontology
 
 #--------
-# Build Reasoner 
+# Run Reasoner 
 #--------
 .PHONY: reasoner
 reasoner:
 	../bin/runReasoner.sh $(project_name) $(file_name)
+
+#--------
+# Run triplifier
+#--------
+.PHONY: ppo-fims-triples
+ppo-fims-triples:
+	java -jar ../bin/ppo-fims-triples.jar -i $(file_name) -o $(output_directory) -c $(configuration_file) 

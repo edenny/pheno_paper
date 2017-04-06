@@ -21,10 +21,10 @@ This step should be performed infrequently, and will affect all incoming data so
 ingest file  draws from the [ontopilot] (https://github.com/stuckyb/ontopilot) application.
 
 ```
-  %mkdir build
-  %cd build # and remove files if doing a fresh build
-  %make -f ../Makefile imports # build the imports
-  %make -f ../Makefile  #build the ontology and writes to ontology/ppo_ingest.owl)
+  mkdir build
+  cd build # and remove files if doing a fresh build
+  make -f ../Makefile imports # build the imports
+  make -f ../Makefile  #build the ontology and writes to ontology/ppo_ingest.owl)
 ```		
 # Step 2: Create FIMS configuration file(s) 
 
@@ -35,14 +35,14 @@ You will need to read the documentation for creating Configurator configuration 
 
 E.g. for npn first time only create the following directories and populate with the correct configuration files.
 ```
-  %mkdir npn
-  %mkdir npn/config
+  mkdir npn
+  mkdir npn/config
 ```
 
 Now you you will need to run the configurator, pointing the Makefile to the appropriate directory where the biocode-fims-configurator lives:
 ```
-  %cd build
-  %make -f ../Makefile configurator project_name="{project_name}"
+  cd build
+  make -f ../Makefile configurator project_name="{project_name}"
 ```
 
 Once the configurator does its work and we have succesfully built a configuration you should push 
@@ -57,27 +57,37 @@ stored in formats that are not easily parseable and contain assumptions about th
 Run the [NPN file pre-processing script] (https://github.com/jdeck88/pheno_paper/blob/master/npn/npnProcessFiles.py)
 
 ```
-  %python npnProcessFiles.py
+  python npnProcessFiles.py
 ```
 
 Unpack the PEP725 file downloads using [PEP725 unpacker script] https://github.com/jdeck88/pheno_paper/blob/master/pep725/pepProcessTar.sh) and then run the [PEP725 pre-processing script] (https://github.com/jdeck88/pheno_paper/blob/master/pep725/pepProcessFiles.py)
 
 ```
-  %./pepProcessTar.sh
-  %python pepProcessFiles.py
+  ./pepProcessTar.sh
+  python pepProcessFiles.py
 ```
 
 # Step 4: Triplification
 
-Triplifying FIMS data is done using the [ppo-fims java code-base](https://github.com/biocodellc/ppo-fims) which loads tabular data into a temporary SQLITE database, runs a series of validation rules on the data itself, and, if it passes, calls D2RQ for creating RDF triples from the loaded data.   The general structure for the RDF triples is first configured by FIMS (in step 2) and then is run through the [D2RQ] (http://d2rq.org/) engine for the actual triple creation. Coming is an executable java application for this step but for now, this can be run inside yoru Java IDE and running the generateTriplesForPaper main class.
+Triplifying FIMS data is done using the [ppo-fims java code-base](https://github.com/biocodellc/ppo-fims) which loads tabular data into a temporary SQLITE database, runs a series of validation rules on the data itself, and, if it passes, calls D2RQ for creating RDF triples from the loaded data.  
+
+```
+  cd build
+  make -f ../Makefile ppo-fims-triples file_name={input file location} output_directory={directory to send output to} configuration_file={FIMS configuration file location}
+```
 
 # Step 5: Reasoning
 
-We use the Ontopilot project to pre-reason data sources.  The current (and temporary! process) is to run this through our makefile:
+We use the Ontopilot project to pre-reason data sources.  The current (and temporary! process) is to run this through the ppo_pre_reasoner (called through a shell script).  Note that for this step we need to check out the following repositories:
 
+https://github.com/plantphenoontology/ppo_pre_reasoner/
+
+https://github.com/stuckyb/ontopilot  (for now, use the elk_pipeline branch)
+
+Once these repositories are installed you can call the following commands.  You will need to adjust path settings in bin/runReasoner.sh
 ```
-  %cd build
-  %make -f ../Makefile reasoner project_name=npn file_name=test.csv.n3
+  cd build
+  make -f ../Makefile reasoner project_name=npn file_name=test.csv.n3
 ```
 
 # NOTES

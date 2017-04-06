@@ -1,4 +1,9 @@
 #!/bin/bash
+# A temporary convenience script for running the ppo_pre_reasoner...
+# i built this since running lots of files through the first incarnation
+# of the ppo_pre_reasoner required renaming input/output files frequently
+# this script takes care of this business, but only until ontopilot gets 
+# a command line interface
 
 # arg1 (project)
 export project_name=$1
@@ -10,7 +15,6 @@ export data_dir="/Users/jdeck/IdeaProjects/pheno_paper/data/"$project_name"/"
 #export base_ontology_file=$data_dir"output_unreasoned_n3/1485013283920.csv.n3"
 export base_ontology_file=$data_dir"output_unreasoned_n3/"$file_name
 export ontopilot="/Users/jdeck/IdeaProjects/ontobuilder/bin/ontopilot.py"
-
 export ppo_pre_reasoner_dir="/Users/jdeck/IdeaProjects/ppo_pre_reasoner/"
 export project_file=$ppo_pre_reasoner_dir"project.conf"
 
@@ -25,7 +29,7 @@ export ontology_file_copyto=$data_dir"output_reasoned_owl/"$file_name".owl"
 # this is a hack, just waiting for standard in/out features on ontopilot
 sed -i 's|^base_ontology_file =.*|base_ontology_file = '$base_ontology_file'|' $project_file
 sed -i 's|^ontology_file =.*|ontology_file = '$ontology_file'|' $project_file
-sed -i 's|^reasoner =.*|reasoner = hermit |' $project_file
+# sed -i 's|^reasoner =.*|reasoner = hermit |' $project_file
 
 # cd to the ppo_pre_reasoner directory
 cd $ppo_pre_reasoner_dir
