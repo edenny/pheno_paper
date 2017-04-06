@@ -121,28 +121,10 @@
                 Day of year the observation took place
             </attribute>
         </entity>
-        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" uniqueKey="Individual_ID" worksheet="Samples">
-            <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
-                Individual Plant Identifier
-            </attribute>
-        </entity>
-        <entity conceptAlias="identificationAssertion" conceptURI="http://purl.obolibrary.org/obo/bco_0000042" uniqueKey="identificationAssertionHASH" worksheet="Samples">
-            <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
-                Individual Plant Identifier
-            </attribute>
-            <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="false" group="taxon" uri="http://rs.tdwg.org/dwc/terms/scientificName">
-                Scientific Name
-            </attribute>
-        </entity>
-        <entity conceptAlias="location" conceptURI="http://purl.org/dc/terms/Location" uniqueKey="locationHASH" worksheet="Samples">
-            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="location" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
-                Decimal Latitude
-            </attribute>
-            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="location" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
-                Decimal Longitude
-            </attribute>
-        </entity>
         <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="measurementDatumHASH" worksheet="Samples">
+            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+                Record Identifier
+            </attribute>
             <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="location" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
                 Decimal Latitude
             </attribute>
@@ -166,6 +148,27 @@
             </attribute>
             <attribute column="upper_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001003">
                 The upper percent of an intensity value range
+            </attribute>
+        </entity>
+        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" uniqueKey="Individual_ID" worksheet="Samples">
+            <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
+                Individual Plant Identifier
+            </attribute>
+        </entity>
+        <entity conceptAlias="identificationAssertion" conceptURI="http://purl.obolibrary.org/obo/bco_0000042" uniqueKey="identificationAssertionHASH" worksheet="Samples">
+            <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
+                Individual Plant Identifier
+            </attribute>
+            <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="false" group="taxon" uri="http://rs.tdwg.org/dwc/terms/scientificName">
+                Scientific Name
+            </attribute>
+        </entity>
+        <entity conceptAlias="location" conceptURI="http://purl.org/dc/terms/Location" uniqueKey="locationHASH" worksheet="Samples">
+            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="location" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="location" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
             </attribute>
         </entity>
         <entity conceptAlias="taxon" conceptURI="http://rs.tdwg.org/dwc/terms/Taxon" uniqueKey="taxonHASH" worksheet="Samples">
