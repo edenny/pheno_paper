@@ -25,18 +25,20 @@ export ontology_file_copyto=$output_file
 
 # do some replacements on the project configuration file
 # this is a hack, just waiting for standard in/out features on ontopilot
+echo "  updating " $project_file
 sed -i 's|^base_ontology_file =.*|base_ontology_file = '$base_ontology_file'|' $project_file
 sed -i 's|^ontology_file =.*|ontology_file = '$ontology_file'|' $project_file
 # sed -i 's|^reasoner =.*|reasoner = hermit |' $project_file
 
 # cd to the ppo_pre_reasoner directory
+echo "  cd " $ppo_pre_reasoner_dir
 cd $ppo_pre_reasoner_dir
 
 # execute the pre-reasoner command
-echo "processing " $base_ontology_file
+echo "  reasoning " $base_ontology_file
 $ontopilot --reason make ontology 2> $curdir/$project_name-err.txt
 
-echo "copying to " $(pwd)/$ontology_file_copyto
+echo "  copying output to " $(pwd)/$ontology_file_copyto
 cp $ontology_file_copyfrom $ontology_file_copyto
 
 
