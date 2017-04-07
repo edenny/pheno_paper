@@ -90,25 +90,8 @@
         </lists>
     </validation>
     <mapping>
-        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" uniqueKey="phenologicalObservingProcessHASH" worksheet="Samples">
-            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
-                Record Identifier
-            </attribute>
-            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
-                Decimal Latitude
-            </attribute>
-            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
-                Decimal Longitude
-            </attribute>
-            <attribute column="Observation_Date" dataformat="YYYY-MM-DD" datatype="date" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/Event">
-                The date the observation took place
-            </attribute>
-            <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
-                Day of year the observation took place
-            </attribute>
-        </entity>
         <entity conceptAlias="plantStructurePresence" conceptURI="http://purl.obolibrary.org/obo/PPO_0002002" uniqueKey="plantStructurePresenceHASH" worksheet="Samples">
-            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/EventID">
                 Record Identifier
             </attribute>
             <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
@@ -127,8 +110,25 @@
                 Day of year the observation took place
             </attribute>
         </entity>
+        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" uniqueKey="phenologicalObservingProcessHASH" worksheet="Samples">
+            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/EventID">
+                Record Identifier
+            </attribute>
+            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
+            </attribute>
+            <attribute column="Observation_Date" dataformat="YYYY-MM-DD" datatype="date" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/Event">
+                The date the observation took place
+            </attribute>
+            <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+                Day of year the observation took place
+            </attribute>
+        </entity>
         <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="measurementDatumHASH" worksheet="Samples">
-            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/EventID">
                 Record Identifier
             </attribute>
             <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
