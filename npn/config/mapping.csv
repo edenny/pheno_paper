@@ -1,8 +1,8 @@
 spreadsheet sheet name,spreadsheet column name,internal uri,datatype,dataformat,defined by,displayAnnotationProperty,definition,entity alias,notes
 Samples,Observation_ID,http://rs.tdwg.org/dwc/terms/EventID,integer,,,,Record Identifier,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,Individual_ID,http://rs.tdwg.org/dwc/terms/materialSampleID,integer,,,,Individual Plant Identifier,wholePlant,This will be mapped to {organism virus or viroid in the ontology}
-Samples,Latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,,Decimal Latitude,"location, plantStructurePresence, measurementDatum",each column can contain multiple entity aliases where it can appear.  Use comma seperation 
-Samples,Longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,,Decimal Longitude,"location, plantStructurePresence, measurementDatum",
+Samples,Latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,,Decimal Latitude,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",each column can contain multiple entity aliases where it can appear.  Use comma seperation 
+Samples,Longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,,Decimal Longitude,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,Genus,http://rs.tdwg.org/dwc/terms/genus,string,,,,Genus,wholePlant,
 Samples,Species,http://rs.tdwg.org/dwc/terms/scientificName,string,,,,Scientific Name,wholePlant,
 Samples,Common_Name,http://rs.tdwg.org/dwc/terms/vernacularName,string,,,,Common Name,wholePlant,

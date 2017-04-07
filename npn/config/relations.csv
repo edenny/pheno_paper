@@ -2,4 +2,3 @@ subject entity alias,predicate,object entity alias,notes
 plantStructurePresence,{has quality measurement},measurementDatum,
 plantStructurePresence,{quality of},wholePlant,
 phenologicalObservingProcess,{has_specified_input},plantStructurePresence
-phenologicalObservingProcess,http://purl.obolibrary.org/obo/BFO_0000066,location,
