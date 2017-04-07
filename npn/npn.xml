@@ -154,16 +154,14 @@
             <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
                 Individual Plant Identifier
             </attribute>
-        </entity>
-        <entity conceptAlias="identificationAssertion" conceptURI="http://purl.obolibrary.org/obo/bco_0000042" uniqueKey="identificationAssertionHASH" worksheet="Samples">
-            <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
-                Individual Plant Identifier
-            </attribute>
-            <attribute column="Genus" dataformat="" datatype="string" displayAnnotationProperty="false" group="taxon" uri="http://rs.tdwg.org/dwc/terms/genus">
+            <attribute column="Genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/genus">
                 Genus
             </attribute>
-            <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="false" group="taxon" uri="http://rs.tdwg.org/dwc/terms/scientificName">
+            <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/scientificName">
                 Scientific Name
+            </attribute>
+            <attribute column="Common_Name" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/vernacularName">
+                Common Name
             </attribute>
         </entity>
         <entity conceptAlias="location" conceptURI="http://purl.org/dc/terms/Location" uniqueKey="locationHASH" worksheet="Samples">
@@ -174,50 +172,6 @@
                 Decimal Longitude
             </attribute>
         </entity>
-        <entity conceptAlias="taxon" conceptURI="http://rs.tdwg.org/dwc/terms/Taxon" uniqueKey="taxonHASH" worksheet="Samples">
-            <attribute column="Genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="taxon" uri="http://rs.tdwg.org/dwc/terms/genus">
-                Genus
-            </attribute>
-            <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="true" group="taxon" uri="http://rs.tdwg.org/dwc/terms/scientificName">
-                Scientific Name
-            </attribute>
-            <attribute column="Common_Name" dataformat="" datatype="string" displayAnnotationProperty="true" group="taxon" uri="http://rs.tdwg.org/dwc/terms/vernacularName">
-                Common Name
-            </attribute>
-        </entity>
-        <relation>
-            <subject>
-                phenologicalObservingProcess
-            </subject>
-            <predicate>
-                http://purl.obolibrary.org/obo/BFO_0000066
-            </predicate>
-            <object>
-                location
-            </object>
-        </relation>
-        <relation>
-            <subject>
-                phenologicalObservingProcess
-            </subject>
-            <predicate>
-                http://purl.obolibrary.org/obo/OBI_0000293
-            </predicate>
-            <object>
-                wholePlant
-            </object>
-        </relation>
-        <relation>
-            <subject>
-                wholePlant
-            </subject>
-            <predicate>
-                http://purl.obolibrary.org/obo/RO_0000086
-            </predicate>
-            <object>
-                plantStructurePresence
-            </object>
-        </relation>
         <relation>
             <subject>
                 plantStructurePresence
@@ -231,10 +185,10 @@
         </relation>
         <relation>
             <subject>
-                identificationAssertion
+                plantStructurePresence
             </subject>
             <predicate>
-                http://purl.obolibrary.org/obo/BCO_0000086
+                http://purl.obolibrary.org/obo/RO_0000080
             </predicate>
             <object>
                 wholePlant
@@ -242,13 +196,24 @@
         </relation>
         <relation>
             <subject>
-                identificationAssertion
+                phenologicalObservingProcess
             </subject>
             <predicate>
-                http://purl.obolibrary.org/obo/BCO_0000085
+                http://purl.obolibrary.org/obo/OBI_0000293
             </predicate>
             <object>
-                taxon
+                plantStructurePresence
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                phenologicalObservingProcess
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/BFO_0000066
+            </predicate>
+            <object>
+                location
             </object>
         </relation>
     </mapping>
