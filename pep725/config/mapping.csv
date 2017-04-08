@@ -10,4 +10,4 @@ Samples,description,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,,Wh
 Samples,YEAR,http://rs.tdwg.org/dwc/terms/Event,date,YYYY,,,The date the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,DAY,http://rs.tdwg.org/dwc/terms/startDayOfYear,integer,,,,Day of year the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,lower_count,{lower count},integer,,,,The lower value of an intensity value range,measurementDatum,
-
+Samples,Source,http://purl.org/dc/elements/1.1/creator,string,,,,Dataset Source,plantStructurePresence,

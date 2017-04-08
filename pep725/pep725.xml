@@ -24,55 +24,55 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
                     Autumnal coloring of leaves (50%)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     Beginning of flowering
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002010">
                     Beginning of sprouting
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
                     Coloring of leaves (100%)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
                     End of autumnal leaf fall (95% fallen)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     End of flowering
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002013">
                     First flower buds visible
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
                     First leaves seperated (mouse ear)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
                     First ripe fruits
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     Flowering 10% (male)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
                     Fruits fully ripe
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     Full flowering
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002018">
                     Harvest
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
                     Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
                     Leaf unfolding (50%)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
                     Leaf unfolding (first visible leaf stalk)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
                     Leaves beginning to discolour
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
                     Soft dough
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0003040">
@@ -106,6 +106,9 @@
             </attribute>
             <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
+            </attribute>
+            <attribute column="Source" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://purl.org/dc/elements/1.1/creator">
+                Dataset Source
             </attribute>
         </entity>
         <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" uniqueKey="phenologicalObservingProcessHASH" worksheet="Samples">

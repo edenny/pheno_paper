@@ -1,21 +1,21 @@
 field,defined_by
 50 % autumnal leaf fall,{mature leaf presence}
 Autumnal coloring of leaves (50%),{mature leaf presence}
-Beginning of flowering ,{mature leaf presence}
-Beginning of sprouting,{mature leaf presence}
+Beginning of flowering ,{flower presence}
+Beginning of sprouting,{new above-ground shoot-borne shoot system presence}
 Coloring of leaves (100%),{mature leaf presence}
-End of autumnal leaf fall (95% fallen),{mature leaf presence}
-End of flowering,{mature leaf presence}
-First flower buds visible,{mature leaf presence}
-First leaves seperated (mouse ear),{mature leaf presence}
-First ripe fruits,{mature leaf presence}
-Flowering 10% (male),{mature leaf presence}
-Fruits fully ripe,{mature leaf presence}
-Full flowering,{mature leaf presence}
-Harvest,{mature leaf presence}
-"Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)",{mature leaf presence}
-Leaf unfolding (50%),{mature leaf presence}
-Leaf unfolding (first visible leaf stalk),{mature leaf presence}
+End of autumnal leaf fall (95% fallen),{abscised leaf presence}
+End of flowering,{flower presence}
+First flower buds visible,{flower head presence}
+First leaves seperated (mouse ear),{leaf presence}
+First ripe fruits,{ripening fruit presence}
+Flowering 10% (male),{flower presence}
+Fruits fully ripe,{ripening fruit presence}
+Full flowering,{flower presence}
+Harvest,{abscised fruit or seed presence}
+"Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)",{leaf presence}
+Leaf unfolding (50%),{leaf presence}
+Leaf unfolding (first visible leaf stalk),{leaf presence}
 Leaves beginning to discolour,{mature leaf presence}
 Soft dough,{ripening fruit presence}
 Sowing,{plant structures absent}
