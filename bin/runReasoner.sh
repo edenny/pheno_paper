@@ -36,7 +36,8 @@ cd $ppo_pre_reasoner_dir
 
 # execute the pre-reasoner command
 echo "  reasoning " $base_ontology_file
-$ontopilot --reason make ontology 2> $curdir/$project_name-err.txt
+#$ontopilot --reason make ontology 2> $curdir/$project_name-err.txt
+$ontopilot --reason make ontology 2> $curdir/$file_name.err
 
 echo "  copying output to " $(pwd)/$ontology_file_copyto
 cp $ontology_file_copyfrom $ontology_file_copyto

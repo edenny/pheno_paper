@@ -31,14 +31,15 @@ termsfiles :=
 # customize the import module suffix, set the value of "import_mod_suffix" in
 # the section "Variables for processing ontology import modules."
 ontology_IRI := https://raw.githubusercontent.com/biocodellc/ppo-fims/master/data/ontology/ppo_ingest.owl
+#ontology_IRI := file:///Users/jdeck/IdeaProjects/pheno_paper/ontology/ppo_reasoned.owl
 
 # The location of the ontobuilder executables (OPTIONAL).  By default, the
 # build process assumes that the location of the build executables has been
 # added to the search path, but if that is not the case, you must provide their
-# location as the value of the variable "ontobuilder_bin".
-#ontobuilder_bin := ../../ontobuilder/bin
-ontobuilder_bin := ../../biocode-fims-configurator/bin
-#ontobuilder_bin := 
+# location as the value of the variable "configurator_bin".
+#configurator_bin := ../../ontobuilder/bin
+configurator_bin := ../../biocode-fims-configurator/bin
+#configurator_bin := 
 
 
 #--------
@@ -64,15 +65,15 @@ endif
 
 # If the location of the ontobuilder executables was not explicity provided,
 # try to get it from the search path.
-ifeq ($(ontobuilder_bin),)
-  ontobuilder_bin := $(realpath $(dir $(shell which build_import_modules.py)))
+ifeq ($(configurator_bin),)
+  configurator_bin := $(realpath $(dir $(shell which build_import_modules.py)))
 endif
 
 # Make sure we got the location of the ontobuilder executables.
-ifeq ($(ontobuilder_bin),)
+ifeq ($(configurator_bin),)
   $(error Error: The ontobuilder executables could not be located.  Please \
       add them to the search path or specify their location by setting the \
-      the value of the variable "ontobuilder_bin" in this Makefile)
+      the value of the variable "configurator_bin" in this Makefile)
 endif
 
 
@@ -125,7 +126,7 @@ import_mod_suffix := _$(basename $(ontology_file))_import_module.owl
 
 .PHONY: imports
 imports: $(imports_source)
-	$(ontobuilder_bin)/build_import_modules.py --importsfile $(imports_source) \
+	$(configurator_bin)/build_import_modules.py --importsfile $(imports_source) \
 	    --outputsuffix $(import_mod_suffix) --baseIRI $(mod_baseIRI)
 
 
@@ -137,7 +138,7 @@ imports: $(imports_source)
 ontology: $(ontology_file)
 
 $(ontology_file): $(base_ontology_file) $(termsfilepaths)
-	$(ontobuilder_bin)/build_ontology.py -b $(base_ontology_file) -i $(ontology_IRI) \
+	$(configurator_bin)/build_ontology.py -b $(base_ontology_file) -i $(ontology_IRI) \
 	    -o ../ontology/$(ontology_file) $(termsfilepaths)
 
 #--------
@@ -146,7 +147,7 @@ $(ontology_file): $(base_ontology_file) $(termsfilepaths)
 
 .PHONY: configurator
 configurator: 
-	$(ontobuilder_bin)/configurator.py -d ../$(project_name)/config/ -b ../ontology/$(ontology_file) \
+	$(configurator_bin)/configurator.py -d ../$(project_name)/config/ -b ../ontology/$(ontology_file) \
 		-o ../$(project_name)/$(project_name).xml -n 
 
 #--------
