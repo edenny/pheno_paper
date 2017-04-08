@@ -1,21 +1,21 @@
-field,defined_by
-50 % autumnal leaf fall,{mature leaf presence}
-Autumnal coloring of leaves (50%),{mature leaf presence}
-Beginning of flowering ,{flower presence}
-Beginning of sprouting,{new above-ground shoot-borne shoot system presence}
-Coloring of leaves (100%),{mature leaf presence}
-End of autumnal leaf fall (95% fallen),{abscised leaf presence}
-End of flowering,{flower presence}
-First flower buds visible,{flower head presence}
-First leaves seperated (mouse ear),{leaf presence}
-First ripe fruits,{ripening fruit presence}
-Flowering 10% (male),{flower presence}
-Fruits fully ripe,{ripening fruit presence}
-Full flowering,{flower presence}
-Harvest,{abscised fruit or seed presence}
-"Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)",{leaf presence}
-Leaf unfolding (50%),{leaf presence}
-Leaf unfolding (first visible leaf stalk),{leaf presence}
-Leaves beginning to discolour,{mature leaf presence}
-Soft dough,{ripening fruit presence}
-Sowing,{plant structures absent}
+field,defined_by,notes,
+50 % autumnal leaf fall,{abscised leaf presence},
+Autumnal coloring of leaves (50%),{senescent leaf presence},
+Beginning of flowering ,{flower presence},
+Beginning of sprouting,{new above-ground shoot-borne shoot system presence},
+Coloring of leaves (100%),{senescent leaf presence},
+End of autumnal leaf fall (95% fallen),{abscised leaf presence},
+End of flowering,{flower presence},
+First flower buds visible,{flower presence},
+First leaves seperated (mouse ear),{breaking bud presence},
+First ripe fruits,{ripening fruit presence},
+Flowering 10% (male),{flower presence},Check if this means 10% open flowers.
+Fruits fully ripe,{ripening fruit presence},
+Full flowering,{flower presence},Check if this means 100% open flowers.
+Harvest,{abscised fruit or seed presence},
+"Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)",{mature leaf presence},
+Leaf unfolding (50%),{leaf presence},Does this mean 50% mature?
+Leaf unfolding (first visible leaf stalk),{leaf presence},
+Leaves beginning to discolour,{senescent leaf presence},
+Soft dough,{ripening fruit presence},
+Sowing,{plant structure presence},Need to assert that upper count is 0.
