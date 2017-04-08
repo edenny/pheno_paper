@@ -176,4 +176,4 @@ reasoner:
 #--------
 .PHONY: ppo-fims-triples
 ppo-fims-triples:
-	java -jar ../bin/ppo-fims-triples.jar -i $(file_name) -o $(output_directory) -c $(configuration_file) 
+	java -Xmx2048m -jar ../bin/ppo-fims-triples.jar -i $(file_name) -o $(output_directory) -c $(configuration_file) 

@@ -192,13 +192,13 @@
         </relation>
         <relation>
             <subject>
-                phenologicalObservingProcess
+                plantStructurePresence
             </subject>
             <predicate>
-                http://purl.obolibrary.org/obo/OBI_0000293
+                http://purl.obolibrary.org/obo/OBI_0000295
             </predicate>
             <object>
-                plantStructurePresence
+                phenologicalObservingProcess
             </object>
         </relation>
     </mapping>

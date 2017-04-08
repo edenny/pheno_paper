@@ -35,5 +35,5 @@ function runLoop {
 # call the runLoop function with project_name and array of files
 #files=( 1485012823554.csv  1485013283920.csv )
 #runLoop npn $files
-files=( Betula-1000.csv  Helianthus-1000.csv )
+files=( Betula-20000.csv  Helianthus-20000.csv )
 runLoop pep725 $files
