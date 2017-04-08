@@ -90,6 +90,16 @@ Once these repositories are installed you can call the following commands.  You 
   make -f ../Makefile reasoner project_name=npn file_name=test.csv.n3
 ```
 
+# Step 6: Data Storage / Indexing
+
+*ElasticSearch* 
+
+Reasoned data going to ElasticSearch
+
+*SPARQL Endpoint *
+
+Reasoned data also going int SPARQL
+
 # NOTES
 
 Configuration files for projects are stored off of the root path and are named according to the source they were derived from.
