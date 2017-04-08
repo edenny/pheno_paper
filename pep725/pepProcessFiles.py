@@ -122,6 +122,8 @@ for dirname in os.listdir(inputDir):
         merged_all['genus'] = genus
         merged_all['countryname'] = countryname
         merged_all['lower_count'] = 1
+        merged_all['Source'] = 'PEP725' 
+
         # merged_all['phenophase_status'] = 'urn:occurring'
 
         # add to dictionary of lists

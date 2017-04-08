@@ -13,3 +13,4 @@ Samples,lower_count,{lower count},integer,,,,The lower value of an intensity val
 Samples,upper_count,{upper count},integer,,,,The upper value of an intensity value range,measurementDatum,
 Samples,lower_percent,{lower percent},float,,,,The lower percent of an intensity value range,measurementDatum,
 Samples,upper_percent,{upper percent},float,,,,The upper percent of an intensity value range,measurementDatum,
+Samples,Source,http://purl.org/dc/elements/1.1/creator,string,,,,Dataset Source,plantStructurePresence,

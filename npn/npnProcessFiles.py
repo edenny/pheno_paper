@@ -109,6 +109,7 @@ for dirname in os.listdir(inputDir):
                 df['upper_count'] = df.apply(status0NoIntensity,axis=1)
                 # In cases where the Intensity_Value = -9999 and Phenophase_Status = 1 the 'lower count' should be 1
                 df['lower_count'] = df.apply(status1NoIntensity,axis=1)
+                df['Source'] = 'NPN'
 
                 # create output filename
                 output_filename = outputDir + '/' + outputfilename.split("_")[1] + '.csv'

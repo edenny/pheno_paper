@@ -32,13 +32,13 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
                     All leaves fallen (deciduous)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002015">
                     Full pollen release (angiosperms)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002008">
                     Breaking leaf buds
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
                     Ripe fruits
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002005">
@@ -53,31 +53,31 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
                     Colored leaves
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002011">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     Flowers or flower buds
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002013">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
                     Open flowers
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002015">
                     Pollen release (flowers)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002018">
                     Recent fruit or seed drop
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002015">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
                     Fruits
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002011">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     Full flowering (50%)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
                     All leaves withered (herbaceous and grasses)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002013">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
                     Open flowers (1 location)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
                     Ripe fruits (1 location)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002010">
@@ -108,6 +108,9 @@
             </attribute>
             <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
+            </attribute>
+            <attribute column="Source" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://purl.org/dc/elements/1.1/creator">
+                Dataset Source
             </attribute>
         </entity>
         <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" uniqueKey="phenologicalObservingProcessHASH" worksheet="Samples">
