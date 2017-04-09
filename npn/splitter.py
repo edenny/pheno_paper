@@ -50,4 +50,4 @@ def split(filehandler, delimiter, row_limit,
                 current_out_writer.writerow(headers)
         current_out_writer.writerow(row)
 
-split(open('../data/pep725/output_csv/Betula.csv', 'r'),',',100000,'Betula_%s.csv','../data/pep725/output_csv/',True);
+split(open('../data/npn/output_csv/1485012823554.csv', 'r'),',',100000,'1485012823554_%s.csv','../data/npn/output_csv/',True);
