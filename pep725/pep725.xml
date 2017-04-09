@@ -101,8 +101,8 @@
             <attribute column="description" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
                 Whole plant phenological stage
             </attribute>
-            <attribute column="YEAR" dataformat="YYYY" datatype="date" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/Event">
-                The date the observation took place
+            <attribute column="YEAR" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
+                The year the observation took place
             </attribute>
             <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
@@ -127,8 +127,8 @@
             <attribute column="NAME" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/location">
                 Location name
             </attribute>
-            <attribute column="YEAR" dataformat="YYYY" datatype="date" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/Event">
-                The date the observation took place
+            <attribute column="YEAR" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
+                The year the observation took place
             </attribute>
             <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
@@ -150,8 +150,8 @@
             <attribute column="NAME" dataformat="" datatype="string" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/location">
                 Location name
             </attribute>
-            <attribute column="YEAR" dataformat="YYYY" datatype="date" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/Event">
-                The date the observation took place
+            <attribute column="YEAR" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
+                The year the observation took place
             </attribute>
             <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place

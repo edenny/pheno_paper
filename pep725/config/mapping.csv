@@ -7,7 +7,7 @@ Samples,NAME,http://rs.tdwg.org/dwc/terms/location,string,,,,Location name,"phen
 Samples,scientificname,http://rs.tdwg.org/dwc/terms/scientificName,string,,,,Scientific Name,"wholePlant",
 Samples,genus,http://rs.tdwg.org/dwc/terms/genus,string,,,,Common Name,wholePlant,
 Samples,description,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,,Whole plant phenological stage,plantStructurePresence,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
-Samples,YEAR,http://rs.tdwg.org/dwc/terms/Event,date,YYYY,,,The date the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
+Samples,YEAR,http://rs.tdwg.org/dwc/terms/year,integer,,,,The year the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,DAY,http://rs.tdwg.org/dwc/terms/startDayOfYear,integer,,,,Day of year the observation took place,"phenologicalObservingProcess, plantStructurePresence, measurementDatum",
 Samples,lower_count,{lower count},integer,,,,The lower value of an intensity value range,measurementDatum,
 Samples,Source,http://purl.org/dc/elements/1.1/creator,string,,,,Dataset Source,plantStructurePresence,
