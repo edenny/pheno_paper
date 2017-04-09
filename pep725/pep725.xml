@@ -18,10 +18,10 @@
         </worksheet>
         <lists>
             <list alias="description">
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
                     50 % autumnal leaf fall
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
                     Autumnal coloring of leaves (50%)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
@@ -30,7 +30,7 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002010">
                     Beginning of sprouting
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
                     Coloring of leaves (100%)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
@@ -39,10 +39,10 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     End of flowering
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002013">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
                     First flower buds visible
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002008">
                     First leaves seperated (mouse ear)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
@@ -60,7 +60,7 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002018">
                     Harvest
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
                     Leaf unfolding (5.true leaves, leaf pairs or whoris unfolded)
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
@@ -69,13 +69,13 @@
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
                     Leaf unfolding (first visible leaf stalk)
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
                     Leaves beginning to discolour
                 </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
                     Soft dough
                 </field>
-                <field defined_by="http://purl.obolibrary.org/obo/PPO_0003040">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002002">
                     Sowing
                 </field>
             </list>
@@ -195,13 +195,24 @@
         </relation>
         <relation>
             <subject>
-                plantStructurePresence
+                wholePlant
             </subject>
             <predicate>
                 http://purl.obolibrary.org/obo/OBI_0000295
             </predicate>
             <object>
                 phenologicalObservingProcess
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                phenologicalObservingProcess
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/OBI_0000299
+            </predicate>
+            <object>
+                measurementDatum
             </object>
         </relation>
     </mapping>
