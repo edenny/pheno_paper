@@ -93,7 +93,6 @@ for dirname in os.listdir(inputDir):
 
                 # strip whitespace from characters in description field
                 phenologyDataFrame['description'] = phenologyDataFrame['description'].map(str.strip)
-                #list_.append(phenologyDataFrame)
             # location data frame
             elif (filename == 'PEP725_'+countrycode+'_stations.csv'):
                 locationDataFrame = pd.read_csv(dirname+'/'+filename, sep=';', header=0)
@@ -121,8 +120,18 @@ for dirname in os.listdir(inputDir):
         merged_all['scientificname'] = scientificname
         merged_all['genus'] = genus
         merged_all['countryname'] = countryname
-        merged_all['lower_count'] = 1
         merged_all['Source'] = 'PEP725' 
+    	#####################################
+	# Deal with lower/upper count fields
+    	#####################################
+	# Everything in PEP is "present" so it should all be lower_count = 1
+        merged_all['lower_count'] = 1
+	# Conditionally map count fields.  Some fields are actually "absent".. here we re-map these to upper_count = 0
+	#merged_all.loc[merged_all['description'] in  'Sowing', 'upper_count'] = 0
+	#merged_all.loc[merged_all['description'] in 'Sowing', 'lower_count'] = 0
+	#merged_all.description['Sowing]' loc[merged_all['description'] in 'Sowing', 'lower_count'] = 0
+        merged_all['upper_count'] = ''
+	merged_all.loc[merged_all.description == 'Sowing', ['lower_count', 'upper_count']] = 0, 0
 
         # merged_all['phenophase_status'] = 'urn:occurring'
 
