@@ -111,6 +111,13 @@ for dirname in os.listdir(inputDir):
                 df['lower_count'] = df.apply(status1NoIntensity,axis=1)
                 df['Source'] = 'NPN'
 
+		# Normalize Date to just Year
+		df['Observation_Date'] = pd.to_datetime(df['Observation_Date'])
+		df['Year'] = df['Observation_Date'].dt.year
+
+		# Create ScientificName
+		df['ScientificName'] = df['Genus'] + ' ' + df['Species']
+
                 # create output filename
                 output_filename = outputDir + '/' + outputfilename.split("_")[1] + '.csv'
                 # write to CSV
