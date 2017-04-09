@@ -94,15 +94,15 @@ Once these repositories are installed you can call the following commands.  You 
 
 *SPARQL Endpoint *
 
-Reasoned data also going int SPARQL
-There are some scripts for loading reasoned OWL data into ElasticSearch in the bin directory of this repository.  These scripts have hardcoded namespaces in them so you can load into a particular namespace in blazegraph.  Whatever namespace you choose, this should
-be reflected in SPARQL queries, which can be executed either on the http://data.plantphenology.org/ interface (send email to this repo owner if you want access to this host) or through a Curl command calling the Blazegraph REST API.  A very simple SPARQL command to get data back from this endpoint for the pheno_paper3 namespace is here:
+Reasoned data is being loaded into a BlazeGraph SPARQL endpoint at http://data.plantphenology.org/  ..  Email the owner of this repository if you would like access to this host if you want to try out queries.  Note that we do not yet have a stable namespace for loaded SPARQL queries so you should be careful about using the most up to date namespace for loaded data.  One can use the GUI interface for running queries, or instead issue SPARQL by calling the blazegraph REST API.
+
+A very simple SPARQL command to get data back from this endpoint for the pheno_paper3 namespace is here:
 
 ```
 curl -X POST http://data.plantphenology.org/blazegraph/namespace/pheno_paper3/sparql --data-urlencode 'query=SELECT * { ?s ?p ?o } LIMIT 1' -H 'Accept:text/csv'
 ```
 
-A more complex SPARQL command for returning data is:
+A more complex SPARQL command that returns flowering time, day of year, and year for Genus = "Helianthus":
 
 ```
 curl -X POST http://data.plantphenology.org/blazegraph/namespace/pheno_paper3/sparql -H 'Accept:text/csv' --data-urlencode 'query=prefix dwc: <http://rs.tdwg.org/dwc/terms/> prefix obo: <http://purl.obolibrary.org/obo/>  SELECT  ?startDayOfYear ?year ?latitude ?longitude ?wholePlant WHERE {    ?wholePlant dwc:genus "Helianthus"^^<http://www.w3.org/2001/XMLSchema#string> . optional{?wholePlant dwc:specificEpithet "annuus"^^<http://www.w3.org/2001/XMLSchema#string>} . ?wholePlant obo:RO_0000086 ?plantStructurePresence . ?plantStructurePresence rdf:type obo:PPO_0003010 . ?plantStructurePresence obo:PPO_0001007 ?measurementDatum . ?measurementDatum obo:OBI_0000312 ?phenologyObservingProcess . ?phenologyObservingProcess rdf:type obo:PPO_0002000 . ?phenologyObservingProcess dwc:startDayOfYear ?startDayOfYear . ?phenologyObservingProcess dwc:year ?year . ?phenologyObservingProcess dwc:decimalLatitude ?latitude . ?phenologyObservingProcess dwc:decimalLongitude ?longitude . } ORDER BY ?startDayOfYear ?year'
