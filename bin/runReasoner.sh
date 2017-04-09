@@ -36,8 +36,8 @@ cd $ppo_pre_reasoner_dir
 
 # execute the pre-reasoner command
 echo "  reasoning " $base_ontology_file
-#$ontopilot --reason make ontology 2> $curdir/$project_name-err.txt
-$ontopilot --reason make ontology 2> $curdir/$file_name.err
+#echo $(pwd)/$ontopilot --reason make ontology 
+java -Xmx3000m -Xss1024k -classpath /usr/local/src/jython/jython.jar:. -Dpython.home=/usr/local/src/jython -Dpython.executable=/usr/local/src/jython/bin/jython -Dpython.launcher.uname=linux -Dpython.launcher.tty=true org.python.util.jython /home/jdeck88/code/ontopilot/bin/ontopilot.py --reason make ontology 
 
 echo "  copying output to " $(pwd)/$ontology_file_copyto
 cp $ontology_file_copyfrom $ontology_file_copyto
