@@ -112,8 +112,9 @@ for dirname in os.listdir(inputDir):
                 df['Source'] = 'NPN'
 
 		# Normalize Date to just Year
-		df['Observation_Date'] = pd.to_datetime(df['Observation_Date'])
-		df['Year'] = df['Observation_Date'].dt.year
+		#df['Observation_Date'] = pd.to_datetime(df['Observation_Date'])
+		#df['Year'] = df['Observation_Date'].dt.year
+		df['Year'] = pd.DatetimeIndex(df['Observation_Date']).year
 
 		# Create ScientificName
 		df['ScientificName'] = df['Genus'] + ' ' + df['Species']
@@ -122,3 +123,4 @@ for dirname in os.listdir(inputDir):
                 output_filename = outputDir + '/' + outputfilename.split("_")[1] + '.csv'
                 # write to CSV
                 df.to_csv(output_filename,sep=',', mode='a', header=True)
+                print "output " + output_filename
