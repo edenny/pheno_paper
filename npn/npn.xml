@@ -130,35 +130,6 @@
                 Day of year the observation took place
             </attribute>
         </entity>
-        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="measurementDatumHASH" worksheet="Samples">
-            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://rs.tdwg.org/dwc/terms/EventID">
-                Record Identifier
-            </attribute>
-            <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
-                Decimal Latitude
-            </attribute>
-            <attribute column="Longitude" dataformat="" datatype="float" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
-                Decimal Longitude
-            </attribute>
-            <attribute column="Year" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
-                The year the observation took place
-            </attribute>
-            <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="false" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
-                Day of year the observation took place
-            </attribute>
-            <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
-                The lower value of an intensity value range
-            </attribute>
-            <attribute column="upper_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001001">
-                The upper value of an intensity value range
-            </attribute>
-            <attribute column="lower_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001002">
-                The lower percent of an intensity value range
-            </attribute>
-            <attribute column="upper_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001003">
-                The upper percent of an intensity value range
-            </attribute>
-        </entity>
         <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" uniqueKey="Individual_ID" worksheet="Samples">
             <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/materialSampleID">
                 Individual Plant Identifier
@@ -174,6 +145,20 @@
             </attribute>
             <attribute column="Common_Name" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/vernacularName">
                 Common Name
+            </attribute>
+        </entity>
+        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="record_id" worksheet="Samples">
+            <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
+                The lower value of an intensity value range
+            </attribute>
+            <attribute column="upper_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001001">
+                The upper value of an intensity value range
+            </attribute>
+            <attribute column="lower_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001002">
+                The lower percent of an intensity value range
+            </attribute>
+            <attribute column="upper_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001003">
+                The upper percent of an intensity value range
             </attribute>
         </entity>
         <relation>
