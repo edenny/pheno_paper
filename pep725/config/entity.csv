@@ -1,5 +1,5 @@
 alias,concept uri,worksheet unique key,notes
-plantStructurePresence,{plant structure presence},hash,
-phenologicalObservingProcess,{phenology observing process},hash,
-measurementDatum,http://purl.obolibrary.org/obo/IAO_0000109,hash,
-wholePlant,http://purl.obolibrary.org/obo/PO_0000003,hash,
+plantStructurePresence,{plant structure presence},record_id,
+phenologicalObservingProcess,{phenology observing process},record_id,
+measurementDatum,http://purl.obolibrary.org/obo/IAO_0000109,record_id,
+wholePlant,http://purl.obolibrary.org/obo/PO_0000003,record_id,
