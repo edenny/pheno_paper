@@ -1,4 +1,7 @@
 #!/bin/python
+# this script reads NPN files that have been downloaded and stored in input
+# directories and performs necessary pre-processing steps before triplification
+# can occur.
 import pandas as pd
 import os
 from os import listdir
@@ -6,41 +9,24 @@ from os.path import isfile, join
 import sys
 import shutil
 import re
+# Make sure we can find the bin directory
+bin_dir = os.path.normpath(
+    os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        '../bin'
+    )
+)
+sys.path.append(bin_dir)
+from Utils import Utils
 
+# some global variables to set before beginning
 inputDir = os.curdir + '/../data/npn/input'
 outputDir = '../data/npn/output_csv' 
+outputSplitDir = '../data/npn/output_csv_split' 
 mainIndexName = 'record_id'
 
-
-# python program to read NPN files, stored in directories 
-# The NPN files have been downloaded from the NPN database
-# and are stored in the NPN format using comma separated values
-
-# 1. Read the status_intensity_observation_data CSV file in each directory
-#Observation_ID
-#Update_Datetime
-#Site_ID
-#Latitude
-#Longitude
-#Elevation_in_Meters
-#State
-#Species_ID
-#Genus
-#Species
-#Common_Name
-#Kingdom
-#Individual_ID
-#Phenophase_ID
-#Phenophase_Description
-#Observation_Date
-#Day_of_Year
-#Intensity_Category_ID
-#Intensity_Value
-#Abundance_Value
-#Lower_Count
-#Upper_Count
-#Removing the following since i will only be taking status = 1
-#Phenophase_Status
+# initialize Utils class
+utils = Utils()
 
 # apply an lower count value where there is no intensity value and phenophase_status is 1
 def status1NoIntensity(row):
@@ -58,8 +44,6 @@ def status0NoIntensity(row):
         # return default value
         return row['upper_count']
 
-#2. Write Output to the output directory
-
 # initialize directory path
 if (os.path.exists(outputDir)):
     shutil.rmtree(outputDir)
@@ -68,11 +52,13 @@ os.makedirs(outputDir)
 framesDict = {}
 # Loop each directory off of input directory
 for dirname in os.listdir(inputDir):
-    # make sure we're just dealing with PEP directories
+    # make sure we're just dealing with the proper directories 
     if (dirname.startswith('datasheet_') and dirname.endswith("zip") == False ):
         outputfilename = dirname
-        dirname = inputDir +'/' + dirname
-        print "processing " + dirname
+        dirname = inputDir + '/' + dirname
+        print "**************************"
+        print "* Pre-processing " + dirname
+        print "**************************"
         # loop all filenames in directory
         onlyfiles = [f for f in listdir(dirname) if isfile(join(dirname, f))]
         for filename in onlyfiles:
@@ -82,11 +68,6 @@ for dirname in os.listdir(inputDir):
                 df = pd.read_csv(dirname+'/'+filename, sep=',', header=0)
                 # Add an index name 
                 df.index.name = mainIndexName
-                # Filter the data frame for phenophase_status == 1 (only looking at things that are present)
-                #df = df.loc[df['Phenophase_Status'] == 1]
-                # Drop the phenophase_status column
-                #df = df.drop('Phenophase_Status',1)
-                # Intensity Value Mappings
                 # This section maps all Intensity_Value values to lower/upper counts and lower/upper percentages
                 df['lower_count'] = ''
                 df['upper_count'] = ''
@@ -111,16 +92,26 @@ for dirname in os.listdir(inputDir):
                 df['lower_count'] = df.apply(status1NoIntensity,axis=1)
                 df['Source'] = 'NPN'
 
-		# Normalize Date to just Year
-		#df['Observation_Date'] = pd.to_datetime(df['Observation_Date'])
-		#df['Year'] = df['Observation_Date'].dt.year
+		# Normalize Date to just Year. we don't need to store actual date because we use only Year + DayOfYear
 		df['Year'] = pd.DatetimeIndex(df['Observation_Date']).year
 
 		# Create ScientificName
 		df['ScientificName'] = df['Genus'] + ' ' + df['Species']
 
-                # create output filename
-                output_filename = outputDir + '/' + outputfilename.split("_")[1] + '.csv'
-                # write to CSV
-                df.to_csv(output_filename,sep=',', mode='a', header=True)
-                print "output " + output_filename
+                # create output filename by removing first part of filename (datasheet_)
+                output_filename = outputfilename.split("_")[1] 
+                output_filename_fullpath = outputDir + '/' + output_filename + '.csv'
+
+                # write to CSV output directory
+                print "  output CSV dir = " + outputDir
+                df.to_csv(output_filename_fullpath,sep=',', mode='a', header=True)
+
+                # split file into components
+                print "  output Split dir = " + outputSplitDir
+                utils.split(
+                    open(output_filename_fullpath, 'r'),
+                    ',',
+                    50000,
+                    output_filename+'_%s'+'.csv',
+                    outputSplitDir+'/',
+                    True);

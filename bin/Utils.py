@@ -1,11 +1,20 @@
-# This program splits files larger than 200000 records into multiple parts...
-# TODO: incorporate this into workflow
+# The Utils sript contains various functions for working with pre-processing data that
+# are common to different workflows.  Generally, the pre-processing workflows are unique
+# to each datasource, however, there are cases where we to use exactly the same functions
+# the Utils class is where store these functions
 
 import os
 
-
-def split(filehandler, delimiter, row_limit,
-    output_name_template, output_path, keep_headers):
+class Utils:
+  def split(
+        self,
+        filehandler, 
+        delimiter, 
+        row_limit,
+        output_name_template, 
+        output_path, 
+        keep_headers
+        ):
     """
     Splits a CSV file into multiple pieces.
     
@@ -31,12 +40,12 @@ def split(filehandler, delimiter, row_limit,
          output_path,
          output_name_template  % current_piece
     )
-    print current_out_path
     current_out_writer = csv.writer(open(current_out_path, 'w'), delimiter=delimiter)
     current_limit = row_limit
     if keep_headers:
         headers = reader.next()
         current_out_writer.writerow(headers)
+    print '    writing ' + current_out_path
     for i, row in enumerate(reader):
         if i + 1 > current_limit:
             current_piece += 1
@@ -48,6 +57,6 @@ def split(filehandler, delimiter, row_limit,
             current_out_writer = csv.writer(open(current_out_path, 'w'), delimiter=delimiter)
             if keep_headers:
                 current_out_writer.writerow(headers)
+            print '    writing ' + current_out_path
         current_out_writer.writerow(row)
 
-split(open('../data/npn/output_csv/1485012823554.csv', 'r'),',',100000,'1485012823554_%s.csv','../data/npn/output_csv/',True);
