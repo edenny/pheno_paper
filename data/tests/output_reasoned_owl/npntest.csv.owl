@@ -1,0 +1,606 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="file://localhost/Users/jdeck/IdeaProjects/ppo_pre_reasoner/Outgoing/npntest.csv.n3-reasoned.owl#"
+     xml:base="file://localhost/Users/jdeck/IdeaProjects/ppo_pre_reasoner/Outgoing/npntest.csv.n3-reasoned.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:attributes="http://rs.tdwg.org/dwc/terms/attributes/"
+     xmlns:terms1="http://rs.tdwg.org/dwc/terms/"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="file://localhost/Users/jdeck/IdeaProjects/ppo_pre_reasoner/Outgoing/npntest.csv.n3-reasoned.owl">
+        <owl:imports rdf:resource="https://github.com/PlantPhenoOntology/PPO/raw/master/ontology/ppo-reasoned.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0000295 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000295"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/OBI_0000299 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/OBI_0000299"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0001007 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/PPO_0001007"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0000080 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0000080"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0001000 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/PPO_0001000">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/PPO_0001000"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0001001 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/PPO_0001001">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/PPO_0001001"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0001002 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/PPO_0001002">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/PPO_0001002"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0001003 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/PPO_0001003">
+        <rdfs:isDefinedBy rdf:resource="http://purl.obolibrary.org/obo/PPO_0001003"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/EventID -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/EventID">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/EventID"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/decimalLatitude -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/decimalLatitude"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/decimalLongitude -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/decimalLongitude"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/genus -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/genus">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/genus"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/materialSampleID -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/materialSampleID">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/materialSampleID"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/scientificName -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/scientificName">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/scientificName"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/specificEpithet -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/specificEpithet">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/specificEpithet"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/startDayOfYear -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/startDayOfYear"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/vernacularName -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/vernacularName">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/vernacularName"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rs.tdwg.org/dwc/terms/year -->
+
+    <owl:DatatypeProperty rdf:about="http://rs.tdwg.org/dwc/terms/year">
+        <rdfs:isDefinedBy rdf:resource="http://rs.tdwg.org/dwc/terms/year"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+        <rdfs:isDefinedBy rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000109 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/IAO_0000109"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PO_0000003 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PO_0000003"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0002000 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PPO_0002000"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PPO_0002002 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/PPO_0002002"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.plantphenology.org/id/?measurementDatum=1127209 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?measurementDatum=1127209">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <obo:OBI_0000312 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=1127209"/>
+        <obo:PPO_0001006 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=1127209"/>
+        <obo:PPO_0001000 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">101</obo:PPO_0001000>
+        <obo:PPO_0001001 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</obo:PPO_0001001>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?measurementDatum=1564939 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?measurementDatum=1564939">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <obo:OBI_0000312 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=1564939"/>
+        <obo:PPO_0001006 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=1564939"/>
+        <obo:PPO_0001002 rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.95</obo:PPO_0001002>
+        <obo:PPO_0001003 rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</obo:PPO_0001003>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?measurementDatum=166455 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?measurementDatum=166455">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <obo:OBI_0000312 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=166455"/>
+        <obo:PPO_0001006 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=166455"/>
+        <obo:PPO_0001001 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</obo:PPO_0001001>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?measurementDatum=166575 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?measurementDatum=166575">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <obo:OBI_0000312 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=166575"/>
+        <obo:PPO_0001006 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=166575"/>
+        <obo:PPO_0001000 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</obo:PPO_0001000>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?measurementDatum=798290 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?measurementDatum=798290">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000031"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000027"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/IAO_0000109"/>
+        <obo:OBI_0000312 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=798290"/>
+        <obo:PPO_0001006 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=798290"/>
+        <obo:PPO_0001002 rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</obo:PPO_0001002>
+        <obo:PPO_0001003 rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.74</obo:PPO_0001003>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?phenologicalObservingProcess=1127209 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?phenologicalObservingProcess=1127209">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BCO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002000"/>
+        <rdf:type rdf:resource="http://rs.tdwg.org/dwc/terms/Event"/>
+        <obo:OBI_0000293 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2980"/>
+        <obo:OBI_0000299 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=1127209"/>
+        <terms1:EventID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1127209</terms1:EventID>
+        <terms1:decimalLatitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">48.05495</terms1:decimalLatitude>
+        <terms1:decimalLongitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-92.765915</terms1:decimalLongitude>
+        <terms1:startDayOfYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">127</terms1:startDayOfYear>
+        <terms1:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2012</terms1:year>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NPN</dc:creator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?phenologicalObservingProcess=1564939 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?phenologicalObservingProcess=1564939">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BCO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002000"/>
+        <rdf:type rdf:resource="http://rs.tdwg.org/dwc/terms/Event"/>
+        <obo:OBI_0000293 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <obo:OBI_0000299 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=1564939"/>
+        <terms1:EventID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1564939</terms1:EventID>
+        <terms1:decimalLatitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">43.08535</terms1:decimalLatitude>
+        <terms1:decimalLongitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-70.69133</terms1:decimalLongitude>
+        <terms1:startDayOfYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">282</terms1:startDayOfYear>
+        <terms1:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2012</terms1:year>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NPN</dc:creator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?phenologicalObservingProcess=166455 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?phenologicalObservingProcess=166455">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BCO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002000"/>
+        <rdf:type rdf:resource="http://rs.tdwg.org/dwc/terms/Event"/>
+        <obo:OBI_0000293 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <obo:OBI_0000299 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=166455"/>
+        <terms1:EventID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">166455</terms1:EventID>
+        <terms1:decimalLatitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">43.08535</terms1:decimalLatitude>
+        <terms1:decimalLongitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-70.69133</terms1:decimalLongitude>
+        <terms1:startDayOfYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">77</terms1:startDayOfYear>
+        <terms1:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2009</terms1:year>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NPN</dc:creator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?phenologicalObservingProcess=166575 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?phenologicalObservingProcess=166575">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BCO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002000"/>
+        <rdf:type rdf:resource="http://rs.tdwg.org/dwc/terms/Event"/>
+        <obo:OBI_0000293 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <obo:OBI_0000299 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=166575"/>
+        <terms1:EventID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">166575</terms1:EventID>
+        <terms1:decimalLatitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">43.08535</terms1:decimalLatitude>
+        <terms1:decimalLongitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-70.69133</terms1:decimalLongitude>
+        <terms1:startDayOfYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">139</terms1:startDayOfYear>
+        <terms1:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2009</terms1:year>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NPN</dc:creator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?phenologicalObservingProcess=798290 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?phenologicalObservingProcess=798290">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BCO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000015"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/OBI_0000011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002000"/>
+        <rdf:type rdf:resource="http://rs.tdwg.org/dwc/terms/Event"/>
+        <obo:OBI_0000293 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <obo:OBI_0000299 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=798290"/>
+        <terms1:EventID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">798290</terms1:EventID>
+        <terms1:decimalLatitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">43.08535</terms1:decimalLatitude>
+        <terms1:decimalLongitude rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-70.69133</terms1:decimalLongitude>
+        <terms1:startDayOfYear rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">132</terms1:startDayOfYear>
+        <terms1:year rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2011</terms1:year>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NPN</dc:creator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?plantStructurePresence=1127209 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?plantStructurePresence=1127209">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PATO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002008"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003000"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003006"/>
+        <obo:PPO_0001007 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=1127209"/>
+        <obo:RO_0000080 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2980"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Breaking leaf buds</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?plantStructurePresence=1564939 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?plantStructurePresence=1564939">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PATO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002012"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002016"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002017"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003000"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003009"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003010"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003014"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003015"/>
+        <obo:PPO_0001007 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=1564939"/>
+        <obo:RO_0000080 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ripe fruits</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?plantStructurePresence=166455 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?plantStructurePresence=166455">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PATO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002006"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003044"/>
+        <obo:PPO_0001007 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=166455"/>
+        <obo:RO_0000080 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;=75% of full leaf size (deciduous)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?plantStructurePresence=166575 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?plantStructurePresence=166575">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PATO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002004"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002006"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003000"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003004"/>
+        <obo:PPO_0001007 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=166575"/>
+        <obo:RO_0000080 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&gt;=75% of full leaf size (deciduous)</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?plantStructurePresence=798290 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?plantStructurePresence=798290">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000020"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PATO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002004"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0002005"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003000"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0003003"/>
+        <obo:PPO_0001007 rdf:resource="http://www.plantphenology.org/id/?measurementDatum=798290"/>
+        <obo:RO_0000080 rdf:resource="http://www.plantphenology.org/id/?wholePlant=2111"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increasing leaf size</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?wholePlant=2111 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?wholePlant=2111">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PO_0009011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004000"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004007"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004012"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004050"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004051"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004052"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004057"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004061"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004062"/>
+        <obo:OBI_0000295 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=1564939"/>
+        <obo:OBI_0000295 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=166455"/>
+        <obo:OBI_0000295 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=166575"/>
+        <obo:OBI_0000295 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=798290"/>
+        <obo:RO_0000086 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=1564939"/>
+        <obo:RO_0000086 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=166455"/>
+        <obo:RO_0000086 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=166575"/>
+        <obo:RO_0000086 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=798290"/>
+        <terms1:genus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Betula</terms1:genus>
+        <terms1:materialSampleID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2111</terms1:materialSampleID>
+        <terms1:scientificName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Betula papyrifera</terms1:scientificName>
+        <terms1:specificEpithet rdf:datatype="http://www.w3.org/2001/XMLSchema#string">papyrifera</terms1:specificEpithet>
+        <terms1:vernacularName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">paper birch</terms1:vernacularName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.plantphenology.org/id/?wholePlant=2980 -->
+
+    <owl:NamedIndividual rdf:about="http://www.plantphenology.org/id/?wholePlant=2980">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000001"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PO_0000003"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PO_0009011"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004004"/>
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/PPO_0004054"/>
+        <obo:OBI_0000295 rdf:resource="http://www.plantphenology.org/id/?phenologicalObservingProcess=1127209"/>
+        <obo:RO_0000086 rdf:resource="http://www.plantphenology.org/id/?plantStructurePresence=1127209"/>
+        <terms1:genus rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Betula</terms1:genus>
+        <terms1:materialSampleID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2980</terms1:materialSampleID>
+        <terms1:scientificName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Betula papyrifera</terms1:scientificName>
+        <terms1:specificEpithet rdf:datatype="http://www.w3.org/2001/XMLSchema#string">papyrifera</terms1:specificEpithet>
+        <terms1:vernacularName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">paper birch</terms1:vernacularName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
+        <rdfs:isDefinedBy rdf:resource="http://purl.org/dc/elements/1.1/creator"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.4) https://github.com/owlcs/owlapi -->
+

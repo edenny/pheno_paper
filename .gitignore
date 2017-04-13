@@ -1,4 +1,7 @@
-data/
+data/npn/
+data/neon/
+data/pep725/
 build/output/
 bin/output/
 *.err
+*.pyc

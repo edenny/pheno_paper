@@ -1,0 +1,339 @@
+@prefix map: <> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix ro: <http://www.obofoundry.org/ro/ro.owl#> .
+@prefix bsc: <http://biscicol.org/terms/index.html#> .
+@prefix urn: <http://biscicol.org/terms/index.html#> .
+@prefix ark: <http://biscicol.org/id/ark:> .
+map:owldatatypeproperty a d2rq:AdditionalProperty;
+
+	d2rq:propertyName rdf:type;
+
+	d2rq:propertyValue <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+
+.
+
+
+map:owlobjectproperty a d2rq:AdditionalProperty;
+
+	d2rq:propertyName rdf:type;
+
+	d2rq:propertyValue <http://www.w3.org/2002/07/owl#ObjectProperty>;
+
+.
+
+
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.sqlite.JDBC";
+	d2rq:jdbcDSN "jdbc:sqlite:output/test.77.sqlite";
+	d2rq:fetchSize "500";
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?phenologicalObservingProcess=@@Samples.Observation_ID@@";	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:class <http://purl.obolibrary.org/obo/PPO_0002000>;
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Observation_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_phenologicalObservingProcess_Observation_ID_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/EventID>;
+	d2rq:column "Samples.Observation_ID";
+	d2rq:datatype xsd:integer;
+	.
+
+map:Samples_Observation_ID_phenologicalObservingProcess_Observation_ID_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/EventID>;
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Latitude a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:condition "Samples.Latitude <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_phenologicalObservingProcess_Latitude_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/decimalLatitude>;
+	d2rq:column "Samples.Latitude";
+	d2rq:datatype xsd:float;
+	.
+
+map:Samples_Observation_ID_phenologicalObservingProcess_Latitude_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/decimalLatitude>;
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Longitude a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:condition "Samples.Longitude <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_phenologicalObservingProcess_Longitude_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/decimalLongitude>;
+	d2rq:column "Samples.Longitude";
+	d2rq:datatype xsd:float;
+	.
+
+map:Samples_Observation_ID_phenologicalObservingProcess_Longitude_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/decimalLongitude>;
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Year a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:condition "Samples.Year <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_phenologicalObservingProcess_Year_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/year>;
+	d2rq:column "Samples.Year";
+	d2rq:datatype xsd:integer;
+	.
+
+map:Samples_Observation_ID_phenologicalObservingProcess_Year_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/year>;
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Day_of_Year a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:condition "Samples.Day_of_Year <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_phenologicalObservingProcess_Day_of_Year_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/startDayOfYear>;
+	d2rq:column "Samples.Day_of_Year";
+	d2rq:datatype xsd:integer;
+	.
+
+map:Samples_Observation_ID_phenologicalObservingProcess_Day_of_Year_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/startDayOfYear>;
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Source a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:condition "Samples.Source <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_phenologicalObservingProcess_Source_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://purl.org/dc/elements/1.1/creator>;
+	d2rq:column "Samples.Source";
+	d2rq:datatype xsd:string;
+	.
+
+map:Samples_Observation_ID_phenologicalObservingProcess_Source_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://purl.org/dc/elements/1.1/creator>;
+	.
+map:Samples_Individual_ID_wholePlant a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?wholePlant=@@Samples.Individual_ID@@";	d2rq:condition "Samples.Individual_ID <> ''";
+	d2rq:class <http://purl.obolibrary.org/obo/PO_0000003>;
+	.
+map:Samples_Individual_ID_wholePlant_Individual_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Individual_ID_wholePlant;
+	d2rq:condition "Samples.Individual_ID <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Individual_ID_wholePlant_Individual_ID_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/materialSampleID>;
+	d2rq:column "Samples.Individual_ID";
+	d2rq:datatype xsd:integer;
+	.
+
+map:Samples_Individual_ID_wholePlant_Individual_ID_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/materialSampleID>;
+	.
+map:Samples_Individual_ID_wholePlant_Genus a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Individual_ID_wholePlant;
+	d2rq:condition "Samples.Genus <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Individual_ID_wholePlant_Genus_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/genus>;
+	d2rq:column "Samples.Genus";
+	d2rq:datatype xsd:string;
+	.
+
+map:Samples_Individual_ID_wholePlant_Genus_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/genus>;
+	.
+map:Samples_Individual_ID_wholePlant_Species a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Individual_ID_wholePlant;
+	d2rq:condition "Samples.Species <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Individual_ID_wholePlant_Species_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/specificEpithet>;
+	d2rq:column "Samples.Species";
+	d2rq:datatype xsd:string;
+	.
+
+map:Samples_Individual_ID_wholePlant_Species_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/specificEpithet>;
+	.
+map:Samples_Individual_ID_wholePlant_ScientificName a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Individual_ID_wholePlant;
+	d2rq:condition "Samples.ScientificName <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Individual_ID_wholePlant_ScientificName_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/scientificName>;
+	d2rq:column "Samples.ScientificName";
+	d2rq:datatype xsd:string;
+	.
+
+map:Samples_Individual_ID_wholePlant_ScientificName_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/scientificName>;
+	.
+map:Samples_Individual_ID_wholePlant_Common_Name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Individual_ID_wholePlant;
+	d2rq:condition "Samples.Common_Name <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Individual_ID_wholePlant_Common_Name_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://rs.tdwg.org/dwc/terms/vernacularName>;
+	d2rq:column "Samples.Common_Name";
+	d2rq:datatype xsd:string;
+	.
+
+map:Samples_Individual_ID_wholePlant_Common_Name_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://rs.tdwg.org/dwc/terms/vernacularName>;
+	.
+map:Samples_Observation_ID_plantStructurePresence a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?plantStructurePresence=@@Samples.Observation_ID@@";	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:class <http://purl.obolibrary.org/obo/PPO_0002002>;
+	.
+map:Samples_Observation_ID_plantStructurePresence_Phenophase_Description a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_plantStructurePresence;
+	d2rq:condition "Samples.Phenophase_Description <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_plantStructurePresence_Phenophase_Description_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>;
+	d2rq:translateWith map:Phenophase_DescriptionTranslationTable;
+	d2rq:uriColumn "Samples.Phenophase_Description";
+	.
+
+map:Phenophase_DescriptionTranslationTable a d2rq:TranslationTable;
+	d2rq:translation [d2rq:databaseValue ">=75% of full leaf size (deciduous)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002006>];
+	d2rq:translation [d2rq:databaseValue ">=50% of leaves colored (deciduous)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002007>];
+	d2rq:translation [d2rq:databaseValue "All leaves colored (deciduous)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002007>];
+	d2rq:translation [d2rq:databaseValue ">=50% of leaves fallen (deciduous)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002009>];
+	d2rq:translation [d2rq:databaseValue "All leaves fallen (deciduous)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002009>];
+	d2rq:translation [d2rq:databaseValue "Full pollen release (angiosperms)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002015>];
+	d2rq:translation [d2rq:databaseValue "Breaking leaf buds"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002008>];
+	d2rq:translation [d2rq:databaseValue "Ripe fruits"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002017>];
+	d2rq:translation [d2rq:databaseValue "Increasing leaf size"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002005>];
+	d2rq:translation [d2rq:databaseValue "Falling leaves"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002007>];
+	d2rq:translation [d2rq:databaseValue "Leaves"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002004>];
+	d2rq:translation [d2rq:databaseValue "Colored leaves"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002007>];
+	d2rq:translation [d2rq:databaseValue "Flowers or flower buds"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002012>];
+	d2rq:translation [d2rq:databaseValue "Open flowers"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002014>];
+	d2rq:translation [d2rq:databaseValue "Pollen release (flowers)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002015>];
+	d2rq:translation [d2rq:databaseValue "Recent fruit or seed drop"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002018>];
+	d2rq:translation [d2rq:databaseValue "Fruits"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002016>];
+	d2rq:translation [d2rq:databaseValue "Full flowering (50%)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002012>];
+	d2rq:translation [d2rq:databaseValue "All leaves withered (herbaceous and grasses)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002007>];
+	d2rq:translation [d2rq:databaseValue "Open flowers (1 location)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002014>];
+	d2rq:translation [d2rq:databaseValue "Ripe fruits (1 location)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002017>];
+	d2rq:translation [d2rq:databaseValue "Initial growth (forbs)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002010>];
+	d2rq:translation [d2rq:databaseValue "Leaves (forbs)"; d2rq:rdfValue <http://purl.obolibrary.org/obo/PPO_0002004>];
+	.
+map:Samples_Observation_ID_plantStructurePresence_Phenophase_DescriptionLabel a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_plantStructurePresence;
+	d2rq:condition "Samples.Phenophase_Description <> ''";
+	d2rq:column "Samples.Phenophase_Description";
+	d2rq:datatype xsd:string;
+	d2rq:property <http://www.w3.org/2000/01/rdf-schema#comment>;
+	.
+
+map:Samples_Observation_ID_plantStructurePresence_Phenophase_Description_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>;
+	.
+map:Samples_Observation_ID_measurementDatum a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?measurementDatum=@@Samples.Observation_ID@@";	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:class <http://purl.obolibrary.org/obo/IAO_0000109>;
+	.
+map:Samples_Observation_ID_measurementDatum_lower_count a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_measurementDatum;
+	d2rq:condition "Samples.lower_count <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_measurementDatum_lower_count_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://purl.obolibrary.org/obo/PPO_0001000>;
+	d2rq:column "Samples.lower_count";
+	d2rq:datatype xsd:integer;
+	.
+
+map:Samples_Observation_ID_measurementDatum_lower_count_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://purl.obolibrary.org/obo/PPO_0001000>;
+	.
+map:Samples_Observation_ID_measurementDatum_upper_count a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_measurementDatum;
+	d2rq:condition "Samples.upper_count <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_measurementDatum_upper_count_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://purl.obolibrary.org/obo/PPO_0001001>;
+	d2rq:column "Samples.upper_count";
+	d2rq:datatype xsd:integer;
+	.
+
+map:Samples_Observation_ID_measurementDatum_upper_count_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://purl.obolibrary.org/obo/PPO_0001001>;
+	.
+map:Samples_Observation_ID_measurementDatum_lower_percent a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_measurementDatum;
+	d2rq:condition "Samples.lower_percent <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_measurementDatum_lower_percent_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://purl.obolibrary.org/obo/PPO_0001002>;
+	d2rq:column "Samples.lower_percent";
+	d2rq:datatype xsd:float;
+	.
+
+map:Samples_Observation_ID_measurementDatum_lower_percent_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://purl.obolibrary.org/obo/PPO_0001002>;
+	.
+map:Samples_Observation_ID_measurementDatum_upper_percent a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_measurementDatum;
+	d2rq:condition "Samples.upper_percent <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:Samples_Observation_ID_measurementDatum_upper_percent_Equivalence;
+	d2rq:additionalPropertyDefinitionProperty map:owldatatypeproperty;
+	d2rq:property <http://purl.obolibrary.org/obo/PPO_0001003>;
+	d2rq:column "Samples.upper_percent";
+	d2rq:datatype xsd:float;
+	.
+
+map:Samples_Observation_ID_measurementDatum_upper_percent_Equivalence a d2rq:AdditionalProperty;
+	d2rq:propertyName <http://www.w3.org/2000/01/rdf-schema#isDefinedBy>;
+	d2rq:propertyValue <http://purl.obolibrary.org/obo/PPO_0001003>;
+	.
+map:Samples_Observation_ID_plantStructurePresence_Samples_Observation_ID_measurementDatum_rel a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_plantStructurePresence;
+	d2rq:property <http://purl.obolibrary.org/obo/PPO_0001007>;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?measurementDatum=@@Samples.Observation_ID@@";	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:owlobjectproperty;
+
+	.
+map:Samples_Observation_ID_plantStructurePresence_Samples_Individual_ID_wholePlant_rel a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_plantStructurePresence;
+	d2rq:property <http://purl.obolibrary.org/obo/RO_0000080>;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?wholePlant=@@Samples.Individual_ID@@";	d2rq:condition "Samples.Individual_ID <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:owlobjectproperty;
+
+	.
+map:Samples_Individual_ID_wholePlant_Samples_Observation_ID_phenologicalObservingProcess_rel a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Individual_ID_wholePlant;
+	d2rq:property <http://purl.obolibrary.org/obo/OBI_0000295>;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?phenologicalObservingProcess=@@Samples.Observation_ID@@";	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:owlobjectproperty;
+
+	.
+map:Samples_Observation_ID_phenologicalObservingProcess_Samples_Observation_ID_measurementDatum_rel a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Samples_Observation_ID_phenologicalObservingProcess;
+	d2rq:property <http://purl.obolibrary.org/obo/OBI_0000299>;
+	d2rq:uriPattern "http://www.plantphenology.org/id/?measurementDatum=@@Samples.Observation_ID@@";	d2rq:condition "Samples.Observation_ID <> ''";
+	d2rq:additionalPropertyDefinitionProperty map:owlobjectproperty;
+
+	.
