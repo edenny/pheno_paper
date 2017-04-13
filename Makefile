@@ -150,19 +150,16 @@ configurator:
 	$(configurator_bin)/configurator.py -d ../$(project_name)/config/ -b ../ontology/$(ontology_file) \
 		-o ../$(project_name)/$(project_name).xml -n 
 
-#--------
-# Build the FIMS configuration file
-#--------
-.PHONY: loader
-python_tools := /Users/jdeck/IdeaProjects/biocode-fims-python-tools
-fims_uri := http://www.plantphenology.org/rest/v2 
-loader:
-	$(python_tools)/loader.py -e $(expedition_code) --create --public -u -user $(username) -pass $(password) \
-		$(fims_uri) $(project_id) $(file_name)
-#/Users/jdeck/IdeaProjects/biocode-fims-configurator/examples/plantPhenology/npn/input/NPN_raw_data_leaf_example_1row_short.xlsx
-#
+
 # Set "ontology" as the default build goal.
 .DEFAULT_GOAL := ontology
+
+#--------
+# Run triplifier
+#--------
+.PHONY: ppo-fims-triples
+ppo-fims-triples:
+	java -Xmx4048m -jar ../bin/ppo-fims-triples.jar -i $(file_name) -o $(output_directory) -c $(configuration_file) 
 
 #--------
 # Run Reasoner 
@@ -172,8 +169,11 @@ reasoner:
 	../bin/runReasoner.sh $(project_name) $(file_name) $(ontopilot) $(ppo_pre_reasoner_dir) $(base_input_dir) $(output_file)
 
 #--------
-# Run triplifier
+# Load to FIMS
 #--------
-.PHONY: ppo-fims-triples
-ppo-fims-triples:
-	java -Xmx4048m -jar ../bin/ppo-fims-triples.jar -i $(file_name) -o $(output_directory) -c $(configuration_file) 
+.PHONY: loader
+python_tools := /Users/jdeck/IdeaProjects/biocode-fims-python-tools
+fims_uri := http://www.plantphenology.org/rest/v2 
+loader:
+	$(python_tools)/loader.py -e $(expedition_code) --create --public -u -user $(username) -pass $(password) \
+		$(fims_uri) $(project_id) $(file_name)
