@@ -1,5 +1,0 @@
-record_id,Observation_ID,Update_Datetime,Site_ID,Latitude,Longitude,Elevation_in_Meters,State,Species_ID,Genus,Species,Common_Name,Kingdom,Individual_ID,Phenophase_ID,Phenophase_Description,Observation_Date,Day_of_Year,Phenophase_Status,Intensity_Category_ID,Intensity_Value,Abundance_Value,lower_count,upper_count,lower_percent,upper_percent,Source,Year,ScientificName
-0,166455,-9999,2,43.08535,-70.69133,12,ME,99,Betula,papyrifera,paper birch,Plantae,2111,180,>=75% of full leaf size (deciduous),3/18/09,77,0,-9999,-9999,-9999,,0,,,NPN,2009,Betula papyrifera
-13,166575,-9999,2,43.08535,-70.69133,12,ME,99,Betula,papyrifera,paper birch,Plantae,2111,180,>=75% of full leaf size (deciduous),5/19/09,139,1,-9999,-9999,-9999,1,,,,NPN,2009,Betula papyrifera
-781,798290,-9999,2,43.08535,-70.69133,12,ME,99,Betula,papyrifera,paper birch,Plantae,2111,467,Increasing leaf size,5/12/11,132,1,13,50-74%,-9999,,,0.5,0.74,NPN,2011,Betula papyrifera
-7563,1127209,-9999,1597,48.054951,-92.765915,412,MN,99,Betula,papyrifera,paper birch,Plantae,2980,371,Breaking leaf buds,5/6/12,127,1,39,"101 to 1,000",-9999,101,1000,,,NPN,2012,Betula papyrifera

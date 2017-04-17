@@ -1,6 +1,4 @@
-data/npn/
-data/neon/
-data/pep725/
+data/*
 build/output/
 bin/output/
 *.err
