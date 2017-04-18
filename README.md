@@ -12,21 +12,7 @@ the actual data from the actual repository since they are too large to handle th
 I've chosen to store them locally in a directory called "data" and have added this directory to the 
 .gitignore file. 
 
-# Step 1: Create application ontology
-
-The first step is creating the application ontology file which is built especially 
-for annotating incoming data sources with relevant PPO terms.   Occassionally other terms for other 
-ontologies will be added to the PPO core set of terms which are useful for annotating incoming instance data.
-This step should be performed infrequently, and will affect all incoming data sources.  The process for building the 
-ingest file  draws from the [ontopilot] (https://github.com/stuckyb/ontopilot) application.
-
-```
-  mkdir build
-  cd build # and remove files if doing a fresh build
-  make -f ../Makefile imports # build the imports
-  make -f ../Makefile  #build the ontology and writes to ontology/ppo_ingest.owl)
-```		
-# Step 2: Create FIMS configuration file(s) 
+# Step 1: Create FIMS configuration file(s) 
 
 The second step involves building a Bicode FIMS configuration file for each project.  The FIMS
 configuration file specifies the validation rules and how the data will be triplified later.
@@ -39,16 +25,17 @@ E.g. for npn first time only create the following directories and populate with 
   mkdir npn/config
 ```
 
-Now you you will need to run the configurator, pointing the Makefile to the appropriate directory where the biocode-fims-configurator lives:
+Now you you will need to run the configurator, calling the buildConfig.sh script and 
+passing in your project name.  Note that you must first adjust local variables in build.properties:
 ```
-  cd build
-  make -f ../Makefile configurator project_name="{project_name}"
+  cd bin
+  ./buildConfig.sh npn
 ```
 
 Once the configurator does its work and we have succesfully built a configuration you should push 
 the completed config file to github (or wherever it should be accessed on the web)
  
-# Step 3: Pre-processing 
+# Step 2: Pre-processing 
 
 The data from NPN and PEP725 will need some modifications to make them
 suitable for turning in to RDF triples.  This step is necessary as the incoming source data is 
@@ -67,30 +54,28 @@ Unpack the PEP725 file downloads using [PEP725 unpacker script] https://github.c
   python pepProcessFiles.py
 ```
 
-# Step 4: Triplification
+# Step 3: Splitting, Triplifying, and Reasoning
 
-Triplifying FIMS data is done using the [ppo-fims java code-base](https://github.com/biocodellc/ppo-fims) which loads tabular data into a temporary SQLITE database, runs a series of validation rules on the data itself, and, if it passes, calls D2RQ for creating RDF triples from the loaded data.  
-
+These three steps can be run at once using the bin/runFiles.sh script, like:
 ```
-  cd build
-  make -f ../Makefile ppo-fims-triples file_name={input file location} output_directory={directory to send output to} configuration_file={FIMS configuration file location}
+  cd bin
+  ./runFiles.sh <project> <filename>
 ```
 
-# Step 5: Reasoning
+*Splitting data* is done using a python script called fileSplitter.py and called from the runFiles.sh script (above).  The file splitter splits incoming CSV files into 50,000 records or less. 
 
-We use the Ontopilot project to pre-reason data sources.  The current (and temporary! process) is to run this through the ppo_pre_reasoner (called through a shell script).  Note that for this step we need to check out the following repositories:
+
+*Triplifying FIMS* data is done using the [ppo-fims java code-base](https://github.com/biocodellc/ppo-fims) which loads tabular data into a temporary SQLITE database, runs a series of validation rules on the data itself, and, if it passes, calls D2RQ for creating RDF triples from the loaded data.  
+
+
+*Reasoning* is done using the Ontopilot project to pre-reason data sources.  The current (and temporary! process) is to run this through the ppo_pre_reasoner (called through a shell script).  Note that for this step we need to check out the following repositories:
 
 https://github.com/plantphenoontology/ppo_pre_reasoner/
 
 https://github.com/stuckyb/ontopilot  (for now, use the elk_pipeline branch)
 
-Once these repositories are installed you can call the following commands.  You will need to adjust path settings in bin/runReasoner.sh
-```
-  cd build
-  make -f ../Makefile reasoner project_name=npn file_name=test.csv.n3
-```
 
-# Step 6: Data Storage / Indexing
+# Step 4: Data Storage / Indexing
 
 *SPARQL Endpoint *
 
