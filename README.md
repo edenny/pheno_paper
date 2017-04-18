@@ -34,6 +34,7 @@ passing in your project name.  Note that you must first adjust local variables i
 
 Once the configurator does its work and we have succesfully built a configuration you should push 
 the completed config file to github (or wherever it should be accessed on the web)
+Note that the above script also runs data driven tests against the newly created configuration file. 
  
 # Step 2: Pre-processing 
 
@@ -137,22 +138,4 @@ Each directory contains a configuration file and has a different purpose.
 Contains pre-processing code and FIMS configuration file generation code.
 Contains a full set of classes, relations between classes, and all of the annotations needed to describe the data.  This configuration results in the 
 most complex view of the data of all of the configurations and contains multiple defined relations.  
-
-{project}_direct
-
-Contains pre-processing code and FIMS configuration file generation code. The assumption behind the "direct" here is that no inferencing 
-will be run on this data, and instead, we will directly map presence/absence classes for "trait present" / "trait absent" instead of 
-marking "trait presence" and using measurement datums to infer whether the trait is present or not.  This method requires the logic to be
-handled by the creator of the instance data creater and uses the ontology merely as a "dictionary" of terms to apply to source data.
-
-{project}_short
-Contains pre-processing code and FIMS configuration file generation code.
-Contains only two classes: plantStructurePresence and measurementDatum.  All of the Annotation properties from the source data
-are contained these classes. 
-
-{project}_mini
-Contains pre-processing code and FIMS configuration file generation code.
-Contains only two classes: plantStructurePresence and measurementDatum.  Only the Datatype properties are included here  that are absolutely necessary for inferencing to happen (counts and percents)
-are contained these classes. 
-
 
