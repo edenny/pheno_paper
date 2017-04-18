@@ -15,26 +15,17 @@ def loopSet(mySet):
 
 # Argument parser
 parser = argparse.ArgumentParser(description='Test unreasoned triple output')
-#parser.add_argument('actual_filename', type=argparse.FileType('r'), help='the file containing the actual results')
-#parser.add_argument('expected_filename', type=argparse.FileType('r'), help='thie file containing expected results')
-parser.add_argument('actual_filename', help='the file containing the actual results')
-parser.add_argument('expected_filename', help='thie file containing expected results')
+parser.add_argument('actual_filename', type=argparse.FileType('r'), help='the file containing the actual results')
+parser.add_argument('expected_filename', type=argparse.FileType('r'), help='thie file containing expected results')
+#parser.add_argument('actual_filename', help='the file containing the actual results')
+#parser.add_argument('expected_filename', help='thie file containing expected results')
 
 # argparser parser automatically checks for correct input from the command line
 args = parser.parse_args()
 
-print args.actual_filename
-# convert turtle format to ntriples format
-print "converting turtle to ntriples ..."
-tf = tempfile.NamedTemporaryFile(mode='w')
-#print(os.path.realpath(args.actual_filename.name))
-print (tf.name)
-os.system(os.path.realpath(tf.name))
-os.system("rapper -i turtle -o ntriples " + os.path.realpath(args.actual_filename) + " > " + os.path.realpath(tf))
-
 # compare actual and expected filenames
-actual=set(line.strip() for line in open(tf.readlines()))
-expected=set(line.strip() for line in open(expected_filename.readlines()))
+actual=set(line.strip() for line in args.actual_filename.readlines())
+expected=set(line.strip() for line in args.expected_filename.readlines())
 
 # compute set differences
 notInActual = actual-expected
