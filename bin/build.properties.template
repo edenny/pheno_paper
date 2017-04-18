@@ -1,0 +1,33 @@
+#==========================================================
+# Properties file for runner script
+# use [project] for variable substitution of project name
+# as passed to runner script
+#==========================================================
+
+#==========================================================
+# Application Paths
+#==========================================================
+ontopilot=/Users/jdeck/IdeaProjects/ontopilot/bin/ontopilot.py
+ppo_pre_reasoner_dir=/Users/jdeck/IdeaProjects/ppo_pre_reasoner/
+configurator=/Users/jdeck/IdeaProjects//biocode-fims-configurator/bin/configurator.py
+#==========================================================
+# Configuration Files
+#==========================================================
+configuratorRoot=/Users/jdeck/IdeaProjects/pheno_paper/[project]/config/
+triplifierConfig=/Users/jdeck/IdeaProjects/pheno_paper/[project]/[project].xml
+reasonerConfig=/Users/jdeck/IdeaProjects/pheno_paper/bin/pre_reasoner.conf
+ppo_ontology=/Users/jdeck/IdeaProjects/PPO/ontology/ppo-reasoned.owl
+
+#==========================================================
+# Directory Paths
+#==========================================================
+unreasoned_dir=/Users/jdeck/IdeaProjects/pheno_paper/data/[project]/output_unreasoned_n3/
+reasoned_dir=/Users/jdeck/IdeaProjects/pheno_paper/data/[project]/output_reasoned_owl/
+output_csv_dir=/Users/jdeck/IdeaProjects/pheno_paper/data/[project]/output_csv/
+output_csv_split_dir=/Users/jdeck/IdeaProjects/pheno_paper/data/[project]/output_csv_split/
+#==========================================================
+# Test properties
+#==========================================================
+tests_input_dir=/Users/jdeck/IdeaProjects/pheno_paper/tests/triplifier_input/
+tests_actual_output_dir=/Users/jdeck/IdeaProjects/pheno_paper/tests/triplifier_actual_output/
+tests_expected_output_dir=/Users/jdeck/IdeaProjects/pheno_paper/tests/triplifier_expected_output/

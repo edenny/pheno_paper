@@ -3,3 +3,6 @@ build/output/
 bin/output/
 *.err
 *.pyc
+*.swp
+bin/build/
+.DS_Store

@@ -43,16 +43,15 @@ print ""
 allPassed=True
 
 if (bool(notInActual)):
-    print "* Lines appearing in '" +args.actual_filename.name +"' but not in '"+args.expected_filename.name +"'"
-    print "* These are unexpected triples being written."
+    print "* Lines appearing in 'ACTUAL' but not in 'EXPECTED'"
     loopSet(notInActual)
     allPassed=False
     print ""
 
 
 if (bool(notInExpected)):
-    print "* Lines appearing in '" +args.expected_filename.name +"' but not in '"+args.actual_filename.name +"'"
-    print "* These are triples that should have been written, but were not."
+    #print "* Lines appearing in '" +args.expected_filename.name +"' but not in '"+args.actual_filename.name +"'"
+    print "* Lines appearing in 'EXPECTED' but not in 'ACTUAL'"
     allPassed=False
     loopSet(notInExpected)
 

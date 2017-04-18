@@ -1,32 +1,62 @@
 #!/bin/bash
 # script to manaage splitting, triplifying and reasoning files.  We assume the 
 # configuration file has been made and the pre-processing routine has been run.
+                                                                                       
+if [ $# -ne 2 ] 
+then
+   echo "Invalid number of arguments"
+   echo "runFiles.sh {project} {filename.csv}"
+   exit 1
+fi
 
-# Set paths--- these may need to be adjusted depending on your environment
-ontopilot=../ontopilot/bin/ontopilot.py
-ppo_pre_reasoner=../../ppo_pre_reasoner
-tests_input_directory=../tests/triplifier_input
-tests_actual_output_directory=../tests/triplifier_actual_output
-tests_expected_output_directory=../tests/triplifier_expected_output
-root_data_directory=../pheno_paper/data
-unreasoned_directory=output_unreasoned_n3
-reasoned_directory=output_reasoned_owl
-initial_csv_directory=output_csv
-incoming_csv_directory=output_csv_split
+curdir=$PWD
+project=$1
+inputFilename=$2
+
+# prop function for adding in script properties
+# replace content in square brackets with project variable
+function prop {
+    grep -w "${1}" $curdir/build.properties|cut -d'=' -f2 | sed "s/\[project\]/$project/g"
+}
+
+#echo $(prop 'app.server.address')
 
 # execute the reasoning process for a list of files
+# NOTE: this function will be simplified greatly when ontopilot comes
+# up with a separate build task for instance data.  Currently, there
+# are coded here several work-arounds to make it work before this happens.
 function reason {
     echo "########################"
     echo "# Reason "
     echo "########################"
+    #The base ontology file could not be found: /Users/jdeck/IdeaProjects/pheno_paper/data/npn/output_unreasoned_n3/test_1.csv.ttl
     files=$1
-
-    # run the loop
-    for file in "${files[@]}"
+    for file in $split_files
     do
+	# get just the filename
 	localFileName=$(basename $file)
-        # reason
-        make -f ../Makefile reasoner project_name=$project file_name=$localFileName.ttl ontopilot=$ontopilot ppo_pre_reasoner_dir=$ppo_pre_reasoner/ base_input_dir=$root_data_directory/$project/$unreasoned_directory/ output_file=$root_data_directory/$project/$reasoned_directory/$localFileName.owl
+	incomingFile=$(prop 'unreasoned_dir')$localFileName.ttl
+
+	#outgoingFile=$(prop 'reasoned_dir')$localFileName.owl
+	#reasonedFile=$(prop 'reasoned_dir')$localFileName-reasoned.owl
+	outgoingFile=Outgoing/$localFileName.owl
+	reasonedFile=$curdir/build/$localFileName-reasoned.owl
+	destinationFile=$(prop 'reasoned_dir')$localFileName.owl
+
+	# adjust configuration file
+	sed -i "s|^base_ontology_file =.*|base_ontology_file = $incomingFile|" $(prop 'reasonerConfig')
+	sed -i "s|^ontology_file =.*|ontology_file = $outgoingFile|" $(prop 'reasonerConfig')
+
+	cd $(prop 'ppo_pre_reasoner_dir')
+	# run ontopilot
+	$(prop 'ontopilot') --reason make ontology \
+		-c $(prop 'reasonerConfig') \
+		2> $outgoingFile.err
+
+	echo "    writing $destinationFile"
+	mv $reasonedFile $destinationFile
+	cd $curdir
+
     done
 }
 
@@ -36,62 +66,75 @@ function triplify {
     echo "# Triplify "
     echo "########################"
     files=$1
-
-    # run the loop
-    for file in "${files[@]}"
+    #for file in "${files[@]}"
+    for file in $split_files
     do
-        # triplify
-        #make -f ../Makefile ppo-fims-triples file_name=../$root_data_directory/$project/$incoming_csv_directory/$file output_directory=../$root_data_directory/$project/$unreasoned_directory/ configuration_file=../$project/$project.xml format=TURTLE
-        make -f ../Makefile ppo-fims-triples file_name=$file output_directory=../$root_data_directory/$project/$unreasoned_directory/ configuration_file=../$project/$project.xml format=TURTLE
+        java -Xmx4048m -jar ./ppo-fims-triples.jar \
+	    -i $file \
+	    -o $(prop 'unreasoned_dir') \
+	    -c $(prop 'triplifierConfig') \
+	    -F TURTLE
     done
 }
 
 # test the tripflifier process
 # This should be run each time configuration file changes
 function testTriplifier {
+    echo "########################"
+    echo "# Triplify Test"
+    echo "# Igorning input file and using default test file for projec "
+    echo "# which resides in tests directory"
+    echo "########################"
     # triplify test sources
-    make -f ../Makefile ppo-fims-triples file_name=$tests_input_directory/$project-test.csv output_directory=$tests_actual_output_directory/ configuration_file=../$project/$project.xml format=N-TRIPLE
+    java -Xmx4048m -jar ./ppo-fims-triples.jar \
+        -i $(prop 'tests_input_dir')$project-test.csv \
+	-o $(prop 'tests_actual_output_dir') \
+	-c $(prop 'triplifierConfig') \
+	-F N-TRIPLE
     # compare output
-    python runTriplifierTest.py $tests_actual_output_directory/$project-test.csv.n3 $tests_expected_output_directory/$project-test.csv.n3
+    python runTriplifierTest.py \
+        $(prop 'tests_actual_output_dir')$project-test.csv.nt \
+	$(prop 'tests_expected_output_dir')$project-test.csv.n3
 }
 
-# Return all of the files that have been split
+# Return all of the files that have been split WITHOUT the extension
 function getSplitFiles {
-    getSplitFilesInputFilename=../$root_data_directory/$project/$incoming_csv_directory/$inputFilename
-    cmd=$getSplitFilesInputFilename"_*.csv"
-    split_files=($cmd)
+    lfilename=$(basename "$inputFilename")
+    #just extension
+    lextension="${lfilename##*.}"
+    #filename w/out extension
+    lfilename="${lfilename%.*}"
+    # return files without extension
+    split_files=$(prop 'output_csv_split_dir')$lfilename"_*.csv"
 }
 
 # run the file splitting process
 function split {
-    splitFilesInputFilename=../$root_data_directory/$project/$initial_csv_directory/$inputFilename
-    outputDirectory=../$root_data_directory/$project/$incoming_csv_directory
-    python fileSplitter.py $splitFilesInputFilename $outputDirectory
+    python fileSplitter.py \
+        $(prop 'output_csv_dir')$inputFilename \
+	$(prop 'output_csv_split_dir')
 }
 
-project=npn
+#project=$2
 #inputFilename=1485012823554.csv
-inputFilename=test.csv
+#inputFilename=test.csv
 
 # Tests
 # The following tests are built for each project to test output from the triplification
 # process.  The reasoning process is not tested here but has its own set of tests
 # Uncommient the following line to enable tests
 #
-# testTriplifier
+#testTriplifier
 
 # Split Files
-# We set a maximum limit of 50,000 records for each incoming file
-# The file splitter takes incoming files and splits into 50,000 sets numbered _1,_2, etc...
+# splits incoming files into 50,000 sets numbered _1,_2, etc...
 split
 
-# Fetch Split Files
-# Once files have been split, fetch a listing of the splitting process into the split_files 
-# global array.  This global is used for triplifying and reasoning.
+# Fetch Split Files into split_files global array
 getSplitFiles 
 
 # Triplify Files
-triplify $split_files
+triplify 
 
 # Reason on Files
-reason $split_files
+reason 

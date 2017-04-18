@@ -75,18 +75,21 @@ def split(
 
 # split file into components
 print "########################"
-print "# Splitting " 
+print "# Split Files " 
 print "########################"
-print "  output Split dir = " + args.output_directory
 
-# filename
+# filename without path
 filename=os.path.basename(args.input_filename)
+# extension
+extension=filename.rsplit('.',1)[1]
+# filename without extension
+filename=filename.rsplit('.',1)[0]
 
 # rn the split command
 split(
     open(args.input_filename, 'r'),
     ',',
     50000,
-    filename+'_%s'+'.csv',
-    args.output_directory+'/',
+    filename+'_%s.csv',
+    args.output_directory,
     True);
