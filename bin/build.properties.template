@@ -1,5 +1,9 @@
 #==========================================================
 # Properties file for runner script
+# 
+# Must Copy this file to build.properties and adjust for your
+# local environment
+#
 # use [project] for variable substitution of project name
 # as passed to runner script
 #==========================================================
