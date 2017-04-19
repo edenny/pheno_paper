@@ -76,8 +76,9 @@ Unpack the PEP725 file downloads using [PEP725 unpacker script] https://github.c
 The three steps of splitting, triplifying, and reasoning can be run at once using the bin/runFiles.sh script, like:
 ```
   cd bin
-  ./runFiles.sh <project> <filename>
+  ./runFiles.sh <project>
 ```
+When running the script, you will be prompted for files that have been pre-processed and ready to go in the output_csv directory.
 
 *Splitting data* is done using a python script called fileSplitter.py stored in the bin directory and called from the runFiles.sh script (above).  The file splitter splits incoming CSV files into 50,000 records or less.  We have found that running more than 50,000 records at a time will cause the triplifier and reasoner to slow down and crash.  
 
