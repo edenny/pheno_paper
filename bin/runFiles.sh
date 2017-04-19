@@ -142,11 +142,27 @@ function fileChooser {
 	    filesToProcess+=(${options[i]})
 	fi
     done
-
 }
 
-# fileChooser
-fileChooser 
+# initialize necessary processing directories, if needed
+# we don't attempt creation of output_csv since that should be populated to start with!
+function init {
+    if [ ! -d $(prop 'unreasoned_dir') ]; 
+    then
+        mkdir -p $(prop 'unreasoned_dir')
+    fi
+    if [ ! -d $(prop 'reasoned_dir') ]; 
+    then
+        mkdir -p $(prop 'reasoned_dir')
+    fi
+    if [ ! -d $(prop 'output_csv_split_dir') ]; 
+    then
+        mkdir -p $(prop 'output_csv_split_dir')
+    fi
+}
+
+init   			# initialize
+fileChooser 		# fileChooser
 
 # loop results from file choosing
 for f in ${filesToProcess[@]}; do
