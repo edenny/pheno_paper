@@ -22,11 +22,11 @@ function prop {
 # test the tripflifier process
 # This should be run each time configuration file changes
 function testTriplifier {
-    echo "########################"
+    echo "#=========================================================="
     echo "# Triplify Test"
     echo "# Igorning input file and using default test file for projec "
     echo "# which resides in tests directory"
-    echo "########################"
+    echo "#=========================================================="
     # triplify test sources
     java -Xmx4048m -jar ./ppo-fims-triples.jar \
         -i $(prop 'tests_input_dir')$project-test.csv \
@@ -40,9 +40,9 @@ function testTriplifier {
 }
 
 function buildConfig {
-    echo "########################"
+    echo "#=========================================================="
     echo "# Build Configuration"
-    echo "########################"
+    echo "#=========================================================="
     $(prop 'configurator') \
  	-d $(prop 'configuratorRoot') \
 	-b $(prop 'ppo_ontology') \

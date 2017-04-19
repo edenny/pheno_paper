@@ -6,3 +6,4 @@ bin/output/
 *.swp
 bin/build/
 .DS_Store
+bin/build.properties
