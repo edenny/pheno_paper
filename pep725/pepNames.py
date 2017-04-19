@@ -25,10 +25,10 @@ for filename in os.listdir(outputDir):
 # concatenate all files
 allDataFrame = pd.concat(files_)
 # create a group by
-countsDataFrame  = pd.DataFrame(allDataFrame.groupby('description', as_index=False).size())
+countsDataFrame  = pd.DataFrame(allDataFrame.groupby('scientificname', as_index=False).size())
 
 print "#=============================================================="
-print "# Output all unique descriptions (with counts) that were"
+print "# Output all unique scientific names (with counts) that were"
 print "# found while reading all source files"
 print "#=============================================================="
 print countsDataFrame
