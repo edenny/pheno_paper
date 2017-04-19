@@ -1,0 +1,3 @@
+record_id,PEP_ID,BBCH,YEAR,DAY,National_ID,LON,LAT,ALT,NAME,description,scientificname,genus,specificEpithet,countryname,Source,lower_count,upper_count
+0,6452,0,2000,90,6410,13.1,47.9667,508,MATTSEE,Sowing,Helianthus annuus,Helianthus,annuus,Austria,PEP725,0,0
+1,6452,0,2004,116,6410,13.1,47.9667,508,MATTSEE,Sowing,Helianthus annuus,Helianthus,annuus,Austria,PEP725,0,0

@@ -28,11 +28,11 @@ function testTriplifier {
     echo "# which resides in tests directory"
     echo "#=========================================================="
     # triplify test sources
-    java -Xmx4048m -jar ./ppo-fims-triples.jar \
+    java -Xmx4048m -jar $(prop 'triplifier') \
         -i $(prop 'tests_input_dir')$project-test.csv \
 	-o $(prop 'tests_actual_output_dir') \
-	-c $(prop 'triplifierConfig') \
-	-F N3
+	-c $(prop 'triplifier_config') \
+	-F N-TRIPLE
     # compare output
     python runTriplifierTest.py \
         $(prop 'tests_actual_output_dir')$project-test.csv.nt \
@@ -46,7 +46,7 @@ function buildConfig {
     $(prop 'configurator') \
  	-d $(prop 'configuratorRoot') \
 	-b $(prop 'ppo_ontology') \
-	-o $(prop 'triplifierConfig') \
+	-o $(prop 'triplifier_config') \
         -n 
 }
 # Builder
