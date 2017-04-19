@@ -6,6 +6,7 @@ from os.path import isfile, join
 import sys
 import shutil
 import re
+import csv
 
 inputDir = os.curdir + '/../data/pep725/input'
 outputDir = '../data/pep725/output_csv' 
@@ -26,27 +27,18 @@ mainIndexName = 'record_id'
 # ElevationInMeters (ALT) (from *_stations.csv)
 # LocationName (NAME) (from *_stations.csv)
 # Country Name (two digit code parsed from directory or filenames and matched to the following list)
-countries = { 
-    'AT':'Austria',
-    'BA':'Bosnia and Herzegovina',
-    'CH':'Switzerland',
-    'CZ':'Czech Republic',
-    'DE':'Germany',   
-    'FI':'Finland',   
-    'HR':'Croatia',   
-    'IE':'Ireland',   
-    'IP':'IPG',   
-    'LT':'Lithuania',
-    'LV':'Latvia',
-    'ME':'Montenegrin Republic',
-    'NL':'Netherlands',   
-    'NO':'Norway',    
-    'PL':'Poland',
-    'SE':'Sweden',
-    'SI':'Slovenia',
-    'SK':'Slovakia',
-    'UK':'United Kingdom'
-}
+
+
+# open countries dict file as dictionary
+with open('countries.dict') as f:
+        countries  = dict(filter(None, csv.reader(f)))
+
+# open specificEpithets.dict file as dictionary
+# this will be used for creating a specificEpithet field 
+# using the filename
+with open('specificEpithets.dict') as f:
+        specificEpithets = dict(filter(None, csv.reader(f)))
+
 # Genus (taken from the filename of PEP725_AT_{name} (what appears before (...))
 #    NOTE: gens names will all be one of the following:
 #        "Betula"
@@ -56,6 +48,7 @@ countries = {
 #        "Betula pendula (B. verrucasa| B. alba)
 #        "Betula pubescens"
 #        "Helianthus annuus"
+
 
 #2. Write Output to the output directory
 # Two files: 
@@ -76,6 +69,7 @@ for dirname in os.listdir(inputDir):
         countrycode = dirname.split("_")[1]
         # obtain country name from countrycode
         countryname = countries.get(countrycode)
+
 
         dirname = inputDir + '/' + dirname
         print "processing " + dirname
@@ -105,6 +99,8 @@ for dirname in os.listdir(inputDir):
                 # extract the scientificname from the filename
                 scientificname = filename[10:len(filename)-4].replace("_"," ")
 
+                # map the scientificname to specificEpithet using our dict
+                specificEpithet = specificEpithets.get(scientificname)
 
                 # extract genus from scientificname
                 genus = scientificname.split(" ")[0]
@@ -119,6 +115,7 @@ for dirname in os.listdir(inputDir):
         # the scientificname is same for everything in this particular file
         merged_all['scientificname'] = scientificname
         merged_all['genus'] = genus
+        merged_all['specificEpithet'] = specificEpithet
         merged_all['countryname'] = countryname
         merged_all['Source'] = 'PEP725' 
     	#####################################
