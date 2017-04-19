@@ -5,10 +5,10 @@
 
 # Arguments
 # Display help and exit if arguments not equal to the expected number
-if [ $# -ne 2 ] 
+if [ $# -ne 1 ] 
 then
    echo "Invalid number of arguments"
-   echo "runFiles.sh {project} {filename.csv}"
+   echo "runFiles.sh {project}"
    exit 1
 fi
 
@@ -16,7 +16,7 @@ fi
 project=$1
 # inputFilename = the name of the input file to work with. This file is a CSV
 # format file appearing in the directory specified by the output_csv_dir property
-inputFilename=$2
+#inputFilename=$2
 
 curdir=$PWD
 
@@ -107,14 +107,52 @@ function split {
 	$(prop 'output_csv_split_dir')
 }
 
-# Split Files
-split
+# get a list of files in the output directory and let user choose which one to 
+# process on
+function fileChooser {
+    echo "#=========================================================="
+    echo "# File Chooser"
+    echo "#=========================================================="
+    cd $(prop 'output_csv_dir')
+    options=(*)
+    cd $curdir
 
-# Fetch Split Files into split_files global array
-getSplitFiles 
+    menu() {
+        echo "Choose one or more files:"
+        for i in ${!options[@]}; do 
+            printf "%3d%s) %s\n" $((i+1)) "${choices[i]:- }" "${options[i]}"
+        done
+        [[ "$msg" ]] && echo "$msg"; :
+    }
 
-# Triplify Files
-triplify 
+    prompt="Check an option (again to uncheck, ENTER when done): "
+    while menu && read -rp "$prompt" num && [[ "$num" ]]; do
+        [[ "$num" != *[![:digit:]]* ]] &&
+           (( num > 0 && num <= ${#options[@]} )) ||
+        { msg="Invalid option: $num"; continue; }
+       	((num--)); msg="${options[num]} was ${choices[num]:+un}checked"
+    	[[ "${choices[num]}" ]] && choices[num]="" || choices[num]="+"
+    done
 
-# Reason Files
-reason 
+    # Assign filenames that were checked to filesToProcess array variable
+    filesToProcess=()
+    for i in ${!options[@]}; do 
+	if [[ ${choices[i]} == "+" ]]
+	then
+	    filesToProcess+=(${options[i]})
+	fi
+    done
+
+}
+
+# fileChooser
+fileChooser 
+
+# loop results from file choosing
+for f in ${filesToProcess[@]}; do
+    inputFilename=$f
+    split 		# split files
+    getSplitFiles	# get all the split files
+    triplify		# triplify
+    reason		# reason
+done
