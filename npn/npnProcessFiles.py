@@ -9,15 +9,6 @@ from os.path import isfile, join
 import sys
 import shutil
 import re
-# Make sure we can find the bin directory
-bin_dir = os.path.normpath(
-    os.path.join(
-        os.path.dirname(os.path.realpath(__file__)),
-        '../bin'
-    )
-)
-sys.path.append(bin_dir)
-from Utils import Utils
 
 # some global variables to set before beginning
 inputDir = os.curdir + '/../data/npn/input'
@@ -25,8 +16,6 @@ outputDir = '../data/npn/output_csv'
 outputSplitDir = '../data/npn/output_csv_split' 
 mainIndexName = 'record_id'
 
-# initialize Utils class
-utils = Utils()
 
 # apply an lower count value where there is no intensity value and phenophase_status is 1
 def status1NoIntensity(row):
@@ -56,9 +45,6 @@ for dirname in os.listdir(inputDir):
     if (dirname.startswith('datasheet_') and dirname.endswith("zip") == False ):
         outputfilename = dirname
         dirname = inputDir + '/' + dirname
-        print "**************************"
-        print "* Pre-processing " + dirname
-        print "**************************"
         # loop all filenames in directory
         onlyfiles = [f for f in listdir(dirname) if isfile(join(dirname, f))]
         for filename in onlyfiles:
@@ -103,15 +89,5 @@ for dirname in os.listdir(inputDir):
                 output_filename_fullpath = outputDir + '/' + output_filename + '.csv'
 
                 # write to CSV output directory
-                print "  output CSV dir = " + outputDir
+                print "    writing " + output_filename_fullpath
                 df.to_csv(output_filename_fullpath,sep=',', mode='a', header=True)
-
-                # split file into components
-                print "  output Split dir = " + outputSplitDir
-                utils.split(
-                    open(output_filename_fullpath, 'r'),
-                    ',',
-                    50000,
-                    output_filename+'_%s'+'.csv',
-                    outputSplitDir+'/',
-                    True);

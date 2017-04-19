@@ -72,7 +72,7 @@ for dirname in os.listdir(inputDir):
 
 
         dirname = inputDir + '/' + dirname
-        print "processing " + dirname
+        print "    processing " + dirname
         # loop all filenames in directory
         onlyfiles = [f for f in listdir(dirname) if isfile(join(dirname, f))]
         #list_ = []
@@ -150,7 +150,7 @@ for genusName,genusDataFrames in framesDict.iteritems():
     else:
         printHeader = False
 
-    print 'writing output to ' + outputFilename
+    print '    writing ' + outputFilename
     # name output files according to genus
     allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
 
