@@ -21,8 +21,8 @@ triplifier=/insert_root_path//ppo-fims/dist/ppo-fims-triples.jar
 # Configuration Files
 #==========================================================
 configuratorRoot=/insert_root_path/pheno_paper/[project]/config/
-triplifierConfig=/insert_root_path/pheno_paper/[project]/[project].xml
-reasonerConfig=/insert_root_path/pheno_paper/bin/pre_reasoner.conf
+triplifier_config=/insert_root_path/pheno_paper/[project]/[project].xml
+reasoner_config=/insert_root_path/pheno_paper/bin/pre_reasoner.conf
 ppo_ontology=/insert_root_path/PPO/ontology/ppo-reasoned.owl
 
 #==========================================================
