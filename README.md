@@ -6,10 +6,9 @@ Note that this repository is focused specifically on data processing scripts and
 
 # Required Software
 
-The following software is required to run the tasks for generating reasoned triples 
-for all incoming data.
+The following software is required to run the tasks for generating reasoned triples for all incoming data and should work on any Linux distribution:
 
-  * Python and associated PIP libs
+  * Python and [associated PIP libs](https://github.com/jdeck88/pheno_paper/blob/master/requirements.txt)
   * Java 1.8
   * Bash shell
   * **[Biocode FIMS Configurator](https://github.com/biocodellc/biocode-fims-configurator)** The Biocode FIMS Configurator uses a set of easily customizable CSV files and creates a configuration file for the FIMS processes to use in validating and triplifying source
