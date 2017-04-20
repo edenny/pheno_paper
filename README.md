@@ -38,34 +38,16 @@ Once the configurator does its work and we have succesfully built a configuratio
 the completed config file to github (or wherever it should be accessed on the web)
 Note that the above script also runs data driven tests against the newly created configuration file. 
  
-# Step 2: Pre-processing 
+# Step 2: Processing (Pre-processing, Splitting, Triplifying, and Reasoning)
 
-The data from NPN and PEP725 will need some modifications to make them readable by the PPO-FIMS triplifier.
-and suitable for turning in to RDF triples.  This step is necessary as the incoming source data is 
-stored in formats that are not easily parseable and contain assumptions about the data itself which need to be made explicit.
-
-Run the [NPN file pre-processing script] (https://github.com/jdeck88/pheno_paper/blob/master/npn/npnProcessFiles.py)
-
-```
-  python npnProcessFiles.py
-```
-
-Unpack the PEP725 file downloads using [PEP725 unpacker script] https://github.com/jdeck88/pheno_paper/blob/master/pep725/pepProcessTar.sh) and then run the [PEP725 pre-processing script] (https://github.com/jdeck88/pheno_paper/blob/master/pep725/pepProcessFiles.py)
-
-```
-  ./pepProcessTar.sh
-  python pepProcessFiles.py
-```
-
-# Step 3: Splitting, Triplifying, and Reasoning
-
-The three steps of splitting, triplifying, and reasoning can be run at once using the bin/runFiles.sh script, like:
+The steps of pre-processing, splitting, triplifying, and reasoning can be run at once using the bin/runFiles.sh script, like:
 ```
   cd bin
   ./runFiles.sh <project>
 ```
 When running the script, you will be prompted for files that have been pre-processed and ready to go in the output_csv directory.
 
+*Pre-processing* is done using python scripts in the bin/preProcessor directory structure and are named bin/preProcessor[project]/process.py  Each of the project processing scripts are slightly different, and have a goal of converting various formats into a standardized CSV file with all relevant data.  Note that the project preProcessing directories contain various helper scripts for working with the data.
 *Splitting data* is done using a python script called fileSplitter.py stored in the bin directory and called from the runFiles.sh script (above).  The file splitter splits incoming CSV files into 50,000 records or less.  We have found that running more than 50,000 records at a time will cause the triplifier and reasoner to slow down and crash.  
 
 
@@ -79,7 +61,7 @@ https://github.com/plantphenoontology/ppo_pre_reasoner/
 https://github.com/stuckyb/ontopilot  (for now, use the elk_pipeline branch)
 
 
-# Step 4: Data Storage / Indexing
+# Step 3: Data Storage / Indexing
 
 *SPARQL Endpoint *
 
