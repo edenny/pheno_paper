@@ -3,26 +3,22 @@
 # A Bash script to manaage splitting, triplifying and reasoning files.  We assume the 
 # configuration file has been made and the pre-processing routine has been run.
 
-usage="Script to pre-process, triplify, and reason over phenology data sources\n \
-runFiles.sh {project}";
+usage="Script to pre-process, triplify, and reason over phenology data sources\n 
+Usage:
+runFiles.sh {project} {init}
+    project = name of project
+    init = true|false (defaults to false)\n"
 
 # Arguments
 if [ $1 == '-h' ]; then
-   printf $usage
-   exit 1
-fi
-# Display help and exit if arguments not equal to the expected number
-if [ $# -ne 1 ]; then
-   printf "Invalid number of arguments"
-   printf $usage
+   printf "$usage"
    exit 1
 fi
 
 # project = the short name of the project we are working with (e.g. npn, pep725)
 project=$1
-# inputFilename = the name of the input file to work with. This file is a CSV
-# format file appearing in the directory specified by the output_csv_dir property
-#inputFilename=$2
+# the initialize boolean variable
+init=$2
 
 curdir=$PWD
 
@@ -49,27 +45,36 @@ function reason {
 	localFileName=$(basename $file)
 	incomingFile=$(prop 'unreasoned_dir')$localFileName.ttl
 
+	# NOTE: commenting out sections below to test the new
+	# ontopilot feature of passing in input/output files on command line
+	# this will remove most of the logic here.
 	# set file paths
-	outgoingFile=Outgoing/$localFileName.owl
-	reasonedFile=$curdir/build/$localFileName-reasoned.owl
+	#outgoingFile=Outgoing/$localFileName.owl
+	#reasonedFile=$curdir/build/$localFileName-reasoned.owl
 	destinationFile=$(prop 'reasoned_dir')$localFileName.owl
 
 	# clean build directory before running
-	rm -f $curdir/build/*
+	#rm -f $curdir/build/*
 
 	# adjust configuration file
-	sed -i "s|^base_ontology_file =.*|base_ontology_file = $incomingFile|" $(prop 'reasoner_config')
-	sed -i "s|^ontology_file =.*|ontology_file = $outgoingFile|" $(prop 'reasoner_config')
+	#sed -i "s|^base_ontology_file =.*|base_ontology_file = $incomingFile|" $(prop 'reasoner_config')
+	#sed -i "s|^ontology_file =.*|ontology_file = $outgoingFile|" $(prop 'reasoner_config')
 
-	cd $(prop 'ppo_pre_reasoner_dir')
+	#cd $(prop 'ppo_pre_reasoner_dir')
 	# run ontopilot
-	$(prop 'ontopilot') --reason make ontology \
-		-c $(prop 'reasoner_config') \
-		2> $outgoingFile.err
+	#$(prop 'ontopilot') --reason make ontology \
+	#	-c $(prop 'reasoner_config') \
+	#	2> $outgoingFile.err
+	#ontopilot.py inference_pipeline -i INPUT -o OUTPUT
+	$(prop 'ontopilot') inference_pipeline \
+		-i $incomingFile \
+		-o $destinationFile \
+		-c $(prop 'reasoner_config') 
+		#2> $outgoingFile.err
 
-	echo "    writing $destinationFile"
-	mv $reasonedFile $destinationFile
-	cd $curdir
+	#echo "    writing $destinationFile"
+	#mv $reasonedFile $destinationFile
+	#cd $curdir
 
     done
 }
@@ -176,10 +181,12 @@ function init {
     then
         mkdir -p $(prop 'output_csv_split_dir')
     fi
+    preProcess
 }
 
-init   			# initialize
-preProcess
+if [ "$init" = true ] ; then
+	init   			# initialize
+fi
 fileChooser 		# fileChooser
 
 # loop results from file choosing
