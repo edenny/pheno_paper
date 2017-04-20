@@ -16,6 +16,7 @@ ontopilot=/insert_root_path/ontopilot/bin/ontopilot.py
 ppo_pre_reasoner_dir=/insert_root_path/ppo_pre_reasoner/
 configurator=/insert_root_path//biocode-fims-configurator/bin/configurator.py
 triplifier=/insert_root_path//ppo-fims/dist/ppo-fims-triples.jar
+pre_processor_script=preProcessors/[project]/process.py
 
 #==========================================================
 # Configuration Files
@@ -28,6 +29,7 @@ ppo_ontology=/insert_root_path/PPO/ontology/ppo-reasoned.owl
 #==========================================================
 # Directory Paths
 #==========================================================
+input_dir=/insert_root_path/pheno_paper/data/[project]/input_dir/
 unreasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_unreasoned_n3/
 reasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_reasoned_owl/
 output_csv_dir=/insert_root_path/pheno_paper/data/[project]/output_csv/

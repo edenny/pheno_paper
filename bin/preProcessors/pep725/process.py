@@ -1,4 +1,6 @@
 #!/bin/python
+import argparse
+import inspect
 import pandas as pd
 import os
 from os import listdir
@@ -8,8 +10,6 @@ import shutil
 import re
 import csv
 
-inputDir = os.curdir + '/../data/pep725/input'
-outputDir = '../data/pep725/output_csv' 
 mainIndexName = 'record_id'
 
 # python program to read PEP files, stored in directories 
@@ -28,15 +28,27 @@ mainIndexName = 'record_id'
 # LocationName (NAME) (from *_stations.csv)
 # Country Name (two digit code parsed from directory or filenames and matched to the following list)
 
+# Argument parser
+parser = argparse.ArgumentParser(description='NPN Parser')
+parser.add_argument('input_dir',  help='the input directory')
+parser.add_argument('output_dir', help='the output directory to store CSV results')
+
+# argparser parser automatically checks for correct input from the command line
+args = parser.parse_args()
+inputDir = args.input_dir
+outputDir = args.output_dir
+#input_dir = '/Users/jdeck/IdeaProjects/pheno_paper/data/npn/input/'
+#output_csv_dir = '/Users/jdeck/IdeaProjects/pheno_paper/data/npn/output_csv/'
+cur_dir = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))+'/'
 
 # open countries dict file as dictionary
-with open('countries.dict') as f:
+with open(cur_dir+'countries.dict') as f:
         countries  = dict(filter(None, csv.reader(f)))
 
 # open specificEpithets.dict file as dictionary
 # this will be used for creating a specificEpithet field 
 # using the filename
-with open('specificEpithets.dict') as f:
+with open(cur_dir+'specificEpithets.dict') as f:
         specificEpithets = dict(filter(None, csv.reader(f)))
 
 # Genus (taken from the filename of PEP725_AT_{name} (what appears before (...))
@@ -142,7 +154,7 @@ for genusName,genusDataFrames in framesDict.iteritems():
     allDataFrame=pd.concat(genusDataFrames)
     allDataFrame.reset_index(drop=True,inplace=True)
     allDataFrame.index.name = mainIndexName
-    outputFilename = outputDir + '/' + genusName + '.csv'
+    outputFilename = outputDir + genusName + '.csv'
 
     # only print header if there is no file right now
     if (not os.path.exists(outputFilename)):

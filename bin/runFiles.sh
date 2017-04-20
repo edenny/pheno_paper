@@ -3,12 +3,18 @@
 # A Bash script to manaage splitting, triplifying and reasoning files.  We assume the 
 # configuration file has been made and the pre-processing routine has been run.
 
+usage="Script to pre-process, triplify, and reason over phenology data sources\n \
+runFiles.sh {project}";
+
 # Arguments
+if [ $1 == '-h' ]; then
+   printf $usage
+   exit 1
+fi
 # Display help and exit if arguments not equal to the expected number
-if [ $# -ne 1 ] 
-then
-   echo "Invalid number of arguments"
-   echo "runFiles.sh {project}"
+if [ $# -ne 1 ]; then
+   printf "Invalid number of arguments"
+   printf $usage
    exit 1
 fi
 
@@ -87,6 +93,14 @@ function triplify {
     done
 }
 
+function preProcess {
+    echo "#=========================================================="
+    echo "# Pre-Process"
+    echo "#=========================================================="
+    python $(prop 'pre_processor_script') \
+	 $(prop 'input_dir') \
+	 $(prop 'output_csv_dir')
+}
 # Return all of the files that have been split WITHOUT the extension
 function getSplitFiles {
     lfilename=$(basename "$inputFilename")
@@ -147,6 +161,9 @@ function fileChooser {
 # initialize necessary processing directories, if needed
 # we don't attempt creation of output_csv since that should be populated to start with!
 function init {
+    echo "#=========================================================="
+    echo "# Initializing and checking directories for "$project
+    echo "#=========================================================="
     if [ ! -d $(prop 'unreasoned_dir') ]; 
     then
         mkdir -p $(prop 'unreasoned_dir')
@@ -162,6 +179,7 @@ function init {
 }
 
 init   			# initialize
+preProcess
 fileChooser 		# fileChooser
 
 # loop results from file choosing

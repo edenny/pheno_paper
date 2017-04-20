@@ -7,7 +7,7 @@ import sys
 import shutil
 import re
 
-outputDir = '../data/pep725/output_csv' 
+outputDir = '../../../data/pep725/output_csv' 
 #outputFileName = "description.csv"
 
 # examine PEP files and create a template description.csv file
