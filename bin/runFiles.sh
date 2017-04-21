@@ -45,36 +45,34 @@ function reason {
 	localFileName=$(basename $file)
 	incomingFile=$(prop 'unreasoned_dir')$localFileName.ttl
 
-	# NOTE: commenting out sections below to test the new
-	# ontopilot feature of passing in input/output files on command line
-	# this will remove most of the logic here.
-	# set file paths
-	#outgoingFile=Outgoing/$localFileName.owl
-	#reasonedFile=$curdir/build/$localFileName-reasoned.owl
+	# NOTE: Section below is TEMPORARY, until improved pipeline features
+	# are in place
+	outgoingFile=Outgoing/$localFileName.owl
+	reasonedFile=$curdir/build/$localFileName-reasoned.owl
 	destinationFile=$(prop 'reasoned_dir')$localFileName.owl
 
 	# clean build directory before running
-	#rm -f $curdir/build/*
+	rm -f $curdir/build/*
 
 	# adjust configuration file
-	#sed -i "s|^base_ontology_file =.*|base_ontology_file = $incomingFile|" $(prop 'reasoner_config')
-	#sed -i "s|^ontology_file =.*|ontology_file = $outgoingFile|" $(prop 'reasoner_config')
+	sed -i "s|^base_ontology_file =.*|base_ontology_file = $incomingFile|" $(prop 'reasoner_config')
+	sed -i "s|^ontology_file =.*|ontology_file = $outgoingFile|" $(prop 'reasoner_config')
 
-	#cd $(prop 'ppo_pre_reasoner_dir')
+	cd $(prop 'ppo_pre_reasoner_dir')
 	# run ontopilot
-	#$(prop 'ontopilot') --reason make ontology \
-	#	-c $(prop 'reasoner_config') \
-	#	2> $outgoingFile.err
-	#ontopilot.py inference_pipeline -i INPUT -o OUTPUT
-	$(prop 'ontopilot') inference_pipeline \
-		-i $incomingFile \
-		-o $destinationFile \
-		-c $(prop 'reasoner_config') 
-		#2> $outgoingFile.err
+	$(prop 'ontopilot') --reason make ontology \
+		-c $(prop 'reasoner_config') \
+		2> $outgoingFile.err
+	# This should be the new syntax
+	#$(prop 'ontopilot') inference_pipeline \
+	#	-i $incomingFile \
+	#	-o $destinationFile \
+	#	-c $(prop 'reasoner_config') 
+	#	#2> $outgoingFile.err
 
-	#echo "    writing $destinationFile"
-	#mv $reasonedFile $destinationFile
-	#cd $curdir
+	echo "    writing $destinationFile"
+	mv $reasonedFile $destinationFile
+	cd $curdir
 
     done
 }
