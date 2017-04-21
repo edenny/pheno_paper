@@ -102,6 +102,9 @@ function preProcess {
     echo "#=========================================================="
     echo "# Pre-Process"
     echo "#=========================================================="
+    echo python $(prop 'pre_processor_script') \
+	 $(prop 'input_dir') \
+	 $(prop 'output_csv_dir')
     python $(prop 'pre_processor_script') \
 	 $(prop 'input_dir') \
 	 $(prop 'output_csv_dir')

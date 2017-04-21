@@ -59,7 +59,11 @@ class processNPN:
                     # phenology data frame
                     if (filename == 'status_intensity_observation_data.csv'):
                         # Read the incoming data
-                        df = pd.read_csv(dirname+'/'+filename, sep=',', header=0)
+			# Chunking files into bits of 100000 gets around memory issues
+                        tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=100000)
+			# put them back together
+			df = pd.concat(tp, ignore_index=True)
+
                         # Add an index name 
                         df.index.name = self.mainIndexName
                         # This section maps all Intensity_Value values to lower/upper counts and lower/upper percentages
