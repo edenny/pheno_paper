@@ -60,7 +60,7 @@ class processNPN:
                     if (filename == 'status_intensity_observation_data.csv'):
                         # Read the incoming data
 			# Chunking files into bits of 100000 gets around memory issues
-                        tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=100000)
+                        tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=100000,dtype=object)
 			# put them back together
 			df = pd.concat(tp, ignore_index=True)
 
@@ -85,9 +85,12 @@ class processNPN:
                         df['upper_percent'] = df['Intensity_Value'].map(equiv)
     
                         # In cases where the Intensity_Value = -9999 and Phenophase_Status = 0 the 'upper count' should be 0
-                        df['upper_count'] = df.apply(self.status0NoIntensity,axis=1)
+                        #df['upper_count'] = df.apply(self.status0NoIntensity,axis=1)
+
+                        df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '0'),'upper_count'] = 0
                         # In cases where the Intensity_Value = -9999 and Phenophase_Status = 1 the 'lower count' should be 1
-                        df['lower_count'] = df.apply(self.status1NoIntensity,axis=1)
+                        #df['lower_count'] = df.apply(self.status1NoIntensity,axis=1)
+                        df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '1'),'lower_count'] = 1
                         df['Source'] = 'NPN'
     
     		        # Normalize Date to just Year. we don't need to store actual date because we use only Year + DayOfYear
