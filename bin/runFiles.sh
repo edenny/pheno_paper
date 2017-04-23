@@ -2,23 +2,31 @@
 # runFiles.sh
 # A Bash script to manaage splitting, triplifying and reasoning files.  We assume the 
 # configuration file has been made and the pre-processing routine has been run.
+usage="
+#==========================================================
+Script to pre-process, triplify, and reason over phenology data sources 
+#==========================================================
 
-usage="Script to pre-process, triplify, and reason over phenology data sources\n 
-Usage:
-runFiles.sh {project} {init}
+Usage: runFiles.sh {project} {option}
     project = name of project
-    init = true|false (defaults to false)\n"
+    option = options for running. 
+         'init' = specifies run initialize script first
+"
 
 # Arguments
-if [ $1 == '-h' ]; then
+if [[ $1 == '-h' ]] || [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
    printf "$usage"
    exit 1
 fi
 
 # project = the short name of the project we are working with (e.g. npn, pep725)
 project=$1
-# the initialize boolean variable
-init=$2
+
+# the option variable
+init=false
+if [ $2 == 'init' ]; then
+    init=true
+fi
 
 curdir=$PWD
 
@@ -37,43 +45,26 @@ function reason {
     echo "#=========================================================="
     echo "# Reason "
     echo "#=========================================================="
-    #The base ontology file could not be found: /Users/jdeck/IdeaProjects/pheno_paper/data/npn/output_unreasoned_n3/test_1.csv.ttl
-    files=$1
+
     for file in $split_files
     do
-	# get just the filename
+	# get the root filename
 	localFileName=$(basename $file)
 	incomingFile=$(prop 'unreasoned_dir')$localFileName.ttl
-
-	# NOTE: Section below is TEMPORARY, until improved pipeline features
-	# are in place
-	outgoingFile=Outgoing/$localFileName.owl
-	reasonedFile=$curdir/build/$localFileName-reasoned.owl
 	destinationFile=$(prop 'reasoned_dir')$localFileName.owl
 
-	# clean build directory before running
-	rm -f $curdir/build/*
-
-	# adjust configuration file
-	sed -i "s|^base_ontology_file =.*|base_ontology_file = $incomingFile|" $(prop 'reasoner_config')
-	sed -i "s|^ontology_file =.*|ontology_file = $outgoingFile|" $(prop 'reasoner_config')
-
-	cd $(prop 'ppo_pre_reasoner_dir')
-	# run ontopilot
-	$(prop 'ontopilot') --reason make ontology \
-		-c $(prop 'reasoner_config') \
-		2> $outgoingFile.err
-	# This should be the new syntax
-	#$(prop 'ontopilot') inference_pipeline \
-	#	-i $incomingFile \
-	#	-o $destinationFile \
-	#	-c $(prop 'reasoner_config') 
-	#	#2> $outgoingFile.err
+	echo $(prop 'ontopilot') inference_pipeline \
+	  	-i $incomingFile \
+	        -o $destinationFile \
+	        -c $(prop 'reasoner_config') \
+		2> $destinationFile.err
+	$(prop 'ontopilot') inference_pipeline \
+	  	-i $incomingFile \
+	        -o $destinationFile \
+	        -c $(prop 'reasoner_config') \
+		2> $destinationFile.err
 
 	echo "    writing $destinationFile"
-	mv $reasonedFile $destinationFile
-	cd $curdir
-
     done
 }
 
@@ -83,16 +74,22 @@ function triplify {
     echo "#=========================================================="
     echo "# Triplify "
     echo "#=========================================================="
-    files=$1
+
     # clean build directory before running
     rm -f $curdir/output/*
+
     for file in $split_files
     do
+        echo java -Xmx4048m -jar $(prop 'triplifier') \
+	    -i $file \
+	    -o $(prop 'unreasoned_dir') \
+	    -c $(prop 'triplifier_config') \
+	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
         java -Xmx4048m -jar $(prop 'triplifier') \
 	    -i $file \
 	    -o $(prop 'unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
-	    -F TURTLE
+	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
     done
 }
 
@@ -122,9 +119,11 @@ function getSplitFiles {
 # Run the file splitting process
 # splits incoming files into 50,000 sets numbered _1,_2, etc...
 function split {
-    python fileSplitter.py \
-        $(prop 'output_csv_dir')$inputFilename \
-	$(prop 'output_csv_split_dir')
+    echo "#=========================================================="
+    echo "# Split Files " 
+    echo "#=========================================================="
+    echo python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir')
+    python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir')
 }
 
 # get a list of files in the output directory and let user choose which one to 

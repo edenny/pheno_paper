@@ -74,9 +74,6 @@ def split(
 
 
 # split file into components
-print "#=========================================================="
-print "# Split Files " 
-print "#=========================================================="
 # filename without path
 filename=os.path.basename(args.input_filename)
 # extension

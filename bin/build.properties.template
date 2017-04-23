@@ -8,14 +8,14 @@
 # so the runFiles.sh and buildConfig.sh scripts can replace 
 # the project code when executed.
 #==========================================================
-
+import_src=https://github.com/PlantPhenoOntology/PPO/raw/master/ontology/ppo-reasoned.owl
 #==========================================================
 # Application Paths
 #==========================================================
-ontopilot=/insert_root_path/ontopilot/bin/ontopilot.py
+ontopilot=/insert_root_path/ontopilot/bin/ontopilot.sh
 ppo_pre_reasoner_dir=/insert_root_path/ppo_pre_reasoner/
 configurator=/insert_root_path//biocode-fims-configurator/bin/configurator.py
-triplifier=/insert_root_path//ppo-fims/dist/ppo-fims-triples.jar
+triplifier=/insert_root_path/ppo-fims/dist/triplifier.jar
 pre_processor_script=preProcessors/[project]/process.py
 
 #==========================================================
