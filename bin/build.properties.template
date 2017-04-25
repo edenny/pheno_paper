@@ -25,15 +25,18 @@ configuratorRoot=/insert_root_path/pheno_paper/[project]/config/
 triplifier_config=/insert_root_path/pheno_paper/[project]/[project].xml
 reasoner_config=/insert_root_path/pheno_paper/bin/pre_reasoner.conf
 ppo_ontology=/insert_root_path/PPO/ontology/ppo-reasoned.owl
+sparql_query=/Users/jdeck/IdeaProjects/pheno_paper/bin/fetchReasoned.sparql 
 
 #==========================================================
 # Directory Paths
 #==========================================================
 input_dir=/insert_root_path/pheno_paper/data/[project]/input_dir/
-unreasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_unreasoned_n3/
-reasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_reasoned_owl/
+output_unreasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_unreasoned_n3/
+output_reasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_reasoned_owl/
 output_csv_dir=/insert_root_path/pheno_paper/data/[project]/output_csv/
 output_csv_split_dir=/insert_root_path/pheno_paper/data/[project]/output_csv_split/
+output_reasoned_csv_dir=/insert_root_path/pheno_paper/data/[project]/output_reasoned_csv/
+#
 #==========================================================
 # Test properties
 #==========================================================

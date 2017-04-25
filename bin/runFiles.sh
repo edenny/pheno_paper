@@ -48,26 +48,40 @@ function reason {
 
     for file in $split_files
     do
-	# get the root filename
-	localFileName=$(basename $file)
-	incomingFile=$(prop 'unreasoned_dir')$localFileName.ttl
-	destinationFile=$(prop 'reasoned_dir')$localFileName.owl
-
 	echo $(prop 'ontopilot') inference_pipeline \
-	  	-i $incomingFile \
-	        -o $destinationFile \
+		-i $(prop 'output_unreasoned_dir')$file.ttl \
+		-o $(prop 'output_reasoned_dir')$file.owl \
 	        -c $(prop 'reasoner_config') \
-		2> $destinationFile.err
+		2> $(prop 'output_reasoned_dir')$file.owl.err
 	$(prop 'ontopilot') inference_pipeline \
-	  	-i $incomingFile \
-	        -o $destinationFile \
+		-i $(prop 'output_unreasoned_dir')$file.ttl \
+		-o $(prop 'output_reasoned_dir')$file.owl \
 	        -c $(prop 'reasoner_config') \
-		2> $destinationFile.err
+		2> $(prop 'output_reasoned_dir')$file.owl.err
 
-	echo "    writing $destinationFile"
+	echo "    writing $(prop 'output_reasoned_dir')$file.owl"
     done
 }
 
+# Output
+# Generate output from reasoned data
+function output {
+    echo "#=========================================================="
+    echo "# Output "
+    echo "#=========================================================="
+
+    for file in $split_files
+    do
+        echo java -Xmx4048m -jar $(prop 'triplifier') \
+	    -i $(prop 'output_reasoned_dir')$file.owl \
+	    -o $(prop 'output_reasoned_csv_dir') \
+	    -sparql $(prop 'sparql_query') 
+        java -Xmx4048m -jar $(prop 'triplifier') \
+	    -i $(prop 'output_reasoned_dir')$file.owl \
+	    -o $(prop 'output_reasoned_csv_dir') \
+	    -sparql $(prop 'sparql_query') 
+    done
+}
 # Triplify 
 # execute the triplify process for a list of files
 function triplify {
@@ -81,13 +95,13 @@ function triplify {
     for file in $split_files
     do
         echo java -Xmx4048m -jar $(prop 'triplifier') \
-	    -i $file \
-	    -o $(prop 'unreasoned_dir') \
+	    -i $(prop 'output_csv_split')$file \
+	    -o $(prop 'output_unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
 	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
         java -Xmx4048m -jar $(prop 'triplifier') \
-	    -i $file \
-	    -o $(prop 'unreasoned_dir') \
+	    -i $(prop 'output_csv_split')$file \
+	    -o $(prop 'output_unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
 	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
     done
@@ -112,7 +126,14 @@ function getSplitFiles {
     #filename w/out extension
     lfilename="${lfilename%.*}"
     # return files without extension
-    split_files=$(prop 'output_csv_split_dir')$lfilename"_*.csv"
+    split_files_all=$(prop 'output_csv_split_dir')$lfilename"_*.csv"
+    split_files=()
+    for file in $split_files_all
+    do
+         split_files+=$(basename "$file")
+    done
+
+   
 }
 
 # Split Files
@@ -169,17 +190,21 @@ function init {
     echo "#=========================================================="
     echo "# Initializing and checking directories for "$project
     echo "#=========================================================="
-    if [ ! -d $(prop 'unreasoned_dir') ]; 
+    if [ ! -d $(prop 'output_unreasoned_dir') ]; 
     then
-        mkdir -p $(prop 'unreasoned_dir')
+        mkdir -p $(prop 'output_unreasoned_dir')
     fi
-    if [ ! -d $(prop 'reasoned_dir') ]; 
+    if [ ! -d $(prop 'output_reasoned_dir') ]; 
     then
-        mkdir -p $(prop 'reasoned_dir')
+        mkdir -p $(prop 'output_reasoned_dir')
     fi
     if [ ! -d $(prop 'output_csv_split_dir') ]; 
     then
         mkdir -p $(prop 'output_csv_split_dir')
+    fi
+    if [ ! -d $(prop 'output_reasoned_csv_dir') ]; 
+    then
+        mkdir -p $(prop 'output_reasoned_csv_dir')
     fi
     preProcess
 }
@@ -194,6 +219,7 @@ for f in ${filesToProcess[@]}; do
     inputFilename=$f
     split 		# split files
     getSplitFiles	# get all the split files
-    triplify		# triplify
+    #triplify		# triplify
     reason		# reason
+    output # output task
 done
