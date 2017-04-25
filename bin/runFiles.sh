@@ -46,7 +46,7 @@ function reason {
     echo "# Reason "
     echo "#=========================================================="
 
-    for file in $split_files
+    for file in ${split_files[@]}
     do
 	echo $(prop 'ontopilot') inference_pipeline \
 		-i $(prop 'output_unreasoned_dir')$file.ttl \
@@ -70,7 +70,7 @@ function output {
     echo "# Output "
     echo "#=========================================================="
 
-    for file in $split_files
+    for file in ${split_files[@]}
     do
         echo java -Xmx4048m -jar $(prop 'triplifier') \
 	    -i $(prop 'output_reasoned_dir')$file.owl \
@@ -92,7 +92,7 @@ function triplify {
     # clean build directory before running
     rm -f $curdir/output/*
 
-    for file in $split_files
+    for file in ${split_files[@]}
     do
         echo java -Xmx4048m -jar $(prop 'triplifier') \
 	    -i $(prop 'output_csv_split')$file \
@@ -130,7 +130,7 @@ function getSplitFiles {
     split_files=()
     for file in $split_files_all
     do
-         split_files+=$(basename "$file")
+        split_files+=($(basename "$file"))
     done
 
    
@@ -219,7 +219,7 @@ for f in ${filesToProcess[@]}; do
     inputFilename=$f
     split 		# split files
     getSplitFiles	# get all the split files
-    #triplify		# triplify
+    triplify		# triplify
     reason		# reason
     output # output task
 done
