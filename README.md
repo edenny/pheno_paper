@@ -112,7 +112,7 @@ WHERE {
 ```
 *ElasticSearch* 
 
-Data loading into ElasticSearch still under development... nothing to report here for now.
+Data loading into ElasticSearch uses the outputs that are sent to the output_reasoned_csv directory by using the [query-fetcher repo](https://github.com/biocodellc/query_fetcher).  This directory contains comma separated value files that can be easily imported into ElasticSearch.  This file is organized by observation with relevant traits expressed under the plantStructurPresenceTypes column, with pipe delimited values.
 
 # NOTES
 
