@@ -13,6 +13,7 @@
             <rule column="Longitude" level="error" type="RequiredColumn"/>
             <rule column="Year" level="error" type="RequiredColumn"/>
             <rule column="Day_of_Year" level="error" type="RequiredColumn"/>
+            <rule column="Source" level="error" type="RequiredColumn"/>
             <rule column="Phenophase_Description" level="error" list="phenophase_description" type="controlledVocabulary"/>
         </worksheet>
         <lists>

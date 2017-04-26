@@ -14,6 +14,7 @@
             <rule column="DAY" level="error" type="RequiredColumn"/>
             <rule column="scientificname" level="error" type="RequiredColumn"/>
             <rule column="genus" level="error" type="RequiredColumn"/>
+            <rule column="Source" level="error" type="RequiredColumn"/>
             <rule column="description" level="error" list="description" type="controlledVocabulary"/>
         </worksheet>
         <lists>

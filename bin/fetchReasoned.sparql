@@ -6,35 +6,44 @@ prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix dc: <http://purl.org/dc/elements/1.1/> 
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix ppo: <http://www.plantphenology.org/id/>
+
 # Use the concat/group_concat function to push all plantStructurePresence types into an array within a field.
 # this enables ElasticSearch to index this easily while shrinking output file sizes
-SELECT  ?eventID ?materialSampleID ?startDayOfYear ?year ?latitude ?longitude ?genus ?specificEpithet ?scientificName ?lower_count ?upper_count ?lower_percent ?upper_percent ?source (group_concat(?plantStructurePresenceType;separator='|') as ?plantStructurePresenceTypes)
+SELECT  
+?eventID ?materialSampleID ?startDayOfYear ?year ?latitude ?longitude ?genus ?specificEpithet ?scientificName ?lower_count ?upper_count ?lower_percent ?upper_percent ?source (group_concat(distinct ?traitType;separator='|') as ?plantStructurePresenceTypes)
+
 WHERE {    
         ?wholePlant dwc:genus ?genus . 
         OPTIONAL {?wholePlant dwc:specificEpithet ?specificEpithet} . 
         OPTIONAL {?wholePlant dwc:scientificName ?scientificName} . 
         OPTIONAL {?wholePlant dwc:materialSampleID ?materialSampleID} . 
 
-        ?plantStructurePresence obo:RO_0000080 ?wholePlant .
+	# Join plantStructurePresence to wholePlant.  Anticipate inverse relations
+        {?plantStructurePresence obo:RO_0000080 ?wholePlant} UNION {?wholePlant obo:RO_0000086 ?plantStructurePresence} . 
+	# Setup queries for the rdf:type of the plantStructurePresence (trait type) category
+        ?plantStructurePresence rdf:type ?traitType .
+	# Most reliable way of querying traits present or absent is to just filter explicitly on 
+	# every present or absent trait that is declared by the PPO.  I drew these from the following:
+	# https://github.com/PlantPhenoOntology/PPO/blob/master/src/entities/PPO_trait_absent_classes.ods
+	# https://github.com/PlantPhenoOntology/PPO/blob/master/src/entities/PPO_trait_present_classes.ods 
+	FILTER ( ?traitType = obo:PPO_0003001 || ?traitType = obo:PPO_0003002 || ?traitType = obo:PPO_0003003 || ?traitType = obo:PPO_0003004 || ?traitType = obo:PPO_0003005 || ?traitType = obo:PPO_0003006 || ?traitType = obo:PPO_0003007 || ?traitType = obo:PPO_0003008 || ?traitType = obo:PPO_0003009 || ?traitType = obo:PPO_0003010 || ?traitType = obo:PPO_0003011 || ?traitType = obo:PPO_0003012 || ?traitType = obo:PPO_0003013 || ?traitType = obo:PPO_0003014 || ?traitType = obo:PPO_0003015 || ?traitType = obo:PPO_0003016 || ?traitType = obo:PPO_0003017 || ?traitType = obo:PPO_0003018 || ?traitType = obo:PPO_0003019 || ?traitType = obo:PPO_0003020 || ?traitType = obo:PPO_0003021 || ?traitType = obo:PPO_0003022 || ?traitType = obo:PPO_0003023 || ?traitType = obo:PPO_0003024 || ?traitType = obo:PPO_0003040 || ?traitType = obo:PPO_0003041 || ?traitType = obo:PPO_0003042 || ?traitType = obo:PPO_0003043 || ?traitType = obo:PPO_0003044 || ?traitType = obo:PPO_0003045 || ?traitType = obo:PPO_0003046 || ?traitType = obo:PPO_0003047 || ?traitType = obo:PPO_0003048 || ?traitType = obo:PPO_0003049 || ?traitType = obo:PPO_0003050 || ?traitType = obo:PPO_0003051 || ?traitType = obo:PPO_0003052 || ?traitType = obo:PPO_0003053 || ?traitType = obo:PPO_0003054 || ?traitType = obo:PPO_0003055 || ?traitType = obo:PPO_0003056 || ?traitType = obo:PPO_0003057 || ?traitType = obo:PPO_0003058 || ?traitType = obo:PPO_0003059 || ?traitType = obo:PPO_0003060 || ?traitType = obo:PPO_0003061 || ?traitType = obo:PPO_0003062 || ?traitType = obo:PPO_0003063 || ?traitType = obo:PPO_0003064 ) .
 
-        # Query all subClasses of 'plant structures present'
-        # Note: still need to be able to query for * 'absent'
-        ?plantStructurePresence rdf:type ?plantStructurePresenceType . 
-        ?plantStructurePresenceType rdfs:subClassOf* <http://purl.obolibrary.org/obo/PPO_0003000> . 
-        ?plantStructurePresenceType rdfs:label ?traitLabel .
+	# Join plantStructurePresence to measurementDatum.  Anticipate inverse relations
+        {?plantStructurePresence obo:PPO_0001007 ?measurementDatum} UNION {?measurementDatum obo:PPO_0001006 ?plantStructurePresence} . 
 
-        ?plantStructurePresence obo:PPO_0001007 ?measurementDatum . 
-        ?phenologyObservingProcess obo:OBI_0000299 ?measurementDatum . 
+	# Join phenologyObservingProcess to measurementDatum.  Anticipate inverse relations
+        {?phenologyObservingProcess obo:OBI_0000299 ?measurementDatum} UNION {?measurementDatum obo:OBI_0000312 ?phenologyObservingProcess} . 
 
-        # set the type for phenologyObservingProcess and return properties
+        # Set the type for phenologyObservingProcess and return properties
         ?phenologyObservingProcess rdf:type obo:PPO_0002000 . 
         ?phenologyObservingProcess dwc:startDayOfYear ?startDayOfYear . 
         ?phenologyObservingProcess dwc:year ?year . 
         ?phenologyObservingProcess dwc:decimalLatitude ?latitude . 
         ?phenologyObservingProcess dwc:decimalLongitude ?longitude . 
-	?phenologyObservingProcess dwc:EventID ?eventID .
-	?phenologyObservingProcess dc:creator ?source .
+	OPTIONAL {?phenologyObservingProcess dwc:EventID ?eventID} .
+	OPTIONAL {?phenologyObservingProcess dc:creator ?source} .
 
+	# Return properties of measurementDatum
         OPTIONAL {?measurementDatum obo:PPO_0001000 ?lower_count} .
         OPTIONAL {?measurementDatum obo:PPO_0001001 ?upper_count} .
         OPTIONAL {?measurementDatum obo:PPO_0001002 ?lower_percent} .

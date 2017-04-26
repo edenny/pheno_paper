@@ -14,26 +14,30 @@ Usage: runFiles.sh {project} {option}
 "
 
 # Arguments
-if [[ $1 == '-h' ]] || [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+if [[ $1 == '-h' ]] || [ "$#" -lt 1 ] || [ "$#" -gt 3 ]; then
    printf "$usage"
    exit 1
 fi
 
 # project = the short name of the project we are working with (e.g. npn, pep725)
 project=$1
+data_dir=$2
 
 # the option variable
 init=false
-if [ $2 == 'init' ]; then
+if [ $3 == 'init' ]; then
     init=true
 fi
 
 curdir=$PWD
 
-# prop function for adding in script properties
-# replace content in square brackets with project variable
+# replace [project] appearing in properties file with project variable
 function prop {
     grep -w "${1}" $curdir/build.properties|cut -d'=' -f2 | sed "s/\[project\]/$project/g"
+}
+# replace [data_dir] appearing in properties file with data_dir variable
+function prop_data {
+    grep -w "${1}" $curdir/build.properties|cut -d'=' -f2 | sed "s/\[data_dir\]/$data_dir/g"
 }
 
 # Reason
@@ -49,17 +53,17 @@ function reason {
     for file in ${split_files[@]}
     do
 	echo $(prop 'ontopilot') inference_pipeline \
-		-i $(prop 'output_unreasoned_dir')$file.ttl \
-		-o $(prop 'output_reasoned_dir')$file.owl \
+		-i $(prop_data 'output_unreasoned_dir')$file.ttl \
+		-o $(prop_data 'output_reasoned_dir')$file.owl \
 	        -c $(prop 'reasoner_config') \
-		2> $(prop 'output_reasoned_dir')$file.owl.err
+		2> $(prop_data 'output_reasoned_dir')$file.owl.err
 	$(prop 'ontopilot') inference_pipeline \
-		-i $(prop 'output_unreasoned_dir')$file.ttl \
-		-o $(prop 'output_reasoned_dir')$file.owl \
-	        -c $(prop 'reasoner_config') \
-		2> $(prop 'output_reasoned_dir')$file.owl.err
+		-i $(prop_data 'output_unreasoned_dir')$file.ttl \
+		-o $(prop_data 'output_reasoned_dir')$file.owl \
+	        -c $(prop_data 'reasoner_config') \
+		2> $(prop_data 'output_reasoned_dir')$file.owl.err
 
-	echo "    writing $(prop 'output_reasoned_dir')$file.owl"
+	echo "    writing $(prop_data 'output_reasoned_dir')$file.owl"
     done
 }
 
@@ -73,12 +77,12 @@ function output {
     for file in ${split_files[@]}
     do
         echo java -Xmx4048m -jar $(prop 'query_fetcher') \
-	    -i $(prop 'output_reasoned_dir')$file.owl \
-	    -o $(prop 'output_reasoned_csv_dir') \
+	    -i $(prop_data 'output_reasoned_dir')$file.owl \
+	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
         java -Xmx4048m -jar $(prop 'query_fetcher') \
-	    -i $(prop 'output_reasoned_dir')$file.owl \
-	    -o $(prop 'output_reasoned_csv_dir') \
+	    -i $(prop_data 'output_reasoned_dir')$file.owl \
+	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
     done
 }
@@ -95,13 +99,13 @@ function triplify {
     for file in ${split_files[@]}
     do
         echo java -Xmx4048m -jar $(prop 'triplifier') \
-	    -i $(prop 'output_csv_split')$file \
-	    -o $(prop 'output_unreasoned_dir') \
+	    -i $(prop_data 'output_csv_split')$file \
+	    -o $(prop_data 'output_unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
 	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
         java -Xmx4048m -jar $(prop 'triplifier') \
-	    -i $(prop 'output_csv_split')$file \
-	    -o $(prop 'output_unreasoned_dir') \
+	    -i $(prop_data 'output_csv_split')$file \
+	    -o $(prop_data 'output_unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
 	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
     done
@@ -112,11 +116,11 @@ function preProcess {
     echo "# Pre-Process"
     echo "#=========================================================="
     echo python $(prop 'pre_processor_script') \
-	 $(prop 'input_dir') \
-	 $(prop 'output_csv_dir')
+	 $(prop_data 'input_dir') \
+	 $(prop_data 'output_csv_dir')
     python $(prop 'pre_processor_script') \
-	 $(prop 'input_dir') \
-	 $(prop 'output_csv_dir')
+	 $(prop_data 'input_dir') \
+	 $(prop_data 'output_csv_dir')
 }
 # Return all of the files that have been split WITHOUT the extension
 function getSplitFiles {
@@ -126,7 +130,7 @@ function getSplitFiles {
     #filename w/out extension
     lfilename="${lfilename%.*}"
     # return files without extension
-    split_files_all=$(prop 'output_csv_split_dir')$lfilename"_*.csv"
+    split_files_all=$(prop_data 'output_csv_split_dir')$lfilename"_*.csv"
     split_files=()
     for file in $split_files_all
     do
@@ -143,8 +147,8 @@ function split {
     echo "#=========================================================="
     echo "# Split Files " 
     echo "#=========================================================="
-    echo python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir') $(prop 'filesize_limit')
-    python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir') $(prop 'filesize_limit')
+    echo python fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
+    python fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
 }
 
 # get a list of files in the output directory and let user choose which one to 
@@ -153,7 +157,7 @@ function fileChooser {
     echo "#=========================================================="
     echo "# File Chooser"
     echo "#=========================================================="
-    cd $(prop 'output_csv_dir')
+    cd $(prop_data 'output_csv_dir')
     options=(*)
     cd $curdir
 
@@ -190,21 +194,21 @@ function init {
     echo "#=========================================================="
     echo "# Initializing and checking directories for "$project
     echo "#=========================================================="
-    if [ ! -d $(prop 'output_unreasoned_dir') ]; 
+    if [ ! -d $(prop_data 'output_unreasoned_dir') ]; 
     then
-        mkdir -p $(prop 'output_unreasoned_dir')
+        mkdir -p $(prop_data 'output_unreasoned_dir')
     fi
-    if [ ! -d $(prop 'output_reasoned_dir') ]; 
+    if [ ! -d $(prop_data 'output_reasoned_dir') ]; 
     then
-        mkdir -p $(prop 'output_reasoned_dir')
+        mkdir -p $(prop_data 'output_reasoned_dir')
     fi
-    if [ ! -d $(prop 'output_csv_split_dir') ]; 
+    if [ ! -d $(prop_data 'output_csv_split_dir') ]; 
     then
-        mkdir -p $(prop 'output_csv_split_dir')
+        mkdir -p $(prop_data 'output_csv_split_dir')
     fi
-    if [ ! -d $(prop 'output_reasoned_csv_dir') ]; 
+    if [ ! -d $(prop_data 'output_reasoned_csv_dir') ]; 
     then
-        mkdir -p $(prop 'output_reasoned_csv_dir')
+        mkdir -p $(prop_data 'output_reasoned_csv_dir')
     fi
     preProcess
 }

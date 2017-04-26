@@ -33,12 +33,12 @@ sparql_query=/Users/jdeck/IdeaProjects/pheno_paper/bin/fetchReasoned.sparql
 #==========================================================
 # Directory Paths
 #==========================================================
-input_dir=/insert_root_path/pheno_paper/data/[project]/input_dir/
-output_unreasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_unreasoned_n3/
-output_reasoned_dir=/insert_root_path/pheno_paper/data/[project]/output_reasoned_owl/
-output_csv_dir=/insert_root_path/pheno_paper/data/[project]/output_csv/
-output_csv_split_dir=/insert_root_path/pheno_paper/data/[project]/output_csv_split/
-output_reasoned_csv_dir=/insert_root_path/pheno_paper/data/[project]/output_reasoned_csv/
+input_dir=/insert_root_path/pheno_paper/data/[data_dir]/input_dir/
+output_unreasoned_dir=/insert_root_path/pheno_paper/data/[data_dir]/output_unreasoned_n3/
+output_reasoned_dir=/insert_root_path/pheno_paper/data/[data_dir]/output_reasoned_owl/
+output_csv_dir=/insert_root_path/pheno_paper/data/[data_dir]/output_csv/
+output_csv_split_dir=/insert_root_path/pheno_paper/data/[data_dir]/output_csv_split/
+output_reasoned_csv_dir=/insert_root_path/pheno_paper/data/[data_dir]/output_reasoned_csv/
 #
 #==========================================================
 # Test properties
