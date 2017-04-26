@@ -6,26 +6,29 @@ prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix dc: <http://purl.org/dc/elements/1.1/> 
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix ppo: <http://www.plantphenology.org/id/>
-SELECT  ?startDayOfYear ?year ?latitude ?longitude ?genus ?traitLabel ?plantStructurePresenceType
+# use the concat/group_concat function to push all plantStructurePresence types into an array within a field.
+# this enables ElasticSearch to index this easily while shrinking output file sizes
+SELECT  ?startDayOfYear ?year ?latitude ?longitude ?genus (group_concat(?plantStructurePresenceType;separator='|') as ?plantStructurePresenceTypes)
 WHERE {    
-	?wholePlant dwc:genus ?genus . 
+        ?wholePlant dwc:genus ?genus . 
 
-	?wholePlant obo:RO_0000086 ?plantStructurePresence . 
+        ?plantStructurePresence obo:RO_0000080 ?wholePlant .
 
-	# Query all subClasses of 'plant structures present'
-	# Note: still need to be able to query for * 'absent'
-	?plantStructurePresence rdf:type ?plantStructurePresenceType . 
-	?plantStructurePresenceType rdfs:subClassOf* <http://purl.obolibrary.org/obo/PPO_0003000> . 
-	?plantStructurePresenceType rdfs:label ?traitLabel .
+        # Query all subClasses of 'plant structures present'
+        # Note: still need to be able to query for * 'absent'
+        ?plantStructurePresence rdf:type ?plantStructurePresenceType . 
+        ?plantStructurePresenceType rdfs:subClassOf* <http://purl.obolibrary.org/obo/PPO_0003000> . 
+        ?plantStructurePresenceType rdfs:label ?traitLabel .
 
-	?plantStructurePresence obo:PPO_0001007 ?measurementDatum . 
-	
-	?measurementDatum obo:OBI_0000312 ?phenologyObservingProcess . 
+        ?plantStructurePresence obo:PPO_0001007 ?measurementDatum . 
+        
+        ?phenologyObservingProcess obo:OBI_0000299 ?measurementDatum . 
 
-	# set the type for phenologyObservingProcess and return properties
-	?phenologyObservingProcess rdf:type obo:PPO_0002000 . 
-	?phenologyObservingProcess dwc:startDayOfYear ?startDayOfYear . 
-	?phenologyObservingProcess dwc:year ?year . 
-	?phenologyObservingProcess dwc:decimalLatitude ?latitude . 
-	?phenologyObservingProcess dwc:decimalLongitude ?longitude . 
-} ORDER BY ?startDayOfYear ?year
+        # set the type for phenologyObservingProcess and return properties
+        ?phenologyObservingProcess rdf:type obo:PPO_0002000 . 
+        ?phenologyObservingProcess dwc:startDayOfYear ?startDayOfYear . 
+        ?phenologyObservingProcess dwc:year ?year . 
+        ?phenologyObservingProcess dwc:decimalLatitude ?latitude . 
+        ?phenologyObservingProcess dwc:decimalLongitude ?longitude . 
+} 
+GROUP BY ?startDayOfYear ?year ?latitude ?longitude ?genus 

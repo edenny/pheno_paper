@@ -9,6 +9,8 @@
 # the project code when executed.
 #==========================================================
 import_src=https://github.com/PlantPhenoOntology/PPO/raw/master/ontology/ppo-reasoned.owl
+filesize_limit=50000
+
 #==========================================================
 # Application Paths
 #==========================================================
@@ -17,6 +19,7 @@ ppo_pre_reasoner_dir=/insert_root_path/ppo_pre_reasoner/
 configurator=/insert_root_path//biocode-fims-configurator/bin/configurator.py
 triplifier=/insert_root_path/ppo-fims/dist/triplifier.jar
 pre_processor_script=preProcessors/[project]/process.py
+query_fetcher=/insert_root_path/query-fetcher.jar
 
 #==========================================================
 # Configuration Files

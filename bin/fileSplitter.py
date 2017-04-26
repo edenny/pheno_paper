@@ -14,6 +14,7 @@ import re
 parser = argparse.ArgumentParser(description='File Splitter')
 parser.add_argument('input_filename',  help='the input filename to split')
 parser.add_argument('output_directory', help='the output directory to store the results')
+parser.add_argument('limit', help='the file size limit')
 
 # argparser parser automatically checks for correct input from the command line
 args = parser.parse_args()
@@ -45,6 +46,7 @@ def split(
         >> csv_splitter.split(open('/home/ben/input.csv', 'r'));
     
     """
+    print row_limit
     import csv
     reader = csv.reader(filehandler, delimiter=delimiter)
     current_piece = 1
@@ -85,7 +87,7 @@ filename=filename.rsplit('.',1)[0]
 split(
     open(args.input_filename, 'r'),
     ',',
-    50000,
+    int(args.limit),
     filename+'_%s.csv',
     args.output_directory,
     True);

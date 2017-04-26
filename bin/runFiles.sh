@@ -72,11 +72,11 @@ function output {
 
     for file in ${split_files[@]}
     do
-        echo java -Xmx4048m -jar $(prop 'triplifier') \
+        echo java -Xmx4048m -jar $(prop 'query_fetcher') \
 	    -i $(prop 'output_reasoned_dir')$file.owl \
 	    -o $(prop 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
-        java -Xmx4048m -jar $(prop 'triplifier') \
+        java -Xmx4048m -jar $(prop 'query_fetcher') \
 	    -i $(prop 'output_reasoned_dir')$file.owl \
 	    -o $(prop 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
@@ -143,8 +143,8 @@ function split {
     echo "#=========================================================="
     echo "# Split Files " 
     echo "#=========================================================="
-    echo python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir')
-    python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir')
+    echo python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir') $(prop 'filesize_limit')
+    python fileSplitter.py  $(prop 'output_csv_dir')$inputFilename $(prop 'output_csv_split_dir') $(prop 'filesize_limit')
 }
 
 # get a list of files in the output directory and let user choose which one to 
@@ -221,5 +221,5 @@ for f in ${filesToProcess[@]}; do
     getSplitFiles	# get all the split files
     triplify		# triplify
     reason		# reason
-    output # output task
+    output 		# output task
 done
