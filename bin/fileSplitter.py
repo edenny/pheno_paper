@@ -46,7 +46,6 @@ def split(
         >> csv_splitter.split(open('/home/ben/input.csv', 'r'));
     
     """
-    print row_limit
     import csv
     reader = csv.reader(filehandler, delimiter=delimiter)
     current_piece = 1

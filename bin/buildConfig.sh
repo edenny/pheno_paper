@@ -57,5 +57,5 @@ buildConfig
 # The following tests are built for each project to test output from the triplification
 # process.  The reasoning process is not tested here but has its own set of tests
 # Uncommient the following line to enable tests
-testTriplifier
+#testTriplifier
 
