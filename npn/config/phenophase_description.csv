@@ -1,24 +1,81 @@
 field,defined_by
->=75% of full leaf size (deciduous),{mature leaf presence}
 >=50% of leaves colored (deciduous),{senescent leaf presence}
-All leaves colored (deciduous),{senescent leaf presence}
 >=50% of leaves fallen (deciduous),{abscised leaf presence}
+>=50% of needles colored (larch),
+>=50% of needles fallen (larch),
+>=75% of full leaf size (deciduous),{mature leaf presence}
+All leaf buds broken (lilac/honeysuckle),
+All leaves colored (deciduous),{senescent leaf presence}
 All leaves fallen (deciduous),{abscised leaf presence}
-Full pollen release (angiosperms),{pollen-releasing flower presence}
-Breaking leaf buds,{breaking bud presence}
-Ripe fruits,{ripening fruit presence}
-Increasing leaf size,{expanding leaf presence}
-Falling leaves,{senescent leaf presence}
-Leaves,{leaf presence}
-Colored leaves,{senescent leaf presence}
-Flowers or flower buds,{flower presence}
-Open flowers,{open flower presence}
-Pollen release (flowers),{pollen-releasing flower presence}
-Recent fruit or seed drop,{abscised fruit or seed presence}
-Fruits,{fruit presence}
-Full flowering (50%),{flower presence}
 All leaves withered (herbaceous and grasses),{senescent leaf presence}
-Open flowers (1 location),{open flower presence}
-Ripe fruits (1 location),{ripening fruit presence}
+All needles colored (larch),
+All needles fallen (larch),
+Breaking leaf buds,{breaking bud presence}
+Breaking leaf buds (lilac/honeysuckle),
+Breaking needle buds (conifers),
+Breaking needle buds (deciduous),
+Colored leaves,{senescent leaf presence}
+Colored needles,
+Dotted inflated receptacles,
+Emerging leaves (1 location),
+Emerging needles (pines),
+End bloom (historic lilac/eastern honeysuckle),
+End bloom (historic western honeysuckle),
+End of flowering (lilac/honeysuckle),
+Falling leaves,{senescent leaf presence}
+Falling needles,
+First bloom (historic eastern lilac),
+First bloom (historic honeysuckle),
+First bloom (historic western lilac),
+First leaf (historic lilac/honeysuckle),
+First red berry (historic western honeysuckle),
+First shriveled berry (historic western honeysuckle),
+Flat receptacles,
+Flower buds (1 location),
+Flower heads (grasses/sedges),
+Flowers or flower buds,{flower presence}
+Fruits,{fruit presence}
+Full bloom (historic eastern honeysuckle),
+Full bloom (historic lilac/western honeysuckle),
+Full flowering (50%),{flower presence}
+Full flowering (honeysuckle),
+Full flowering (lilac),
+Full leaf (historic lilac/honeysuckle),
+Full pollen release (angiosperms),{pollen-releasing flower presence}
+Full pollen release (conifers),
+Full red berries (historic western honeysuckle),
+Full shriveled berries (historic western honeysuckle),
+Increasing leaf size,{expanding leaf presence}
 Initial growth (forbs),{new above-ground shoot-borne shoot system presence}
+Initial growth (grasses/sedges),
+Leaves,{leaf presence}
 Leaves (forbs),{leaf presence}
+Leaves (grasses),
+Leaves (sedges),
+Needles (deciduous),
+New side branches (rockweed),
+Open flowers,{open flower presence}
+Open flowers (1 location),{open flower presence}
+Open flowers (grasses/sedges),
+Open flowers (honeysuckle),
+Open flowers (lilac),
+Open pollen cones (conifers),
+Phenophase_Description,
+Pollen cones (conifers),
+Pollen release (conifers),
+Pollen release (flowers),{pollen-releasing flower presence}
+Recent cone or seed drop,
+Recent fruit or seed drop,{abscised fruit or seed presence}
+Receptacles,
+Ripe fruits,{ripening fruit presence}
+Ripe fruits (1 location),{ripening fruit presence}
+Ripe seed cones,
+Ripe seeds (grasses),
+Smooth inflated receptacles,
+Torn receptacles,
+Unripe seed cones,
+Young leaves (forbs),
+Young leaves (tree/shrub),
+Young needles (conifers),
+Young needles (pines),
+Young unfolded leaves (evergreen 1 location),
