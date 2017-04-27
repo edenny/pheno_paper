@@ -129,7 +129,7 @@
             </attribute>
         </entity>
         <entity conceptAlias="plantStructurePresence" conceptURI="http://purl.obolibrary.org/obo/PPO_0002002" uniqueKey="Observation_ID" worksheet="Samples">
-            <attribute column="Phenophase_Description" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+            <attribute column="Phenophase_Description" dataformat="" datatype="string" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
                 Whole plant phenological stage
             </attribute>
         </entity>
