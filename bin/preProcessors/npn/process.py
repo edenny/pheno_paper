@@ -12,12 +12,6 @@ import sys
 import shutil
 import re
 
-# some global variables to set before beginning
-#inputDir = os.curdir + '/../data/npn/input'
-#outputDir = '../data/npn/output_csv' 
-#outputSplitDir = '../data/npn/output_csv_split' 
-#mainIndexName = 'record_id'
-
 class processNPN:
     def __init__(self, inputDir, outputDir ):
         self.inputDir = inputDir
