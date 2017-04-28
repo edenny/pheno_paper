@@ -1,24 +1,24 @@
 field,defined_by
 >=50% of leaves colored (deciduous),{senescent leaf presence}
 >=50% of leaves fallen (deciduous),{abscised leaf presence}
->=50% of needles colored (larch),
->=50% of needles fallen (larch),
+>=50% of needles colored (larch),{senescent leaf presence}
+>=50% of needles fallen (larch),{abscised leaf presence}
 >=75% of full leaf size (deciduous),{mature leaf presence}
-All leaf buds broken (lilac/honeysuckle),
+All leaf buds broken (lilac/honeysuckle),{breaking bud presence}
 All leaves colored (deciduous),{senescent leaf presence}
 All leaves fallen (deciduous),{abscised leaf presence}
 All leaves withered (herbaceous and grasses),{senescent leaf presence}
-All needles colored (larch),
-All needles fallen (larch),
+All needles colored (larch),{senescent leaf presence}
+All needles fallen (larch),{abscised leaf presence}
 Breaking leaf buds,{breaking bud presence}
 Breaking leaf buds (lilac/honeysuckle),
-Breaking needle buds (conifers),
-Breaking needle buds (deciduous),
+Breaking needle buds (conifers),{breaking bud presence}
+Breaking needle buds (deciduous),{breaking bud presence}
 Colored leaves,{senescent leaf presence}
-Colored needles,
+Colored needles,{senescent leaf presence}
 Dotted inflated receptacles,
-Emerging leaves (1 location),
-Emerging needles (pines),
+Emerging leaves (1 location),{breaking bud presence}
+Emerging needles (pines),{breaking bud presence}
 End bloom (historic lilac/eastern honeysuckle),
 End bloom (historic western honeysuckle),
 End of flowering (lilac/honeysuckle),
