@@ -18,21 +18,18 @@ WHERE {
         OPTIONAL {?wholePlant dwc:scientificName ?scientificName} . 
         OPTIONAL {?wholePlant dwc:materialSampleID ?materialSampleID} . 
 
-	# Join plantStructurePresence to wholePlant.  Anticipate inverse relations
-        {?plantStructurePresence obo:RO_0000080 ?wholePlant} UNION {?wholePlant obo:RO_0000086 ?plantStructurePresence} . 
+	# Join plantStructurePresence to wholePlant
+        ?plantStructurePresence obo:RO_0000080 ?wholePlant .
+
 	# Setup queries for the rdf:type of the plantStructurePresence (trait type) category
         ?plantStructurePresence rdf:type ?traitType .
-	# Most reliable way of querying traits present or absent is to just filter explicitly on 
-	# every present or absent trait that is declared by the PPO.  I drew these from the following:
-	# https://github.com/PlantPhenoOntology/PPO/blob/master/src/entities/PPO_trait_absent_classes.ods
-	# https://github.com/PlantPhenoOntology/PPO/blob/master/src/entities/PPO_trait_present_classes.ods 
-	FILTER ( ?traitType = obo:PPO_0003001 || ?traitType = obo:PPO_0003002 || ?traitType = obo:PPO_0003003 || ?traitType = obo:PPO_0003004 || ?traitType = obo:PPO_0003005 || ?traitType = obo:PPO_0003006 || ?traitType = obo:PPO_0003007 || ?traitType = obo:PPO_0003008 || ?traitType = obo:PPO_0003009 || ?traitType = obo:PPO_0003010 || ?traitType = obo:PPO_0003011 || ?traitType = obo:PPO_0003012 || ?traitType = obo:PPO_0003013 || ?traitType = obo:PPO_0003014 || ?traitType = obo:PPO_0003015 || ?traitType = obo:PPO_0003016 || ?traitType = obo:PPO_0003017 || ?traitType = obo:PPO_0003018 || ?traitType = obo:PPO_0003019 || ?traitType = obo:PPO_0003020 || ?traitType = obo:PPO_0003021 || ?traitType = obo:PPO_0003022 || ?traitType = obo:PPO_0003023 || ?traitType = obo:PPO_0003024 || ?traitType = obo:PPO_0003040 || ?traitType = obo:PPO_0003041 || ?traitType = obo:PPO_0003042 || ?traitType = obo:PPO_0003043 || ?traitType = obo:PPO_0003044 || ?traitType = obo:PPO_0003045 || ?traitType = obo:PPO_0003046 || ?traitType = obo:PPO_0003047 || ?traitType = obo:PPO_0003048 || ?traitType = obo:PPO_0003049 || ?traitType = obo:PPO_0003050 || ?traitType = obo:PPO_0003051 || ?traitType = obo:PPO_0003052 || ?traitType = obo:PPO_0003053 || ?traitType = obo:PPO_0003054 || ?traitType = obo:PPO_0003055 || ?traitType = obo:PPO_0003056 || ?traitType = obo:PPO_0003057 || ?traitType = obo:PPO_0003058 || ?traitType = obo:PPO_0003059 || ?traitType = obo:PPO_0003060 || ?traitType = obo:PPO_0003061 || ?traitType = obo:PPO_0003062 || ?traitType = obo:PPO_0003063 || ?traitType = obo:PPO_0003064 ) .
 
-	# Join plantStructurePresence to measurementDatum.  Anticipate inverse relations
-        {?plantStructurePresence obo:PPO_0001007 ?measurementDatum} UNION {?measurementDatum obo:PPO_0001006 ?plantStructurePresence} . 
+	# remove declarations of owl:namedIndividual
+	FILTER (?traitType != <http://www.w3.org/2002/07/owl#NamedIndividual>) .
+        ?plantStructurePresence obo:PPO_0001007 ?measurementDatum .
 
-	# Join phenologyObservingProcess to measurementDatum.  Anticipate inverse relations
-        {?phenologyObservingProcess obo:OBI_0000299 ?measurementDatum} UNION {?measurementDatum obo:OBI_0000312 ?phenologyObservingProcess} . 
+	# Join phenologyObservingProcess to measurementDatum
+        ?measurementDatum obo:OBI_0000312 ?phenologyObservingProcess . 
 
         # Set the type for phenologyObservingProcess and return properties
         ?phenologyObservingProcess rdf:type obo:PPO_0002000 . 
