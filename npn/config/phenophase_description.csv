@@ -16,7 +16,7 @@ Breaking needle buds (conifers),{breaking bud presence}
 Breaking needle buds (deciduous),{breaking bud presence}
 Colored leaves,{senescent leaf presence}
 Colored needles,{senescent leaf presence}
-Dotted inflated receptacles,
+Dotted inflated receptacles,{plant structure presence}
 Emerging leaves (1 location),{breaking bud presence}
 Emerging needles (pines),{breaking bud presence}
 End bloom (historic lilac/eastern honeysuckle),{open flower presence}
@@ -30,7 +30,7 @@ First bloom (historic western lilac),{open flower presence}
 First leaf (historic lilac/honeysuckle),{expanding leaf presence}
 First red berry (historic western honeysuckle),{ripening fruit presence}
 First shriveled berry (historic western honeysuckle),{ripening fruit presence}
-Flat receptacles,{REMOVE}
+Flat receptacles,{plant structure presence}
 Flower buds (1 location),{flower presence}
 Flower heads (grasses/sedges),{flower head presence}
 Flowers or flower buds,{flower presence}
@@ -53,26 +53,25 @@ Leaves (forbs),{leaf presence}
 Leaves (grasses),{leaf presence}
 Leaves (sedges),{leaf presence}
 Needles (deciduous),{leaf presence}
-New side branches (rockweed),{REMOVE}
+New side branches (rockweed),{plant structure presence}
 Open flowers,{open flower presence}
 Open flowers (1 location),{open flower presence}
 Open flowers (grasses/sedges),{open flower presence}
 Open flowers (honeysuckle),{open flower presence}
 Open flowers (lilac),{open flower presence}
 Open pollen cones (conifers),{open pollen cone presence}
-Phenophase_Description,{COLUMN HEADING REMOVE}
 Pollen cones (conifers),{pollen cone presence}
 Pollen release (conifers),{open pollen cone presence}
 Pollen release (flowers),{pollen-releasing flower presence}
 Recent cone or seed drop,{abscised cone or seed presence}
 Recent fruit or seed drop,{abscised fruit or seed presence}
-Receptacles,{REMOVE}
+Receptacles,{plant structure presence}
 Ripe fruits,{ripening fruit presence}
 Ripe fruits (1 location),{ripening fruit presence}
 Ripe seed cones,{ripening seed cone presence}
 Ripe seeds (grasses),{seed cone presence}
-Smooth inflated receptacles,{REMOVE}
-Torn receptacles,{REMOVE}
+Smooth inflated receptacles,{plant structure presence}
+Torn receptacles,{plant structure presence}
 Unripe seed cones,{seed cone presence}
 Young leaves (forbs),{expanding leaf presence}
 Young leaves (tree/shrub),{expanding leaf presence}
