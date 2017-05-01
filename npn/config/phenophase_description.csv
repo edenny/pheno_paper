@@ -11,7 +11,7 @@ All leaves withered (herbaceous and grasses),{senescent leaf presence}
 All needles colored (larch),{senescent leaf presence}
 All needles fallen (larch),{abscised leaf presence}
 Breaking leaf buds,{breaking bud presence}
-Breaking leaf buds (lilac/honeysuckle),
+Breaking leaf buds (lilac/honeysuckle),{breaking bud presence}
 Breaking needle buds (conifers),{breaking bud presence}
 Breaking needle buds (deciduous),{breaking bud presence}
 Colored leaves,{senescent leaf presence}
@@ -19,9 +19,9 @@ Colored needles,{senescent leaf presence}
 Dotted inflated receptacles,
 Emerging leaves (1 location),{breaking bud presence}
 Emerging needles (pines),{breaking bud presence}
-End bloom (historic lilac/eastern honeysuckle),
-End bloom (historic western honeysuckle),
-End of flowering (lilac/honeysuckle),
+End bloom (historic lilac/eastern honeysuckle),{open flower presence}
+End bloom (historic western honeysuckle),{open flower presence}
+End of flowering (lilac/honeysuckle),{open flower presence}
 Falling leaves,{senescent leaf presence}
 Falling needles,{senescent leaf presence}
 First bloom (historic eastern lilac),{open flower presence}
