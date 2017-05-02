@@ -120,8 +120,8 @@
                 Specific Epithet
             </attribute>
         </entity>
-        <entity conceptAlias="plantStructurePresence" conceptURI="http://purl.obolibrary.org/obo/PPO_0002002" uniqueKey="record_id" worksheet="Samples">
-            <attribute column="description" dataformat="" datatype="string" displayAnnotationProperty="true" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" uniqueKey="record_id" worksheet="Samples">
+            <attribute column="description" dataformat="" datatype="string" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
                 Whole plant phenological stage
             </attribute>
         </entity>
