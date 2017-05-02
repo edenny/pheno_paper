@@ -42,13 +42,13 @@ outputDir = args.output_dir
 cur_dir = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))+'/'
 
 # open countries dict file as dictionary
-with open(cur_dir+'countries.dict') as f:
+with open(cur_dir+'countries.csv') as f:
         countries  = dict(filter(None, csv.reader(f)))
 
 # open specificEpithets.dict file as dictionary
 # this will be used for creating a specificEpithet field 
 # using the filename
-with open(cur_dir+'specificEpithets.dict') as f:
+with open(cur_dir+'specificEpithets.csv') as f:
         specificEpithets = dict(filter(None, csv.reader(f)))
 
 # Genus (taken from the filename of PEP725_AT_{name} (what appears before (...))
