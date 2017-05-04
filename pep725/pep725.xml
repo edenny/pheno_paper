@@ -83,7 +83,7 @@
         </lists>
     </validation>
     <mapping>
-        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" uniqueKey="record_id" worksheet="Samples">
+        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" identifier="http://n2t.net/ark:/21547/Ami2" uniqueKey="record_id" worksheet="Samples">
             <attribute column="record_id" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
                 Record Identifier
             </attribute>
@@ -109,7 +109,7 @@
                 Dataset Source
             </attribute>
         </entity>
-        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" uniqueKey="record_id" worksheet="Samples">
+        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" identifier="http://n2t.net/ark:/21547/Amk2" uniqueKey="record_id" worksheet="Samples">
             <attribute column="scientificname" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/scientificName">
                 Scientific Name
             </attribute>
@@ -120,12 +120,12 @@
                 Specific Epithet
             </attribute>
         </entity>
-        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" uniqueKey="record_id" worksheet="Samples">
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" identifier="http://n2t.net/ark:/21547/Amh2" uniqueKey="record_id" worksheet="Samples">
             <attribute column="description" dataformat="" datatype="string" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
                 Whole plant phenological stage
             </attribute>
         </entity>
-        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" uniqueKey="record_id" worksheet="Samples">
+        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" identifier="http://n2t.net/ark:/21547/Amj2" uniqueKey="record_id" worksheet="Samples">
             <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
                 The lower value of an intensity value range
             </attribute>

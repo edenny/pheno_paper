@@ -5,19 +5,19 @@
     </metadata>
     <validation>
         <worksheet sheetname="Samples">
-            <rule column="Observation_ID" level="error" type="uniqueValue"/>
-            <rule column="Observation_ID" level="error" type="RequiredColumn"/>
-            <rule column="Individual_ID" level="error" type="RequiredColumn"/>
-            <rule column="Phenophase_Description" level="error" type="RequiredColumn"/>
+            <rule column="uid" level="error" type="uniqueValue"/>
+            <rule column="uid" level="error" type="RequiredColumn"/>
+            <rule column="IndividualID" level="error" type="RequiredColumn"/>
+            <rule column="phenophaseName" level="error" type="RequiredColumn"/>
             <rule column="Latitude" level="error" type="RequiredColumn"/>
             <rule column="Longitude" level="error" type="RequiredColumn"/>
             <rule column="Year" level="error" type="RequiredColumn"/>
-            <rule column="Day_of_Year" level="error" type="RequiredColumn"/>
+            <rule column="DayOfYear" level="error" type="RequiredColumn"/>
             <rule column="Source" level="error" type="RequiredColumn"/>
-            <rule column="Phenophase_Description" level="error" list="phenophase_description" type="controlledVocabulary"/>
+            <rule column="phenophaseName" level="error" list="phenophaseName" type="controlledVocabulary"/>
         </worksheet>
         <lists>
-            <list alias="phenophase_description">
+            <list alias="phenophaseName">
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
                     &gt;=50% of leaves colored (deciduous)
                 </field>
@@ -259,8 +259,8 @@
         </lists>
     </validation>
     <mapping>
-        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" identifier="http://n2t.net/ark:/21547/Amg2" uniqueKey="Observation_ID" worksheet="Samples">
-            <attribute column="Observation_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" identifier="http://n2t.net/ark:/21547/Amn2" uniqueKey="uid" worksheet="Samples">
+            <attribute column="uid" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
                 Record Identifier
             </attribute>
             <attribute column="Latitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
@@ -272,36 +272,33 @@
             <attribute column="Year" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
                 The year the observation took place
             </attribute>
-            <attribute column="Day_of_Year" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+            <attribute column="DayOfYear" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
                 Day of year the observation took place
             </attribute>
             <attribute column="Source" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://purl.org/dc/elements/1.1/creator">
                 Dataset Source
             </attribute>
         </entity>
-        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" identifier="http://n2t.net/ark:/21547/Ame2" uniqueKey="Individual_ID" worksheet="Samples">
-            <attribute column="Individual_ID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/organismID">
+        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" identifier="http://n2t.net/ark:/21547/Aml2" uniqueKey="IndividualID" worksheet="Samples">
+            <attribute column="IndividualID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/organismID">
                 Individual Plant Identifier
             </attribute>
-            <attribute column="Genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/genus">
+            <attribute column="genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/genus">
                 Genus
             </attribute>
-            <attribute column="Species" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/specificEpithet">
+            <attribute column="specificEpithet" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/specificEpithet">
                 Specific Epithet
             </attribute>
-            <attribute column="ScientificName" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/scientificName">
+            <attribute column="scientificName" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/scientificName">
                 Scientific Name
             </attribute>
-            <attribute column="Common_Name" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/vernacularName">
-                Common Name
-            </attribute>
         </entity>
-        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" identifier="http://n2t.net/ark:/21547/Amf2" uniqueKey="Observation_ID" worksheet="Samples">
-            <attribute column="Phenophase_Description" dataformat="" datatype="string" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" identifier="http://n2t.net/ark:/21547/Amo2" uniqueKey="uid" worksheet="Samples">
+            <attribute column="PhenophaseName" dataformat="" datatype="string" displayAnnotationProperty="FALSE" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
                 Whole plant phenological stage
             </attribute>
         </entity>
-        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" identifier="http://n2t.net/ark:/21547/Amd2" uniqueKey="Observation_ID" worksheet="Samples">
+        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" identifier="http://n2t.net/ark:/21547/Amm2" uniqueKey="uid" worksheet="Samples">
             <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
                 The lower value of an intensity value range
             </attribute>
