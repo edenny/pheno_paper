@@ -11,23 +11,24 @@ Usage: runFiles.sh {project} {option}
     project = name of project
     option = options for running. 
          'init' = specifies run initialize script first
+         'clean' = only removes all files from output directories 
+         'load' = load files to SPARQL endpoint
 "
 
 # Arguments
-if [[ $1 == '-h' ]] || [ "$#" -lt 1 ] || [ "$#" -gt 3 ]; then
+if [[ $1 == '-h' ]] || [ "$#" -lt 1 ] || [ "$#" -gt 4 ]; then
    printf "$usage"
    exit 1
 fi
 
-# project = the short name of the project we are working with (e.g. npn, pep725)
+# project is the short name of the project we are working with (e.g. npn, pep725)
 project=$1
+# data_dir corresponds to where the project data directory lives. each project
+# may have more than one data directory location
 data_dir=$2
-
-# the option variable
-init=false
-if [ $3 == 'init' ]; then
-    init=true
-fi
+# option corresponds to optional processing options
+option=$3
+namespace=$4
 
 curdir=$PWD
 
@@ -84,6 +85,31 @@ function output {
 	    -i $(prop_data 'output_reasoned_dir')$file.owl \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
+    done
+}
+# Load 
+function load {
+    echo "#=========================================================="
+    echo "# Load"
+    echo "#=========================================================="
+
+    # clean build directory before running
+    rm -f $curdir/output/*
+
+    for file in ${split_files[@]}
+    do
+	echo curl \
+		-X POST \
+		-H 'Content-Type:application/xml' \
+		--data-binary \
+		'@'$(prop_data 'output_reasoned_dir')$file.owl \
+		http://localhost:9999/blazegraph/namespace/$namespace/sparql
+	curl \
+		-X POST \
+		-H 'Content-Type:application/xml' \
+		--data-binary \
+		'@'$(prop_data 'output_reasoned_dir')$file.owl \
+		http://localhost:9999/blazegraph/namespace/$namespace/sparql
     done
 }
 # Triplify 
@@ -188,6 +214,30 @@ function fileChooser {
     done
 }
 
+function clean {
+    echo "#=========================================================="
+    echo "# Cleaning output directories "$project
+    echo "#=========================================================="
+    rm -f $curdir/output/*
+    rm -f $curdir/build/*
+    if [ ! -d $(prop_data 'output_unreasoned_dir') ]; 
+    then
+        rm $(prop_data 'output_unreasoned_dir')*
+    fi
+    if [ ! -d $(prop_data 'output_reasoned_dir') ]; 
+    then
+        rm $(prop_data 'output_reasoned_dir')*
+    fi
+    if [ ! -d $(prop_data 'output_reasoned_csv_dir') ]; 
+    then
+        rm $(prop_data 'output_reasoned_csv_dir')*
+    fi
+    if [ ! -d $(prop_data 'output_csv_split_dir') ]; 
+    then
+        rm $(prop_data 'output_csv_split_dir')*
+    fi
+}
+
 # initialize necessary processing directories, if needed
 # we don't attempt creation of output_csv since that should be populated to start with!
 function init {
@@ -213,10 +263,26 @@ function init {
     preProcess
 }
 
-if [ "$init" = true ] ; then
-	init   			# initialize
+if [ "$option" == "clean" ] ; then
+    clean   			
+    exit
 fi
+if [ "$option" == "init" ] ; then
+    init   		
+fi
+
+# choose which files to process or load
 fileChooser 		# fileChooser
+
+if [ "$option" == "load" ] ; then
+    echo "here"
+    for f in ${filesToProcess[@]}; do
+        inputFilename=$f
+        getSplitFiles	# get all the split files
+        load	
+    done
+    exit
+fi
 
 # loop results from file choosing
 for f in ${filesToProcess[@]}; do
