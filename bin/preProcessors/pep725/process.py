@@ -149,30 +149,26 @@ for dirname in os.listdir(inputDir):
 
         # merged_all['phenophase_status'] = 'urn:occurring'
 
-        # add to dictionary of lists
-#        if genus not in framesDict:
-#            framesDict[genus] = list()
-#        framesDict[genus].append(merged_all)
+        merged_all['observation_id'] = merged_all['YEAR'].map(str) + merged_all['DAY'].map(str) + merged_all['PEP_ID'].map(str) + merged_all['BBCH'].map(str)
+    #    # add to dictionary of lists
+        if genus not in framesDict:
+            framesDict[genus] = list()
+        framesDict[genus].append(merged_all)
 
-	allDataFrame = allDataFrame.append(merged_all)
-
-outputFilename = outputDir + 'PEP725_ALL.csv'
-print '    writing ' + outputFilename
-allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=True)
 
 # Finish up by looping each genus
-#for genusName,genusDataFrames in framesDict.iteritems():
-#    allDataFrame=pd.concat(genusDataFrames)
-#    allDataFrame.reset_index(drop=True,inplace=True)
-#    allDataFrame.index.name = mainIndexName
-#    outputFilename = outputDir + genusName + '.csv'
-#
-#    # only print header if there is no file right now
-#    if (not os.path.exists(outputFilename)):
-#        printHeader = True
-#    else:
-#        printHeader = False
-#
-#    print '    writing ' + outputFilename
-#    # output single filename
-##    allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
+for genusName,genusDataFrames in framesDict.iteritems():
+    allDataFrame=pd.concat(genusDataFrames)
+    allDataFrame.reset_index(drop=True,inplace=True)
+    allDataFrame.index.name = mainIndexName
+    outputFilename = outputDir + genusName + '.csv'
+
+    # only print header if there is no file right now
+    if (not os.path.exists(outputFilename)):
+        printHeader = True
+    else:
+        printHeader = False
+
+    print '    writing ' + outputFilename
+    # output single filename
+    allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
