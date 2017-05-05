@@ -77,6 +77,7 @@ if (os.path.exists(outputDir)):
 os.makedirs(outputDir)
 
 framesDict = {}
+allDataFrame = pd.DataFrame() 
 # Loop each directory off of the current directory
 for dirname in os.listdir(inputDir):
     # make sure we're just dealing with PEP directories
@@ -85,7 +86,6 @@ for dirname in os.listdir(inputDir):
         countrycode = dirname.split("_")[1]
         # obtain country name from countrycode
         countryname = countries.get(countrycode)
-
 
         dirname = inputDir + '/' + dirname
         print "    processing " + dirname
@@ -134,6 +134,7 @@ for dirname in os.listdir(inputDir):
         merged_all['specificEpithet'] = specificEpithet
         merged_all['countryname'] = countryname
         merged_all['Source'] = 'PEP725' 
+	#merged_all['Observation_ID'] = merged_all['genus'] + merged_all.index
     	#####################################
 	# Deal with lower/upper count fields
     	#####################################
@@ -149,23 +150,29 @@ for dirname in os.listdir(inputDir):
         # merged_all['phenophase_status'] = 'urn:occurring'
 
         # add to dictionary of lists
-        if genus not in framesDict:
-            framesDict[genus] = list()
-        framesDict[genus].append(merged_all)
+#        if genus not in framesDict:
+#            framesDict[genus] = list()
+#        framesDict[genus].append(merged_all)
+
+	allDataFrame = allDataFrame.append(merged_all)
+
+outputFilename = outputDir + 'PEP725_ALL.csv'
+print '    writing ' + outputFilename
+allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=True)
 
 # Finish up by looping each genus
-for genusName,genusDataFrames in framesDict.iteritems():
-    allDataFrame=pd.concat(genusDataFrames)
-    allDataFrame.reset_index(drop=True,inplace=True)
-    allDataFrame.index.name = mainIndexName
-    outputFilename = outputDir + 'PEP725_all.csv'
-
-    # only print header if there is no file right now
-    if (not os.path.exists(outputFilename)):
-        printHeader = True
-    else:
-        printHeader = False
-
-    print '    writing ' + outputFilename
-    # output single filename
-    allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
+#for genusName,genusDataFrames in framesDict.iteritems():
+#    allDataFrame=pd.concat(genusDataFrames)
+#    allDataFrame.reset_index(drop=True,inplace=True)
+#    allDataFrame.index.name = mainIndexName
+#    outputFilename = outputDir + genusName + '.csv'
+#
+#    # only print header if there is no file right now
+#    if (not os.path.exists(outputFilename)):
+#        printHeader = True
+#    else:
+#        printHeader = False
+#
+#    print '    writing ' + outputFilename
+#    # output single filename
+##    allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
