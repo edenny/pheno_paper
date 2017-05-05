@@ -1,6 +1,7 @@
 prefix dwc: <http://rs.tdwg.org/dwc/terms/> 
 prefix obo: <http://purl.obolibrary.org/obo/>  
-SELECT   ?startDayOfYear ?year ?latitude ?longitude ?wholePlant
+prefix dc: <http://purl.org/dc/elements/1.1/> 
+SELECT   ?startDayOfYear ?year ?latitude ?longitude ?source
 WHERE {    
 	?wholePlant dwc:genus "Helianthus"^^<http://www.w3.org/2001/XMLSchema#string> . 
 	optional{ ?wholePlant dwc:specificEpithet "annuus"^^<http://www.w3.org/2001/XMLSchema#string> } . 
@@ -19,8 +20,9 @@ WHERE {
 
 	# set the type for phenologyObservingProcess and return properties
 	?phenologyObservingProcess rdf:type obo:PPO_0002000 . 
-	optional {?phenologyObservingProcess dwc:startDayOfYear ?startDayOfYear} . 
-	optional {?phenologyObservingProcess dwc:year ?year} . 
-	optional {?phenologyObservingProcess dwc:decimalLatitude ?latitude} . 
-	optional {?phenologyObservingProcess dwc:decimalLongitude ?longitude} . 
-} 
+	?phenologyObservingProcess dwc:startDayOfYear ?startDayOfYear . 
+	?phenologyObservingProcess dwc:year ?year . 
+	?phenologyObservingProcess dwc:decimalLatitude ?latitude . 
+	?phenologyObservingProcess dwc:decimalLongitude ?longitude . 
+	?phenologyObservingProcess dc:creator ?source . 
+} order by ?source ?year ?startDayOfYear ?latitude ?longitude  

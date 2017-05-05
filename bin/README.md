@@ -14,9 +14,14 @@ An example of the runFiles script, initializing (pre-processing)
 
 # Some useful commands for working with blazegraph
 
-example SPARQL query
+example SPARQL query, referencing sparql as part of request
 ```
 curl -X POST -H 'Accept: text/csv' http://localhost:9999/blazegraph/namespace/test/sparql --data-urlencode 'query=SELECT * { ?s ?p ?o } LIMIT 1'  > foo
+```
+
+example SPARQL query, referencing sparql contained in a file and redirecting output
+```
+curl -X POST -H 'Accept: text/csv' http://localhost:9999/blazegraph/namespace/pheno_paper/sparql --data-urlencode query@test.sparql  > test.output
 ```
 
 Create a namespace
@@ -28,6 +33,3 @@ Delete a namespace (careful!)
 ```
 curl -X DELETE -H 'Content-Type: application/xml' http://localhost:9999/blazegraph/namespace/NAMESPACE
 ```
-
-
-

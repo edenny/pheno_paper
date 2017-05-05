@@ -7,12 +7,13 @@ usage="
 Script to pre-process, triplify, and reason over phenology data sources 
 #==========================================================
 
-Usage: runFiles.sh {project} {option}
+Usage: runFiles.sh {option} {project} {project directory}
     project = name of project
     option = options for running. 
-         'init' = specifies run initialize script first
-         'clean' = only removes all files from output directories 
-         'load' = load files to SPARQL endpoint
+         'init' = pre-process files, reading incoming formats and converting to read to ingest CSV
+         'process' = process all files: split, triplify, reason, post-process
+         'clean' = remove files from output directories except input and output_csv
+         'load' = load files to SPARQL endpoint.  With this option also must specify namespace
 "
 
 # Arguments
@@ -21,13 +22,13 @@ if [[ $1 == '-h' ]] || [ "$#" -lt 1 ] || [ "$#" -gt 4 ]; then
    exit 1
 fi
 
+# option corresponds to optional processing options
+option=$1
 # project is the short name of the project we are working with (e.g. npn, pep725)
-project=$1
+project=$2
 # data_dir corresponds to where the project data directory lives. each project
 # may have more than one data directory location
-data_dir=$2
-# option corresponds to optional processing options
-option=$3
+data_dir=$3
 namespace=$4
 
 curdir=$PWD
@@ -218,24 +219,12 @@ function clean {
     echo "#=========================================================="
     echo "# Cleaning output directories "$project
     echo "#=========================================================="
-    rm -f $curdir/output/*
-    rm -f $curdir/build/*
-    if [ ! -d $(prop_data 'output_unreasoned_dir') ]; 
-    then
-        rm $(prop_data 'output_unreasoned_dir')*
-    fi
-    if [ ! -d $(prop_data 'output_reasoned_dir') ]; 
-    then
-        rm $(prop_data 'output_reasoned_dir')*
-    fi
-    if [ ! -d $(prop_data 'output_reasoned_csv_dir') ]; 
-    then
-        rm $(prop_data 'output_reasoned_csv_dir')*
-    fi
-    if [ ! -d $(prop_data 'output_csv_split_dir') ]; 
-    then
-        rm $(prop_data 'output_csv_split_dir')*
-    fi
+    rm $curdir/output/*
+    rm $curdir/build/*
+    rm $(prop_data 'output_unreasoned_dir')*
+    rm $(prop_data 'output_reasoned_dir')*
+    rm $(prop_data 'output_reasoned_csv_dir')*
+    rm $(prop_data 'output_csv_split_dir')*
 }
 
 # initialize necessary processing directories, if needed
@@ -263,19 +252,37 @@ function init {
     preProcess
 }
 
+
+# Clean all files
 if [ "$option" == "clean" ] ; then
     clean   			
     exit
 fi
+
+# initialize files, runs pre-Processor
 if [ "$option" == "init" ] ; then
     init   		
+    exit
 fi
 
-# choose which files to process or load
-fileChooser 		# fileChooser
+# process files option
+if [ "$option" == "process" ] ; then
+    fileChooser
+    # loop results from file choosing
+    for f in ${filesToProcess[@]}; do
+        inputFilename=$f
+        split 		# split files
+        getSplitFiles	# get all the split files
+        triplify		# triplify
+        reason		# reason
+        output 		# output task
+    done
+    exit
+fi
 
+# load files option
 if [ "$option" == "load" ] ; then
-    echo "here"
+    fileChooser
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
         getSplitFiles	# get all the split files
@@ -283,13 +290,3 @@ if [ "$option" == "load" ] ; then
     done
     exit
 fi
-
-# loop results from file choosing
-for f in ${filesToProcess[@]}; do
-    inputFilename=$f
-    split 		# split files
-    getSplitFiles	# get all the split files
-    triplify		# triplify
-    reason		# reason
-    output 		# output task
-done

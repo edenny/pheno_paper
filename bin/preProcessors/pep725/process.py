@@ -1,4 +1,5 @@
 #!/bin/python
+import uuid
 import argparse
 import inspect
 import pandas as pd
@@ -44,6 +45,9 @@ outputDir = args.output_dir
 #input_dir = '/Users/jdeck/IdeaProjects/pheno_paper/data/npn/input/'
 #output_csv_dir = '/Users/jdeck/IdeaProjects/pheno_paper/data/npn/output_csv/'
 cur_dir = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))+'/'
+
+def getUUID(self):
+    return uuid.uuid4()
 
 # open countries dict file as dictionary
 with open(cur_dir+'countries.csv') as f:
@@ -147,10 +151,10 @@ for dirname in os.listdir(inputDir):
         merged_all['upper_count'] = ''
 	merged_all.loc[merged_all.description == 'Sowing', ['lower_count', 'upper_count']] = 0, 0
 
-        # merged_all['phenophase_status'] = 'urn:occurring'
+	# create UUID for every row, so we know it is unique
+    	merged_all['observation_id'] = merged_all.apply(getUUID,axis=1)
 
-        merged_all['observation_id'] = merged_all['YEAR'].map(str) + merged_all['DAY'].map(str) + merged_all['PEP_ID'].map(str) + merged_all['BBCH'].map(str)
-    #    # add to dictionary of lists
+        # add to dictionary of lists
         if genus not in framesDict:
             framesDict[genus] = list()
         framesDict[genus].append(merged_all)
