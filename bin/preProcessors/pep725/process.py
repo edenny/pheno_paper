@@ -27,6 +27,10 @@ mainIndexName = 'record_id'
 # ElevationInMeters (ALT) (from *_stations.csv)
 # LocationName (NAME) (from *_stations.csv)
 # Country Name (two digit code parsed from directory or filenames and matched to the following list)
+#
+# NOTE: the PEP725 data does not come with its own observation identifier as in NPN
+# and thus, we create one using the record_id (or main index) for the master dataframe.
+# this means, that PEP725 data loads should be processed as a group and NEVER separated
 
 # Argument parser
 parser = argparse.ArgumentParser(description='NPN Parser')
@@ -154,7 +158,7 @@ for genusName,genusDataFrames in framesDict.iteritems():
     allDataFrame=pd.concat(genusDataFrames)
     allDataFrame.reset_index(drop=True,inplace=True)
     allDataFrame.index.name = mainIndexName
-    outputFilename = outputDir + genusName + '.csv'
+    outputFilename = outputDir + 'PEP725_all.csv'
 
     # only print header if there is no file right now
     if (not os.path.exists(outputFilename)):
@@ -163,6 +167,5 @@ for genusName,genusDataFrames in framesDict.iteritems():
         printHeader = False
 
     print '    writing ' + outputFilename
-    # name output files according to genus
+    # output single filename
     allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
-
