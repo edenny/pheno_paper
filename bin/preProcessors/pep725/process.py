@@ -8,7 +8,6 @@ FILE_PREFIX = "PEP725_"
 HEADERS = ['record_id', 'observation_id', 'LAT', 'LON', 'ALT', 'NAME', 'YEAR', 'DAY', 'Source', 'scientificname',
            'genus', 'specificEpithet', 'description', 'lower_count', 'upper_count']
 COLUMNS_MAP = {
-    's_id': 'record_id',
     'lat': 'LAT',
     'lon': 'LON',
     'alt': 'ALT',
@@ -49,7 +48,9 @@ def process(input_dir, output_dir):
                            skipinitialspace=True)
 
         for chunk in data:
-            transform_data(frames, chunk).to_csv(out_file, columns=HEADERS, mode='a', header=False, index=False)
+            # specify columns - 'record_id'. If leave 'record_id' in the columns, pandas will print an extra
+            # empty column as 'record_id' is the dataFrame index, and pandas doesn't consider the index a column
+            transform_data(frames, chunk).to_csv(out_file, columns=HEADERS[1:], mode='a', header=False)
 
 
 def transform_data(frames, data):
@@ -67,6 +68,7 @@ def transform_data(frames, data):
     joined_data['Source'] = 'PEP725'
     joined_data['lower_count'] = 1
     joined_data['upper_count'] = 0
+    joined_data.index.name = 'record_id'
 
     return joined_data.rename(columns=COLUMNS_MAP)
 
