@@ -7,3 +7,7 @@ bin/output/
 bin/build/
 .DS_Store
 bin/build.properties
+.DS_Store
+*.iml
+.idea/
+.python-version

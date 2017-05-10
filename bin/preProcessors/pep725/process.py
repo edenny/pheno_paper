@@ -1,178 +1,94 @@
-#!/bin/python
-import uuid
-import argparse
-import inspect
-import pandas as pd
-import os
-from os import listdir
-from os.path import isfile, join
-import sys
 import shutil
-import re
-import csv
 
-mainIndexName = 'record_id'
+import os, argparse, uuid, re, csv
 
-# python program to read PEP files, stored in directories 
-# The PEP files have been downloaded from the PEP725 database
-# and are stored in the PEP format, normalized using the "Character-Separated-Value"
-# format using semicolons as the separator.
+import pandas as pd
 
-# 1. Read the 3 data files in the directories and create a single record storing the following
-# LocationID (PEP_ID) (from *_stations.csv)
-# Phenology_description (BBCH) (description field from PEP725_BBCH.csv)
-# Year (YEAR) (from PEP725_AT_{name})
-# DayOfYear (DAY) (from PEP725_AT_{name})
-# Latitude (LAT) (from *_stations.csv)
-# Longitude (LON) (from *_stations.csv)
-# ElevationInMeters (ALT) (from *_stations.csv)
-# LocationName (NAME) (from *_stations.csv)
-# Country Name (two digit code parsed from directory or filenames and matched to the following list)
-#
-# NOTE: the PEP725 data does not come with its own observation identifier as in NPN
-# and thus, we create one using the record_id (or main index) for the master dataframe.
-# this means, that PEP725 data loads should be processed as a group and NEVER separated
-
-# Argument parser
-parser = argparse.ArgumentParser(description='NPN Parser')
-parser.add_argument('input_dir',  help='the input directory')
-parser.add_argument('output_dir', help='the output directory to store CSV results')
-
-# argparser parser automatically checks for correct input from the command line
-args = parser.parse_args()
-inputDir = args.input_dir
-outputDir = args.output_dir
-#input_dir = '/Users/jdeck/IdeaProjects/pheno_paper/data/npn/input/'
-#output_csv_dir = '/Users/jdeck/IdeaProjects/pheno_paper/data/npn/output_csv/'
-cur_dir = os.path.dirname(os.path.abspath(inspect.stack()[0][1]))+'/'
-
-def getUUID(self):
-    return uuid.uuid4()
-
-# open countries dict file as dictionary
-with open(cur_dir+'countries.csv') as f:
-        countries  = dict(filter(None, csv.reader(f)))
-
-# open specificEpithets.dict file as dictionary
-# this will be used for creating a specificEpithet field 
-# using the filename
-with open(cur_dir+'specificEpithets.csv') as f:
-        specificEpithets = dict(filter(None, csv.reader(f)))
-
-# Genus (taken from the filename of PEP725_AT_{name} (what appears before (...))
-#    NOTE: gens names will all be one of the following:
-#        "Betula"
-#        "Helianthus"
-# ScientificName (taken from the filename of PEP725_AT_{name})
-#    NOTE: scientific names will all be one of the following:
-#        "Betula pendula (B. verrucasa| B. alba)
-#        "Betula pubescens"
-#        "Helianthus annuus"
+FILE_PREFIX = "PEP725_"
+HEADERS = ['record_id', 'observation_id', 'LAT', 'LON', 'ALT', 'NAME', 'YEAR', 'DAY', 'Source', 'scientificname',
+           'genus', 'specificEpithet', 'description', 'lower_count', 'upper_count']
+COLUMNS_MAP = {
+    's_id': 'record_id',
+    'lat': 'LAT',
+    'lon': 'LON',
+    'alt': 'ALT',
+    'name': 'NAME',
+    'year': 'YEAR',
+    'day': 'DAY',
+    'species': 'scientificname'
+}
+FILES = {
+    'data': FILE_PREFIX + 'data.csv',
+    'genus': FILE_PREFIX + 'genus.csv',
+    'species': FILE_PREFIX + 'species.csv',
+    'stations': FILE_PREFIX + 'stations.csv',
+    'phase': FILE_PREFIX + 'phase.csv',
+}
 
 
-#2. Write Output to the output directory
-# Two files: 
-# A. one for all Betula 
-# B. one for all Healianthus 
+def process(input_dir, output_dir):
+    clean(output_dir)
 
-# initialize directory path
-if (os.path.exists(outputDir)):
-    shutil.rmtree(outputDir)
-os.makedirs(outputDir)
+    frames = {}
 
-framesDict = {}
-allDataFrame = pd.DataFrame() 
-# Loop each directory off of the current directory
-for dirname in os.listdir(inputDir):
-    # make sure we're just dealing with PEP directories
-    if (dirname.startswith('PEP') and dirname.endswith("tar") == False):
-        # obtain country code from directory name pattern
-        countrycode = dirname.split("_")[1]
-        # obtain country name from countrycode
-        countryname = countries.get(countrycode)
+    frames['genus'] = pd.read_csv(input_dir + FILES['genus'], sep=';', header=0, usecols=['genus_id', 'genus'],
+                                  skipinitialspace=True)
+    frames['species'] = pd.read_csv(input_dir + FILES['species'], sep=';', header=0, skipinitialspace=True,
+                                    usecols=['species_id', 'species'])
+    frames['stations'] = pd.read_csv(input_dir + FILES['stations'], sep=';', header=0, skipinitialspace=True,
+                                     usecols=['s_id', 'lat', 'lon', 'alt', 'name'])
+    frames['phase'] = pd.read_csv(input_dir + FILES['phase'], sep=';', header=0, usecols=['phase_id', 'description'],
+                                  skipinitialspace=True)
 
-        dirname = inputDir + '/' + dirname
-        print "    processing " + dirname
-        # loop all filenames in directory
-        onlyfiles = [f for f in listdir(dirname) if isfile(join(dirname, f))]
-        #list_ = []
-        scientificname = ''
-        genus = ''
-        for filename in onlyfiles:
-            # phenology data frame
-            if (filename == 'PEP725_BBCH.csv'):
-                phenologyDataFrame = pd.read_csv(dirname+'/'+filename, sep=';', header=0)
-                # rename bbch to BBCH so it doesn't duplicate later
-                phenologyDataFrame = phenologyDataFrame.rename(columns={'bbch':'BBCH'})
+    with open(output_dir + FILES['data'], 'w') as out_file:
+        writer = csv.writer(out_file)
+        writer.writerow(HEADERS)
 
-                # strip whitespace from characters in description field
-                phenologyDataFrame['description'] = phenologyDataFrame['description'].map(str.strip)
-            # location data frame
-            elif (filename == 'PEP725_'+countrycode+'_stations.csv'):
-                locationDataFrame = pd.read_csv(dirname+'/'+filename, sep=';', header=0)
-                #list_.append(locationDataFrame)
-            # occurrence data frame
-            elif (filename != 'PEP725_README.txt'):
-                occurrenceDataFrame = pd.read_csv(dirname+'/'+filename, sep=';', header=0)
-                #list_.append(occurrenceDataFrame)
+        data = pd.read_csv(input_dir + FILES['data'], sep=';', header=0,
+                           usecols=['s_id', 'genus_id', 'species_id', 'phase_id', 'year', 'day'], chunksize=100000,
+                           skipinitialspace=True)
 
-                # extract the scientificname from the filename
-                scientificname = filename[10:len(filename)-4].replace("_"," ")
-
-                # map the scientificname to specificEpithet using our dict
-                specificEpithet = specificEpithets.get(scientificname)
-
-                # extract genus from scientificname
-                genus = scientificname.split(" ")[0]
-                genus = genus.split("(")[0]
-
-        # merge frames
-        merged_inner1 = pd.merge(left=occurrenceDataFrame,right=locationDataFrame, left_on='PEP_ID', right_on='PEP_ID')
-        merged_all = pd.merge(left=merged_inner1,right=phenologyDataFrame, left_on='BBCH', right_on='BBCH')
-
-        # adding the index name, a unique index for each record
-        merged_all.index.name = mainIndexName
-        # the scientificname is same for everything in this particular file
-        merged_all['scientificname'] = scientificname
-        merged_all['genus'] = genus
-        merged_all['specificEpithet'] = specificEpithet
-        merged_all['countryname'] = countryname
-        merged_all['Source'] = 'PEP725' 
-	#merged_all['Observation_ID'] = merged_all['genus'] + merged_all.index
-    	#####################################
-	# Deal with lower/upper count fields
-    	#####################################
-	# Everything in PEP is "present" so it should all be lower_count = 1
-        merged_all['lower_count'] = 1
-	# Conditionally map count fields.  Some fields are actually "absent".. here we re-map these to upper_count = 0
-	#merged_all.loc[merged_all['description'] in  'Sowing', 'upper_count'] = 0
-	#merged_all.loc[merged_all['description'] in 'Sowing', 'lower_count'] = 0
-	#merged_all.description['Sowing]' loc[merged_all['description'] in 'Sowing', 'lower_count'] = 0
-        merged_all['upper_count'] = ''
-	merged_all.loc[merged_all.description == 'Sowing', ['lower_count', 'upper_count']] = 0, 0
-
-	# create UUID for every row, so we know it is unique
-    	merged_all['observation_id'] = merged_all.apply(getUUID,axis=1)
-
-        # add to dictionary of lists
-        if genus not in framesDict:
-            framesDict[genus] = list()
-        framesDict[genus].append(merged_all)
+        for chunk in data:
+            transform_data(frames, chunk).to_csv(out_file, columns=HEADERS, mode='a', header=False, index=False)
 
 
-# Finish up by looping each genus
-for genusName,genusDataFrames in framesDict.iteritems():
-    allDataFrame=pd.concat(genusDataFrames)
-    allDataFrame.reset_index(drop=True,inplace=True)
-    allDataFrame.index.name = mainIndexName
-    outputFilename = outputDir + genusName + '.csv'
+def transform_data(frames, data):
+    joined_data = data \
+        .merge(frames['species'], left_on='species_id', right_on='species_id', how='left') \
+        .merge(frames['genus'], left_on='genus_id', right_on='genus_id', how='left') \
+        .merge(frames['stations'], left_on='s_id', right_on='s_id', how='left') \
+        .merge(frames['phase'], left_on='phase_id', right_on='phase_id', how='left')
 
-    # only print header if there is no file right now
-    if (not os.path.exists(outputFilename)):
-        printHeader = True
-    else:
-        printHeader = False
+    joined_data.fillna("", inplace=True)  # replace all null values
 
-    print '    writing ' + outputFilename
-    # output single filename
-    allDataFrame.to_csv(outputFilename ,sep=',', mode='a', header=printHeader)
+    joined_data['observation_id'] = joined_data.apply(lambda x: uuid.uuid4(), axis=1)
+    joined_data['specificEpithet'] = joined_data.apply(
+        lambda row: re.sub('^%s' % row['genus'], "", row['species']), axis=1)
+    joined_data['Source'] = 'PEP725'
+    joined_data['lower_count'] = 1
+    joined_data['upper_count'] = 0
+
+    return joined_data.rename(columns=COLUMNS_MAP)
+
+
+def clean(dir):
+    if (os.path.exists(dir)):
+        shutil.rmtree(dir)
+    os.makedirs(dir)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='PEP725 Parser')
+    parser.add_argument('input_dir', help='the input directory')
+    parser.add_argument('output_dir', help='the output directory to store CSV results')
+
+    args = parser.parse_args()
+    input_dir = args.input_dir.strip()
+    output_dir = args.output_dir.strip()
+
+    if not input_dir.endswith('/'):
+        input_dir = input_dir + '/'
+    if not output_dir.endswith('/'):
+        output_dir = output_dir + '/'
+
+    process(input_dir, output_dir)
