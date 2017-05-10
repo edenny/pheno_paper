@@ -58,38 +58,65 @@ class processNPN:
                     if (filename == 'status_intensity_observation_data.csv'):
                         # Read the incoming data
 			# Chunking files into bits of 100000 gets around memory issues
-                        tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=100000,dtype=object)
-			# put them back together
-			df = pd.concat(tp, ignore_index=True)
+			count = 0
+			chunkSize = 100000
+                        tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=chunkSize,dtype=object)
 
-                        # Add an index name 
-                        df.index.name = self.mainIndexName
+			#masterDF = pd.DataFrame()
+			#result = []
+			writeHeader=True
+			for df in tp:
 
-                        # Translate values from intensity_values.csv file 
-                        cols = ['value','lower_count','upper_count','lower_percent','upper_percent']
-                        # translate values
-                        df = self.translate(self.cur_dir +'/intensity_values.csv',cols,'value',df,'Intensity_Value')
-    
-                        # In cases where the Intensity_Value = -9999 and Phenophase_Status = 0 the 'upper count' should be 0
+			    # put them back together
+			    #df = pd.concat(tp, ignore_index=True)
 
-                        df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '0'),'upper_count'] = 0
-                        # In cases where the Intensity_Value = -9999 and Phenophase_Status = 1 the 'lower count' should be 1
-                        df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '1'),'lower_count'] = 1
-                        df['Source'] = 'NPN'
+                            # Add an index name 
+                            df.index.name = self.mainIndexName
+
+                            # Translate values from intensity_values.csv file 
+                            cols = ['value','lower_count','upper_count','lower_percent','upper_percent']
+                            # translate values
+                            df = self.translate(self.cur_dir +'/intensity_values.csv',cols,'value',df,'Intensity_Value')
     
-    		        # Normalize Date to just Year. we don't need to store actual date because we use only Year + DayOfYear
-    		        df['Year'] = pd.DatetimeIndex(df['Observation_Date']).year
+
+			    # attempting to convert intensity value to simple integer to make df.loc calls later
+			    # more memory efficent
+			    # first fill nan values to 'unsure' in case this is blank
+			    #df['Phenophase_Status'].fillna(-1,inplace=True)
+			    #df['Phenophase_Status'] = (df['Phenophase_Status']).astype(int)
+			    #df['intensity_boolean'] = 1
+                            #df.loc[(df.Intensity_Value == '-9999') ,'intensity_boolean'] = 0
+			    #df['intensity_boolean'] = (df['intensity_boolean']).astype(int)
+
+                            # set upper/lower counts for cases of no intensity value
+                            df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '0'),'upper_count'] = 0
+                            #df.loc[(df.intensity_boolean == 0) & (df.Phenophase_Status == 0),'upper_count'] = 0
+                            df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '1'),'lower_count'] = 1
+                            #df.loc[(df.intensity_boolean == 0) & (df.Phenophase_Status == 1),'lower_count'] = 1
+			
+                            df['Source'] = 'NPN'
     
-    		        # Create ScientificName
-    		        df['ScientificName'] = df['Genus'] + ' ' + df['Species']
+    		            # Normalize Date to just Year. we don't need to store actual date because we use only Year + DayOfYear
+    		            df['Year'] = pd.DatetimeIndex(df['Observation_Date']).year
     
-                        # create output filename by removing first part of filename (datasheet_)
-                        output_filename = outputfilename.split("_")[1] 
-                        output_filename_fullpath = self.outputDir + output_filename + '.csv'
+    		            # Create ScientificName
+    		            df['ScientificName'] = df['Genus'] + ' ' + df['Species']
+			    count = count + chunkSize
+			    print "    processed " + str(chunkSize) + " of " + str(count) + " and appending to outputfile"
+
+			    #result.append(df)
+			    #masterDF.append(df)
     
-                        # write to CSV output directory
-                        print "    writing " + output_filename_fullpath
-                        df.to_csv(output_filename_fullpath,sep=',', mode='a', header=True)
+  			    # print "    combining dataframes into one"
+			    #masterDF = pd.concat(result,ignore_index=True)
+                            # create output filename by removing first part of filename (datasheet_)
+                            output_filename = outputfilename.split("_")[1] 
+                            output_filename_fullpath = self.outputDir + output_filename + '.csv'
+    
+                            # write to CSV output directory
+                            #print "    writing " + output_filename_fullpath
+                            df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
+			    writeHeader=False
 
 # Argument parser
 parser = argparse.ArgumentParser(description='NPN Parser')

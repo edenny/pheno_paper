@@ -24,9 +24,12 @@ example SPARQL query, referencing sparql contained in a file and redirecting out
 curl -X POST -H 'Accept: text/csv' http://localhost:9999/blazegraph/namespace/pheno_paper/sparql --data-urlencode query@test.sparql  > test.output
 ```
 
-Create a namespace
+Create a namespace. Note that immediately following namespace creation we load any supporting ontologies.
+For *some* reason, it only works to first load the ontology file and then instance data.  If you do it in the
+opposite order it takes a very long time to load.
 ```
 curl -X POST -H 'Content-Type: application/xml' --data @pheno_paper.namespace.xml http://localhost:9999/blazegraph/namespace
+curl -X POST -H 'Content-Type: application/xml' --data-binary @/home/jdeck88/code/PPO/ontology/ppo-reasoned.owl http://localhost:9999/blazegraph/namespace/pheno_paper/sparql
 ```
 
 Delete a namespace (careful!)

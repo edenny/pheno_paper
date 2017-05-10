@@ -9,7 +9,13 @@
 <!-- Specify any KB specific properties here to override defaults for the BigdataSail -->
 <!-- AbstractTripleStore, or indices in the namespace of the new KB instance. -->
 <!-- -->
+<entry key="com.bigdata.rdf.store.AbstractTripleStore.justify">true</entry>
+<entry key="com.bigdata.rdf.sail.isolatableIndices">false</entry>
+<entry key="com.bigdata.rdf.store.AbstractTripleStore.axiomsClass">com.bigdata.rdf.axioms.OwlAxioms</entry>
+<entry key="com.bigdata.rdf.sail.truthMaintenance">true</entry>
+<entry key="com.bigdata.rdf.store.AbstractTripleStore.textIndex">false</entry>
 <entry key="com.bigdata.rdf.store.AbstractTripleStore.quads">false</entry>
-<entry key="com.bigdata.rdf.store.AbstractTripleStore.textIndex">true</entry>
-<entry key="com.bigdata.search.FullTextIndex.fieldsEnabled">true</entry>
+<entry key="com.bigdata.rdf.store.AbstractTripleStore.geoSpatial">false</entry>
+<entry key="com.bigdata.rdf.store.AbstractTripleStore.statementIdentifiers">false</entry>
+<entry key="com.bigdata.rdf.sail.bufferCapacity">100000</entry>
 </properties>

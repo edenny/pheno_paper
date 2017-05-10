@@ -1,7 +1,12 @@
 prefix dwc: <http://rs.tdwg.org/dwc/terms/> 
 prefix obo: <http://purl.obolibrary.org/obo/>  
 prefix dc: <http://purl.org/dc/elements/1.1/> 
-SELECT   ?startDayOfYear ?year ?latitude ?longitude ?source
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+#select ?s ?p ?o
+#where {
+#?s <http://www.w3.org/2000/01/rdf-schema#label> ?o .
+#}
+SELECT ?startDayOfYear ?year ?latitude ?longitude ?source ?label ?wholePlantType
 WHERE {    
 	?wholePlant dwc:genus "Helianthus"^^<http://www.w3.org/2001/XMLSchema#string> . 
 	optional{ ?wholePlant dwc:specificEpithet "annuus"^^<http://www.w3.org/2001/XMLSchema#string> } . 
@@ -10,10 +15,18 @@ WHERE {
 	?wholePlant obo:RO_0000086 ?plantStructurePresence . 
 
 	# search for flower heads present
-	#?plantStructurePresence rdf:type obo:PPO_0003010 . 
+	?plantStructurePresence rdf:type obo:PPO_0003010 . 
 
 	# plantStructurePresence 'has quality measurement' some measurementDatum
 	?plantStructurePresence obo:PPO_0001007 ?measurementDatum . 
+
+	?plantStructurePresence rdf:type ?plantStructurePresenceType .
+	?plantStructurePresenceType <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+	#?wholePlant rdf:type <http://purl.obolibrary.org/obo/BFO_0000002> . 
+	#?wholePlant rdf:type ?wholePlantType . 
+	#?wholePlantType <http://www.w3.org/2000/01/rdf-schema#label> ?label .
+	#?tum rdf:type ?mType .
+	#obo:PPO_0002000 <http://www.w3.org/2000/01/rdf-schema#label> ?label .
 	
 	# measurementDatum 'is_specified_output_of' some phenologyObservingProcess
 	?measurementDatum obo:OBI_0000312 ?phenologyObservingProcess . 
@@ -25,4 +38,5 @@ WHERE {
 	?phenologyObservingProcess dwc:decimalLatitude ?latitude . 
 	?phenologyObservingProcess dwc:decimalLongitude ?longitude . 
 	?phenologyObservingProcess dc:creator ?source . 
-} order by ?source ?year ?startDayOfYear ?latitude ?longitude  
+} 
+

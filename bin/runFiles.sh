@@ -7,7 +7,7 @@ usage="
 Script to pre-process, triplify, and reason over phenology data sources 
 #==========================================================
 
-Usage: runFiles.sh {option} {project} {project directory}
+Usage: runFiles.sh {option} {project} {project directory} {namespace (load only)}
     project = name of project
     option = options for running. 
          'init' = pre-process files, reading incoming formats and converting to read to ingest CSV
@@ -178,6 +178,16 @@ function split {
     python fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
 }
 
+function chooseAll {
+    cd $(prop_data 'output_csv_dir')
+    options=(*)
+    cd $curdir
+    filesToProcess=()
+    for i in ${!options[@]}; do 
+        filesToProcess+=(${options[i]})
+    done
+}
+
 # get a list of files in the output directory and let user choose which one to 
 # process on
 function fileChooser {
@@ -219,14 +229,26 @@ function clean {
     echo "#=========================================================="
     echo "# Cleaning output directories "$project
     echo "#=========================================================="
-    rm $curdir/output/*
-    rm $curdir/build/*
-    rm $(prop_data 'output_unreasoned_dir')*
-    rm $(prop_data 'output_reasoned_dir')*
-    rm $(prop_data 'output_reasoned_csv_dir')*
-    rm $(prop_data 'output_csv_split_dir')*
+    rm -f $curdir/output/*
+    rm -f $curdir/build/*
+    rm -f $(prop_data 'output_unreasoned_dir')*
+    rm -f $(prop_data 'output_reasoned_dir')*
+    rm -f $(prop_data 'output_reasoned_csv_dir')*
+    rm -f $(prop_data 'output_csv_split_dir')*
+    rm -f $(prop_data 'output_csv')*
 }
 
+function processLoop {
+    # loop results from file choosing
+    for f in ${filesToProcess[@]}; do
+        inputFilename=$f
+        split 		# split files
+        getSplitFiles	# get all the split files
+        triplify		# triplify
+        reason		# reason
+        #output 		# output task
+    done
+}
 # initialize necessary processing directories, if needed
 # we don't attempt creation of output_csv since that should be populated to start with!
 function init {
@@ -268,21 +290,40 @@ fi
 # process files option
 if [ "$option" == "process" ] ; then
     fileChooser
-    # loop results from file choosing
-    for f in ${filesToProcess[@]}; do
-        inputFilename=$f
-        split 		# split files
-        getSplitFiles	# get all the split files
-        triplify		# triplify
-        reason		# reason
-        output 		# output task
-    done
+    processLoop
+    exit
+fi
+
+# process files option
+if [ "$option" == "processAll" ] ; then
+    chooseAll
+    processLoop
     exit
 fi
 
 # load files option
 if [ "$option" == "load" ] ; then
+    if  [ "$#" -ne 4 ]; then
+	printf "load requires 4 arguments, the last being the namespace"
+   	printf "$usage"
+   	exit 1
+    fi
     fileChooser
+    for f in ${filesToProcess[@]}; do
+        inputFilename=$f
+        getSplitFiles	# get all the split files
+        load	
+    done
+    exit
+fi
+# load files option
+if [ "$option" == "load" ] ; then
+    if  [ "$#" -ne 4 ]; then
+	printf "load requires 4 arguments, the last being the namespace"
+   	printf "$usage"
+   	exit 1
+    fi
+    chooseAll
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
         getSplitFiles	# get all the split files
