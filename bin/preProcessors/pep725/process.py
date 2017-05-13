@@ -4,7 +4,7 @@ import os, argparse, uuid, re, csv
 
 import pandas as pd
 
-FILE_PREFIX = "PEP725_"
+FILE_PREFIX = "pep725_"
 HEADERS = ['record_id', 'observation_id', 'LAT', 'LON', 'ALT', 'NAME', 'YEAR', 'DAY', 'Source', 'scientificname',
            'genus', 'specificEpithet', 'description', 'lower_count', 'upper_count']
 COLUMNS_MAP = {
@@ -39,6 +39,7 @@ def process(input_dir, output_dir):
     frames['phase'] = pd.read_csv(input_dir + FILES['phase'], sep=';', header=0, usecols=['phase_id', 'description'],
                                   skipinitialspace=True)
 
+    count = 0
     with open(output_dir + FILES['data'], 'w') as out_file:
         writer = csv.writer(out_file)
         writer.writerow(HEADERS)
@@ -48,8 +49,10 @@ def process(input_dir, output_dir):
                            skipinitialspace=True)
 
         for chunk in data:
+	    count = count + 100000
             # specify columns - 'record_id'. If leave 'record_id' in the columns, pandas will print an extra
             # empty column as 'record_id' is the dataFrame index, and pandas doesn't consider the index a column
+	    print "    processing 100000 of " + str(count)
             transform_data(frames, chunk).to_csv(out_file, columns=HEADERS[1:], mode='a', header=False)
 
 
@@ -61,6 +64,33 @@ def transform_data(frames, data):
         .merge(frames['phase'], left_on='phase_id', right_on='phase_id', how='left')
 
     joined_data.fillna("", inplace=True)  # replace all null values
+
+    # manually remove some data from set that we don't want to work with
+    # need to come up with a better method for this in the future!
+    exclude=[]
+    exclude.append("Beginning of seed imbibition, P, V: Beginning of bud swelling")
+    exclude.append("D: Hypocotyl with cotyledons growing towards soil surface, P, V: Shoot growing towards soil surface")
+    exclude.append("Dry seed (seed dressing takes place at stage 00), P, V: Winter dormancy or resting period")
+    exclude.append("Elongation of radicle, formation of root hairs and /or lateral roots")
+    exclude.append("end of harvest")
+    exclude.append("End of leaf fall, plants or above ground parts dead or dormant, P Plant resting or dormant")
+    exclude.append("G: Coleoptile emerged from caryopsis, D, M: Hypocotyl with cotyledons or shoot breaking through seed coat, P, V: Beginning of sprouting or bud breaking")
+    exclude.append("G: Emergence: Coleoptile breaks through soil surface, D, M: Emergence: Cotyledons break through soil surface(except hypogeal germination),D, V: Emergence: Shoot/leaf breaks through soil surface, P: Bud shows green tips")
+    exclude.append("Grapevine bleeding, pruned grapes start to loss water from the cuts")
+    exclude.append("Harvestable vegetative plant parts or vegetatively propagated organs begin to develop")
+    exclude.append("Harvestable vegetative plant parts or vegetatively propagated organs have reached 30% of final size, G: Flag leaf sheath just visibly swollen (mid-boot)")
+    exclude.append("Harvestable vegetative plant parts or vegetatively propagated organs have reached 50% of final size, G: Flag leaf sheath swollen (late-boot)")
+    exclude.append("Harvestable vegetative plant parts or vegetatively propagated organs have reached 70% of final size, G: Flag leaf sheath opening")
+    exclude.append("Harvestable vegetative plant parts or vegetatively propagated organs have reached final size, G: First awns visible, Skinset complete")
+    exclude.append("Harvested product (post-harvest or storage treatment is applied at stage 99)")
+    exclude.append("Maximum of total tuber mass reached, tubers detach easily from stolons, skin set not yet complete (skin easily removable with thumb)")
+    exclude.append("P: Shoot development completed, foliage still green, grapevine: after harvest, end of wood maturation")
+    exclude.append("Radicle (root) emerged from seed, P, V: Perennating organs forming roots")
+    exclude.append("Seed imbibition complete, P, V: End of bud swelling")
+    exclude.append("Sowing")
+    exclude.append("start of harvest")
+
+    joined_data=joined_data[~joined_data['description'].isin(exclude)]
 
     joined_data['observation_id'] = joined_data.apply(lambda x: uuid.uuid4(), axis=1)
     joined_data['specificEpithet'] = joined_data.apply(

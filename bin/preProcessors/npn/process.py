@@ -101,6 +101,10 @@ class processNPN:
     
     		            # Create ScientificName
     		            df['ScientificName'] = df['Genus'] + ' ' + df['Species']
+				
+   			    # drop duplicate ObservationIDs
+			    df.drop_duplicates('Observation_ID', inplace = True)
+
 			    count = count + chunkSize
 			    print "    processed " + str(chunkSize) + " of " + str(count) + " and appending to outputfile"
 

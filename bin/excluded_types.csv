@@ -1,7 +1,7 @@
 ID,Exclude class,Exclude superclasses
 'plant phenological trait',Y,Y
 'plant structure presence',Y,Y
-'plant structures present',Y,N
+'plant structures present',N,N
 'abscised plant structure presence',Y,N
 'abscised plant structures present',Y,N
 'abscised plant structures absent',Y,N
