@@ -1,104 +1,104 @@
 field,defined_by,notes
-"10% of fruit have reached final size or fruit has reached 10% of final size, G: Caryopsis watery ripe",{ripening fruit presence},
+"10% of fruits have reached final size or fruit has reached 10% of final size, G: Caryopsis watery ripe",{ripening fruit presence},
 "2 side shoots visible, G: 2 tillers visible",{mature leaf presence},
-"2 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-20% of flower open,{open flower presence},
-20% of fruit have reached final size or fruit has reached 20% of final size,{ripening fruit presence},
-25% of the permanent grassland shows fresh green,{leaf presence},
-"3 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-"30% of flower open, maize: male beginning of pollen shedding, female: tips of stigmata visible",{open flower presence},
-"30% of fruit have reached final size or fruit has reached 30% of final size, G: Early milk",{ripening fruit presence},
+"2 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+20% of flowers open,{open flower presence},
+20% of fruits have reached final size or fruit has reached 20% of final size,{ripening fruit presence},
+25% of the permanent grassland shows fresh green,{mature leaf presence},
+"3 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+"30% of flowers open, maize: male beginning of pollen shedding, female: tips of stigmata visible",{open flower presence},
+"30% of fruits have reached final size or fruit has reached 30% of final size, G: Early milk",{ripening fruit presence},
 "4 side shoots visible, G: 4 tillers visible",{mature leaf presence},
-"4 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-40% of flower open,{open flower presence},
-40% of fruit have reached final size or fruit has reached 40% of final size,{ripening fruit presence},
+"4 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+40% of flowers open,{open flower presence},
+40% of fruits have reached final size or fruit has reached 40% of final size,{ripening fruit presence},
 "5 side shoots visible, G: 5 tillers visible",{mature leaf presence},
-"5 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+"5 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
 50 % autumnal leaf fall,{abscised leaf presence},
-"50% of fruit have reached final size or fruit has reached 50% of final size, G: Milky ripe, medium milk",{ripening fruit presence},
-50% of leaf fallen,{senescent leaf presence},
+"50% of fruits have reached final size or fruit has reached 50% of final size, G: Milky ripe, medium milk",{ripening fruit presence},
+50% of leaves fallen,{senescent leaf presence},
 "6 side shoots visible, G: 6 tillers visible",{mature leaf presence},
-"6 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-60% of fruit have reached final size or fruit has reached 60% of final size,{ripening fruit presence},
+"6 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+60% of fruits have reached final size or fruit has reached 60% of final size,{ripening fruit presence},
 "7 side shoots visible, G: 7 tillers visible",{mature leaf presence},
-"7 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-"70% of fruit have reached final size or fruit has reached 70% of final size, G: Late milk",{ripening fruit presence},
+"7 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+"70% of fruits have reached final size or fruit has reached 70% of final size, G: Late milk",{ripening fruit presence},
 "8 side shoots visible, G: 8 tillers visible",{mature leaf presence},
-"8 true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-80% of fruit have reached final size or fruit has reached 80% of final size,{ripening fruit presence},
+"8 true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+80% of fruits have reached final size or fruit has reached 80% of final size,{ripening fruit presence},
 "9 or more side shoots visible, G: 9 or more tillers visible",{mature leaf presence},
-"9 or more true leaf, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+"9 or more true leaves, leaf pairs or whorls unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
 "Advanced ripening or fruit colouration, G: Soft dough stage",{ripening fruit presence},
 Autumnal coloring of leaf (50%),{senescent leaf presence},
-autumnal colouration: first discoloured leaf (sporadically),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (=>50%),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (=>60%),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (=>70%),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (=>80%),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (>=20%),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (>=30%),{senescent leaf presence},
-autumnal colouration: leaf beginning of discolour (>=40%),{senescent leaf presence},
-autumnal leaf fall: >=20% of leaf fallen,{abscised leaf presence},
-autumnal leaf fall: >=30% of leaf fallen,{abscised leaf presence},
-autumnal leaf fall: >=40% of leaf fallen,{abscised leaf presence},
-autumnal leaf fall: >=60% of leaf fallen,{abscised leaf presence},
-autumnal leaf fall: >=70% of leaf fallen,{abscised leaf presence},
-autumnal leaf fall: >=80% of leaf fallen,{abscised leaf presence},
-autumnal leaf fall: first fallen leaf (sporadically),{abscised leaf presence},
-Beginnin of flowering: first flower open (sporadically),{open flower presence},
+autumnal colouration: first discoloured leaves (sporadically),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (=>50%),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (=>60%),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (=>70%),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (=>80%),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (>=20%),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (>=30%),{senescent leaf presence},
+autumnal colouration: leaves beginning of discolour (>=40%),{senescent leaf presence},
+autumnal leaf fall: >=20% of leaves fallen,{abscised leaf presence},
+autumnal leaf fall: >=30% of leaves fallen,{abscised leaf presence},
+autumnal leaf fall: >=40% of leaves fallen,{abscised leaf presence},
+autumnal leaf fall: >=60% of leaves fallen,{abscised leaf presence},
+autumnal leaf fall: >=70% of leaves fallen,{abscised leaf presence},
+autumnal leaf fall: >=80% of leaves fallen,{abscised leaf presence},
+autumnal leaf fall: first fallen leaves (sporadically),{abscised leaf presence},
+Beginnin of flowering: first flowers open (sporadically),{open flower presence},
 Beginning of flowering ,{flower presence},
-Beginning of flowering: 10% of flower open,{open flower presence},
+Beginning of flowering: 10% of flowers open,{open flower presence},
 Beginning of leaf-fall,{mature leaf presence},
 Beginning of ripening or fruit colouration,{ripening fruit presence},
 "Beginning of seed imbibition, P, V: Beginning of bud swelling",,We don't include dormancy as a phenological stage. Also this is two stages at once. Can't use without more information.
 Beginning of sprouting,{new above-ground shoot-borne shoot system presence},
-Coloring of leaf (100%),{senescent leaf presence},
+Coloring of leaves (100%),{senescent leaf presence},
 "D: Hypocotyl with cotyledons growing towards soil surface, P, V: Shoot growing towards soil surface",,We don't address underground phenology.
 "Dry seed (seed dressing takes place at stage 00), P, V: Winter dormancy or resting period",,We don't include dormancy as a phenological stage.
 "Elongation of radicle, formation of root hairs and /or lateral roots",,We don't address underground phenology.
-end of autumnal colouration: nearly all leaf are discoloured (>=90%),{senescent leaf presence},
+end of autumnal colouration: nearly all leaves are discoloured (>=90%),{senescent leaf presence},
 End of autumnal leaf fall (95% fallen),{abscised leaf presence},
-end of first cut for hay winning (=> 90% of the area),{leaf presence},
+end of first cut for hay winning (=> 90% of the area),{mature leaf presence},
 End of flowering,{flower presence},
 End of flowering: fruit set visible,{fruit presence},
 end of harvest,,Not a phenological stage. Too vague.
 "End of leaf fall, plants or above ground parts dead or dormant, P Plant resting or dormant",,We don't include dormancy as a phenological stage.
-end of the first cut for silage winning (=> 90% of the area),{leaf presence},
-first cut for hay winning,{leaf presence},Not a phenological stage.
-first cut for hay winning (=> 50% of the area),{leaf presence},
-first cut for silage winning,{leaf presence},
-first cut for silage winning (=> 50% of the area),{leaf presence},
+end of the first cut for silage winning (=> 90% of the area),{mature leaf presence},
+first cut for hay winning,{mature leaf presence},Not a phenological stage.
+first cut for hay winning (=> 50% of the area),{mature leaf presence},
+first cut for silage winning,{mature leaf presence},
+first cut for silage winning (=> 50% of the area),{mature leaf presence},
 First flower buds visible,{flower presence},
 "First flower petals visible (in petalled forms), G: Inflorescence fully emerged (end of heading)",{open flower presence},
-"First individual flower visible (still closed), G: Half of inflorescence emerged (middle of heading)",{flower presence},
-First leaf seperated (mouse ear),{expanding leaf presence},
-First ripe fruit,{ripening fruit presence},
-first ripe fruit,{ripening fruit presence},
+"First individual flowers visible (still closed), G: Half of inflorescence emerged (middle of heading)",{flower presence},
+First leaves seperated (mouse ear),{expanding leaf presence},
+First ripe fruits,{ripening fruit presence},
+first ripe fruits,{ripening fruit presence},
 "First side shoot visible, G: First tiller visible",{mature leaf presence},I am assuming that plant does not start branching until after mature leaf are presence.
-"First true leaf, leaf pair or whorl unfolded, P: First leaf unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
-"Flower buds presence, still enclosed by leaf (oilseed rape)",{flower presence},
+"First true leaf, leaf pair or whorl unfolded, P: First leaves unfolded",{mature leaf presence},There might also be expanding leaf presence but we don't know.
+"Flower buds present, still enclosed by leaves (oilseed rape)",{flower presence},
 Flowering 10% (male),{flower presence},Check if this means 10% open flower.
 Flowering finishing: majority of petals fallen or dry,{fruit presence},
 "Fruit begins to soften (species with fleshy fruit), fruit ripe for picking",{ripening fruit presence},
 fruit fully ripe,{ripening fruit presence},
 Full flowering,{flower presence},Check if this means 100% open flower.
-"Full flowering: 50% of flower open, first petals may be fallen",{open flower presence},
+"Full flowering: 50% of flowers open, first petals may be fallen",{open flower presence},
 "Fully ripe: fruit shows fully-ripe colour, beginning of fruit abscission",{ripening fruit presence},
 "G: Coleoptile emerged from caryopsis, D, M: Hypocotyl with cotyledons or shoot breaking through seed coat, P, V: Beginning of sprouting or bud breaking",,"This is two stages at once. Can't use without more information about below versus above ground.  33,916 records of this."
 "G: Emergence: Coleoptile breaks through soil surface, D, M: Emergence: Cotyledons break through soil surface(except hypogeal germination),D, V: Emergence: Shoot/leaf breaks through soil surface, P: Bud shows green tips",,This is multiple stages at once. Can use as a stage but not as a trait.
-"G: First true leaf emerged from coleoptile, D, M: Cotyledons completely unfolded, P: First leaf separated",{leaf presence},can be expanding leaf presence or mature leaf presence.  FIMS system not setup to handle multiple types per lookup value. For now coding to leaf presence.
+"G: First true leaf emerged from coleoptile, D, M: Cotyledons completely unfolded, P: First leaves separated",{leaf presence},can be expanding leaf presence or mature leaf presence.  FIMS system not setup to handle multiple types per lookup value. For now coding to leaf presence.
 G: Flag leaf sheath extending,{leaf presence},
 "Grapevine bleeding, pruned grapes start to loss water from the cuts",,No idea
 Harvest,{abscised fruit or seed presence},
 Harvestable vegetative plant parts or vegetatively propagated organs begin to develop,,Can't map this without knowing the species.
-"Harvestable vegetative plant parts or vegetatively propagated organs have reached 30% of final size, G: Flag leaf sheath just visibly swollen (mid-boot)",,Can't use this with vegetative parts unless we know the taxon.
 "Harvestable vegetative plant parts or vegetatively propagated organs have reached 30% of final size, G: Flag leaf sheath just visibly swollen (mid-boot)",{flower presence},For grains it is explicit.
-"Harvestable vegetative plant parts or vegetatively propagated organs have reached 50% of final size, G: Flag leaf sheath swollen (late-boot)",,Can't use this with vegetative parts unless we know the taxon.
+"Harvestable vegetative plant parts or vegetatively propagated organs have reached 30% of final size, G: Flag leaf sheath just visibly swollen (mid-boot)",,Can't use this with vegetative parts unless we know the taxon.
 "Harvestable vegetative plant parts or vegetatively propagated organs have reached 50% of final size, G: Flag leaf sheath swollen (late-boot)",{flower presence},For grains it is explicit.
-"Harvestable vegetative plant parts or vegetatively propagated organs have reached 70% of final size, G: Flag leaf sheath opening",,Can't use this with vegetative parts unless we know the taxon.
+"Harvestable vegetative plant parts or vegetatively propagated organs have reached 50% of final size, G: Flag leaf sheath swollen (late-boot)",,Can't use this with vegetative parts unless we know the taxon.
 "Harvestable vegetative plant parts or vegetatively propagated organs have reached 70% of final size, G: Flag leaf sheath opening",{flower presence},For grains it is explicit.
-"Harvestable vegetative plant parts or vegetatively propagated organs have reached final size, G: First awns visible, Skinset complete",,Can't use this with vegetative parts unless we know the taxon.
+"Harvestable vegetative plant parts or vegetatively propagated organs have reached 70% of final size, G: Flag leaf sheath opening",,Can't use this with vegetative parts unless we know the taxon.
 "Harvestable vegetative plant parts or vegetatively propagated organs have reached final size, G: First awns visible, Skinset complete",{flower presence},For grains it is explicit.
+"Harvestable vegetative plant parts or vegetatively propagated organs have reached final size, G: First awns visible, Skinset complete",,Can't use this with vegetative parts unless we know the taxon.
 Harvested product (post-harvest or storage treatment is applied at stage 99),,
 "Inflorescence or flower buds visible, G: Beginning of heading",{flower presence},
 leaf beginning to discolour,{senescent leaf presence},
@@ -117,8 +117,8 @@ Nearly all fruit have reached final size,{ripening fruit presence},
 "Seed imbibition complete, P, V: End of bud swelling",,We don't include dormancy as a phenological stage. Also this is two stages at once. Can't use without more information.
 Soft dough,{ripening fruit presence},
 Sowing,,
-"start of  harvest for silage (corn, grass)",{leaf presence},
-start of autumnal colouration: leaf beginning of discolour (>=10%),{senescent leaf presence},
+"start of  harvest for silage (corn, grass)",{mature leaf presence},
+start of autumnal colouration: leaves beginning of discolour (>=10%),{senescent leaf presence},
 start of Corn - cob - mix harvest for silage,{ripening fruit presence},
 start of harvest,,Not a phenological stage. Too vague. 619 records of this.
 "Stem (rosette) 10% of final length (diameter), G: 1 node detectable",{mature leaf presence},Assuming the normal pattern in which mature leaf correspond to nodes.

@@ -8,12 +8,20 @@ Script to pre-process, triplify, and reason over phenology data sources
 #==========================================================
 
 Usage: runFiles.sh {option} {project} {project directory} {namespace (load only)}
-    project = name of project
-    option = options for running. 
-         'init' = pre-process files, reading incoming formats and converting to read to ingest CSV
-         'process' = process all files: split, triplify, reason, post-process
-         'clean' = remove files from output directories except input and output_csv
-         'load' = load files to SPARQL endpoint.  With this option also must specify namespace
+    project             Name of project. Corresponds to FIMS configuration file
+			and preProcessing script locations
+    project_directory   The data processing directory 
+    option              Select an option for running:
+    ---------------------------------------------------
+        init        Pre-process files, reading incoming formats and converting to read to ingest CSV
+        process     Process selected files: split, triplify, reason, post-process
+        processAll  Process all available files without user input: 
+		    split, triplify, reason, post-process
+        clean       Remove files from output directories except input and output_csv
+        load        Load selected files to SPARQL endpoint.  With this option also must specify namespace
+        loadAll     Load all available files to SPARQL endpoint without user input.  
+		    With this option also must specify namespace
+
 "
 
 # Arguments
@@ -183,6 +191,7 @@ function chooseAll {
     options=(*)
     cd $curdir
     filesToProcess=()
+    print $options
     for i in ${!options[@]}; do 
         filesToProcess+=(${options[i]})
     done
@@ -243,9 +252,9 @@ function processLoop {
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
         split 		# split files
-        getSplitFiles	# get all the split files
-        triplify		# triplify
-        reason		# reason
+        #getSplitFiles	# get all the split files
+        #triplify		# triplify
+        #reason		# reason
         #output 		# output task
     done
 }
@@ -317,7 +326,7 @@ if [ "$option" == "load" ] ; then
     exit
 fi
 # load files option
-if [ "$option" == "load" ] ; then
+if [ "$option" == "loadAll" ] ; then
     if  [ "$#" -ne 4 ]; then
 	printf "load requires 4 arguments, the last being the namespace"
    	printf "$usage"
