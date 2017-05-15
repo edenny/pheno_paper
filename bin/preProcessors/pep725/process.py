@@ -1,3 +1,21 @@
+# python program to read PEP files, stored in directories 
+# The PEP files have been extracted as tables from the PEP725 database
+# using the "Character-Separated-Value" format using semicolons as the separator.
+
+# output format
+# LocationID (PEP_ID) (from *_stations.csv)
+# Phenology_description (BBCH) (description field from PEP725_BBCH.csv)
+# Year (YEAR) (from PEP725_AT_{name})
+# DayOfYear (DAY) (from PEP725_AT_{name})
+# Latitude (LAT) (from *_stations.csv)
+# Longitude (LON) (from *_stations.csv)
+# ElevationInMeters (ALT) (from *_stations.csv)
+#
+# NOTE: the PEP725 data does not come with its own observation identifier as in NPN
+# and thus, we create one using the record_id (or main index) for the master dataframe.
+# this means, that PEP725 data loads should be processed as a group and NEVER separated
+# NOTE: PEP725 all lower counts are set to 1 and upper counts are NOT set
+
 import shutil
 
 import os, argparse, uuid, re, csv
