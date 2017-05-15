@@ -10,6 +10,7 @@
 #==========================================================
 import_src=https://github.com/PlantPhenoOntology/PPO/raw/master/ontology/ppo-reasoned.owl
 filesize_limit=50000
+java_options=-Xmx4048m
 
 #==========================================================
 # Application Paths
