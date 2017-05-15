@@ -64,16 +64,16 @@ function reason {
     do
 	echo $(prop 'ontopilot') inference_pipeline \
 		-i $(prop_data 'output_unreasoned_dir')$file.ttl \
-		-o $(prop_data 'output_reasoned_dir')$file.owl \
+		-o $(prop_data 'output_reasoned_dir')$file.ttl\
 	        -c $(prop 'reasoner_config') \
-		2> $(prop_data 'output_reasoned_dir')$file.owl.err
+		2> $(prop_data 'output_reasoned_dir')$file.ttl.err
 	$(prop 'ontopilot') inference_pipeline \
 		-i $(prop_data 'output_unreasoned_dir')$file.ttl \
-		-o $(prop_data 'output_reasoned_dir')$file.owl \
+		-o $(prop_data 'output_reasoned_dir')$file.ttl \
 	        -c $(prop_data 'reasoner_config') \
-		2> $(prop_data 'output_reasoned_dir')$file.owl.err
+		2> $(prop_data 'output_reasoned_dir')$file.ttl.err
 
-	echo "    writing $(prop_data 'output_reasoned_dir')$file.owl"
+	echo "    writing $(prop_data 'output_reasoned_dir')$file.ttl"
     done
 }
 
@@ -87,11 +87,11 @@ function output {
     for file in ${split_files[@]}
     do
         echo java -Xmx4048m -jar $(prop 'query_fetcher') \
-	    -i $(prop_data 'output_reasoned_dir')$file.owl \
+	    -i $(prop_data 'output_reasoned_dir')$file.ttl \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
         java -Xmx4048m -jar $(prop 'query_fetcher') \
-	    -i $(prop_data 'output_reasoned_dir')$file.owl \
+	    -i $(prop_data 'output_reasoned_dir')$file.ttl \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
     done
@@ -111,13 +111,13 @@ function load {
 		-X POST \
 		-H 'Content-Type:application/xml' \
 		--data-binary \
-		'@'$(prop_data 'output_reasoned_dir')$file.owl \
+		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
 	curl \
 		-X POST \
 		-H 'Content-Type:application/xml' \
 		--data-binary \
-		'@'$(prop_data 'output_reasoned_dir')$file.owl \
+		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
     done
 }
@@ -252,9 +252,9 @@ function processLoop {
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
         split 		# split files
-        #getSplitFiles	# get all the split files
-        #triplify		# triplify
-        #reason		# reason
+        getSplitFiles	# get all the split files
+        triplify		# triplify
+        reason		# reason
         #output 		# output task
     done
 }

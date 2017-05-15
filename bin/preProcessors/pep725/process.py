@@ -6,7 +6,7 @@ import pandas as pd
 
 FILE_PREFIX = "pep725_"
 HEADERS = ['record_id', 'observation_id', 'LAT', 'LON', 'ALT', 'NAME', 'YEAR', 'DAY', 'Source', 'scientificname',
-           'genus', 'specificEpithet', 'description', 'lower_count', 'upper_count']
+           'genus', 'specificEpithet', 'description', 'lower_count' ]
 COLUMNS_MAP = {
     'lat': 'LAT',
     'lon': 'LON',
@@ -97,7 +97,6 @@ def transform_data(frames, data):
         lambda row: re.sub('^%s' % row['genus'], "", row['species']), axis=1)
     joined_data['Source'] = 'PEP725'
     joined_data['lower_count'] = 1
-    joined_data['upper_count'] = 0
     joined_data.index.name = 'record_id'
 
     return joined_data.rename(columns=COLUMNS_MAP)
