@@ -86,11 +86,11 @@ function output {
 
     for file in ${split_files[@]}
     do
-        echo java -Xmx4048m -jar $(prop 'query_fetcher') \
+        echo java $(prop 'java_options') -jar $(prop 'query_fetcher') \
 	    -i $(prop_data 'output_reasoned_dir')$file.ttl \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
-        java -Xmx4048m -jar $(prop 'query_fetcher') \
+        java $(prop 'java_options') -jar $(prop 'query_fetcher') \
 	    -i $(prop_data 'output_reasoned_dir')$file.ttl \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
@@ -133,12 +133,12 @@ function triplify {
 
     for file in ${split_files[@]}
     do
-        echo java -Xmx4048m -jar $(prop 'triplifier') \
+        echo java $(prop 'java_options') -jar $(prop 'triplifier') \
 	    -i $(prop_data 'output_csv_split')$file \
 	    -o $(prop_data 'output_unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
 	    -w -I $(prop 'import_src')  --prefix ppo:  -F TURTLE
-        java -Xmx4048m -jar $(prop 'triplifier') \
+        java $(prop 'java_options') -jar $(prop 'triplifier') \
 	    -i $(prop_data 'output_csv_split')$file \
 	    -o $(prop_data 'output_unreasoned_dir') \
 	    -c $(prop 'triplifier_config') \
