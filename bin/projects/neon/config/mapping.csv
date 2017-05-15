@@ -1,0 +1,16 @@
+spreadsheet sheet name,spreadsheet column name,internal uri,datatype,dataformat,defined by,displayAnnotationProperty,definition,entity alias,notes
+Samples,uid,http://rs.tdwg.org/dwc/terms/EventID,integer,,,,Record Identifier,phenologicalObservingProcess ,
+Samples,IndividualID,http://rs.tdwg.org/dwc/terms/organismID,integer,,,,Individual Plant Identifier,wholePlant,This will be mapped to {organism virus or viroid in the ontology}
+Samples,Latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,,Decimal Latitude,phenologicalObservingProcess,each column can contain multiple entity aliases where it can appear.  Use comma seperation 
+Samples,Longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,,Decimal Longitude,phenologicalObservingProcess,
+Samples,genus,http://rs.tdwg.org/dwc/terms/genus,string,,,,Genus,wholePlant,
+Samples,specificEpithet,http://rs.tdwg.org/dwc/terms/specificEpithet,string,,,,Specific Epithet,wholePlant,
+Samples,scientificName,http://rs.tdwg.org/dwc/terms/scientificName,string,,,,Scientific Name,wholePlant,
+Samples,PhenophaseName,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,string,,,FALSE,Whole plant phenological stage,plantStructurePresence,"Using rdf:type indicates the values will be object properties, in this case defined by a list association in rules.csv."
+Samples,Year,http://rs.tdwg.org/dwc/terms/year,integer,,,,The year the observation took place,phenologicalObservingProcess,
+Samples,DayOfYear,http://rs.tdwg.org/dwc/terms/startDayOfYear,integer,,,,Day of year the observation took place,phenologicalObservingProcess,
+Samples,lower_count,{lower count},integer,,,,The lower value of an intensity value range,measurementDatum,
+Samples,upper_count,{upper count},integer,,,,The upper value of an intensity value range,measurementDatum,
+Samples,lower_percent,{lower percent},float,,,,The lower percent of an intensity value range,measurementDatum,
+Samples,upper_percent,{upper percent},float,,,,The upper percent of an intensity value range,measurementDatum,
+Samples,Source,http://purl.org/dc/elements/1.1/creator,string,,,,Dataset Source,phenologicalObservingProcess,

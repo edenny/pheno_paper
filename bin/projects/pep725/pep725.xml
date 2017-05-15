@@ -1,0 +1,511 @@
+<?xml version="1.0" ?>
+<fims>
+    <metadata default_worksheet="Samples" doi="" eml_location="eml_location" ontology_location="ppo.owl" queryTarget="http://data.biscicol.org/ds" shortname="plantPhenologyOntology" target="http://data.biscicol.org/ds/data">
+        This is for testing the conversion of spreadsheets into instance data using the plant phenology ontology.
+    </metadata>
+    <validation>
+        <worksheet sheetname="Samples">
+            <rule column="record_id" level="error" type="uniqueValue"/>
+            <rule column="record_id" level="error" type="RequiredColumn"/>
+            <rule column="description" level="error" type="RequiredColumn"/>
+            <rule column="LAT" level="error" type="RequiredColumn"/>
+            <rule column="LON" level="error" type="RequiredColumn"/>
+            <rule column="YEAR" level="error" type="RequiredColumn"/>
+            <rule column="DAY" level="error" type="RequiredColumn"/>
+            <rule column="scientificname" level="warning" type="RequiredColumn"/>
+            <rule column="genus" level="error" type="RequiredColumn"/>
+            <rule column="Source" level="error" type="RequiredColumn"/>
+            <rule column="description" level="error" list="description" type="controlledVocabulary"/>
+        </worksheet>
+        <lists>
+            <list alias="description">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    10% of fruits have reached final size or fruit has reached 10% of final size, G: Caryopsis watery ripe
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    2 side shoots visible, G: 2 tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    2 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    20% of flowers open
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    20% of fruits have reached final size or fruit has reached 20% of final size
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    25% of the permanent grassland shows fresh green
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    3 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    30% of flowers open, maize: male beginning of pollen shedding, female: tips of stigmata visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    30% of fruits have reached final size or fruit has reached 30% of final size, G: Early milk
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    4 side shoots visible, G: 4 tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    4 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    40% of flowers open
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    40% of fruits have reached final size or fruit has reached 40% of final size
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    5 side shoots visible, G: 5 tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    5 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    50 % autumnal leaf fall
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    50% of fruits have reached final size or fruit has reached 50% of final size, G: Milky ripe, medium milk
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    50% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    6 side shoots visible, G: 6 tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    6 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    60% of fruits have reached final size or fruit has reached 60% of final size
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    7 side shoots visible, G: 7 tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    7 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    70% of fruits have reached final size or fruit has reached 70% of final size, G: Late milk
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    8 side shoots visible, G: 8 tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    8 true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    80% of fruits have reached final size or fruit has reached 80% of final size
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    9 or more side shoots visible, G: 9 or more tillers visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    9 or more true leaves, leaf pairs or whorls unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Advanced ripening or fruit colouration, G: Soft dough stage
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    Autumnal coloring of leaf (50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: first discoloured leaves (sporadically)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (=&gt;50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (=&gt;60%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (=&gt;70%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (=&gt;80%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (&gt;=20%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (&gt;=30%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    autumnal colouration: leaves beginning of discolour (&gt;=40%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: &gt;=20% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: &gt;=30% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: &gt;=40% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: &gt;=60% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: &gt;=70% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: &gt;=80% of leaves fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    autumnal leaf fall: first fallen leaves (sporadically)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    Beginnin of flowering: first flowers open (sporadically)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Beginning of flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    Beginning of flowering: 10% of flowers open
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Beginning of leaf-fall
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Beginning of ripening or fruit colouration
+                </field>
+                <field>
+                    Beginning of seed imbibition, P, V: Beginning of bud swelling
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002010">
+                    Beginning of sprouting
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    Coloring of leaves (100%)
+                </field>
+                <field>
+                    D: Hypocotyl with cotyledons growing towards soil surface, P, V: Shoot growing towards soil surface
+                </field>
+                <field>
+                    Dry seed (seed dressing takes place at stage 00), P, V: Winter dormancy or resting period
+                </field>
+                <field>
+                    Elongation of radicle, formation of root hairs and /or lateral roots
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    end of autumnal colouration: nearly all leaves are discoloured (&gt;=90%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002009">
+                    End of autumnal leaf fall (95% fallen)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    end of first cut for hay winning (=&gt; 90% of the area)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    End of flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                    End of flowering: fruit set visible
+                </field>
+                <field>
+                    end of harvest
+                </field>
+                <field>
+                    End of leaf fall, plants or above ground parts dead or dormant, P Plant resting or dormant
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    end of the first cut for silage winning (=&gt; 90% of the area)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    first cut for hay winning
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    first cut for hay winning (=&gt; 50% of the area)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    first cut for silage winning
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    first cut for silage winning (=&gt; 50% of the area)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    First flower buds visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    First flower petals visible (in petalled forms), G: Inflorescence fully emerged (end of heading)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    First individual flowers visible (still closed), G: Half of inflorescence emerged (middle of heading)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002005">
+                    First leaves seperated (mouse ear)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    First ripe fruits
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    first ripe fruits
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    First side shoot visible, G: First tiller visible
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    First true leaf, leaf pair or whorl unfolded, P: First leaves unfolded
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Flower buds present, still enclosed by leaves (oilseed rape)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Flowering 10% (male)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002016">
+                    Flowering finishing: majority of petals fallen or dry
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Fruit begins to soften (species with fleshy fruit), fruit ripe for picking
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    fruit fully ripe
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Full flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    Full flowering: 50% of flowers open, first petals may be fallen
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Fully ripe: fruit shows fully-ripe colour, beginning of fruit abscission
+                </field>
+                <field>
+                    G: Coleoptile emerged from caryopsis, D, M: Hypocotyl with cotyledons or shoot breaking through seed coat, P, V: Beginning of sprouting or bud breaking
+                </field>
+                <field>
+                    G: Emergence: Coleoptile breaks through soil surface, D, M: Emergence: Cotyledons break through soil surface(except hypogeal germination),D, V: Emergence: Shoot/leaf breaks through soil surface, P: Bud shows green tips
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                    G: First true leaf emerged from coleoptile, D, M: Cotyledons completely unfolded, P: First leaves separated
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                    G: Flag leaf sheath extending
+                </field>
+                <field>
+                    Grapevine bleeding, pruned grapes start to loss water from the cuts
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002018">
+                    Harvest
+                </field>
+                <field>
+                    Harvestable vegetative plant parts or vegetatively propagated organs begin to develop
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached 30% of final size, G: Flag leaf sheath just visibly swollen (mid-boot)
+                </field>
+                <field>
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached 30% of final size, G: Flag leaf sheath just visibly swollen (mid-boot)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached 50% of final size, G: Flag leaf sheath swollen (late-boot)
+                </field>
+                <field>
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached 50% of final size, G: Flag leaf sheath swollen (late-boot)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached 70% of final size, G: Flag leaf sheath opening
+                </field>
+                <field>
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached 70% of final size, G: Flag leaf sheath opening
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached final size, G: First awns visible, Skinset complete
+                </field>
+                <field>
+                    Harvestable vegetative plant parts or vegetatively propagated organs have reached final size, G: First awns visible, Skinset complete
+                </field>
+                <field>
+                    Harvested product (post-harvest or storage treatment is applied at stage 99)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002012">
+                    Inflorescence or flower buds visible, G: Beginning of heading
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    leaf beginning to discolour
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002005">
+                    Leaf unfolding (&gt;=50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Leaf unfolding (5.true leaf, leaf pairs or whoris unfolded)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                    Leaf unfolding (50%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002004">
+                    Leaf unfolding (first visible leaf stalk)
+                </field>
+                <field>
+                    Maximum of total tuber mass reached, tubers detach easily from stolons, skin set not yet complete (skin easily removable with thumb)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Maximum stem length or rosette diameter reached, G: 9 or more nodes detectable, end of height growth (e.g. Pinus, Picea
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Nearly all fruit have reached final size
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    olive: fruit deep green colour becomes lightgreen, yellowish
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002005">
+                    Onset of height growth (e.g. Pinus, Picea)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002010">
+                    Onset of height growth (e.g. Pinus, Picea)
+                </field>
+                <field>
+                    P: Shoot development completed, foliage still green, grapevine: after harvest, end of wood maturation
+                </field>
+                <field>
+                    Radicle (root) emerged from seed, P, V: Perennating organs forming roots
+                </field>
+                <field>
+                    Seed imbibition complete, P, V: End of bud swelling
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Soft dough
+                </field>
+                <field>
+                    Sowing
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    start of  harvest for silage (corn, grass)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002007">
+                    start of autumnal colouration: leaves beginning of discolour (&gt;=10%)
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    start of Corn - cob - mix harvest for silage
+                </field>
+                <field>
+                    start of harvest
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 10% of final length (diameter), G: 1 node detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 20% of final length (diameter), G: 2 nodes detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 30% of final length (diameter), G: 3 nodes detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 40% of final length (diameter), G: 4 nodes detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 50% of final length (diameter), G: 5 nodes detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 60% of final length (diameter), G: 6 nodes detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 70% of final length (diameter), G: 7 nodes detectable
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002006">
+                    Stem (rosette) 80% of final length (diameter), G: 8 nodes detectable
+                </field>
+            </list>
+        </lists>
+    </validation>
+    <mapping>
+        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" identifier="http://n2t.net/ark:/21547/Ami2" uniqueKey="observation_id" worksheet="Samples">
+            <attribute column="record_id" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+                Record Identifier
+            </attribute>
+            <attribute column="LAT" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="LON" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
+            </attribute>
+            <attribute column="ALT" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/minimumElevationInMeters">
+                Minimum Elevation In Meters
+            </attribute>
+            <attribute column="NAME" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/location">
+                Location name
+            </attribute>
+            <attribute column="YEAR" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
+                The year the observation took place
+            </attribute>
+            <attribute column="DAY" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+                Day of year the observation took place
+            </attribute>
+            <attribute column="Source" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://purl.org/dc/elements/1.1/creator">
+                Dataset Source
+            </attribute>
+        </entity>
+        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" identifier="http://n2t.net/ark:/21547/Amk2" uniqueKey="observation_id" worksheet="Samples">
+            <attribute column="scientificname" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/scientificName">
+                Scientific Name
+            </attribute>
+            <attribute column="genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/genus">
+                Common Name
+            </attribute>
+            <attribute column="specificEpithet" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/specificEpithet">
+                Specific Epithet
+            </attribute>
+        </entity>
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" identifier="http://n2t.net/ark:/21547/Amh2" uniqueKey="observation_id" worksheet="Samples">
+            <attribute column="description" dataformat="" datatype="string" displayAnnotationProperty="false" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+                Whole plant phenological stage
+            </attribute>
+        </entity>
+        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" identifier="http://n2t.net/ark:/21547/Amj2" uniqueKey="observation_id" worksheet="Samples">
+            <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
+                The lower value of an intensity value range
+            </attribute>
+            <attribute column="upper_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001001">
+                The upper value of an intensity value range
+            </attribute>
+        </entity>
+        <relation>
+            <subject>
+                plantStructurePresence
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/PPO_0001007
+            </predicate>
+            <object>
+                measurementDatum
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                plantStructurePresence
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/RO_0000080
+            </predicate>
+            <object>
+                wholePlant
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                wholePlant
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/OBI_0000295
+            </predicate>
+            <object>
+                phenologicalObservingProcess
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                phenologicalObservingProcess
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/OBI_0000299
+            </predicate>
+            <object>
+                measurementDatum
+            </object>
+        </relation>
+    </mapping>
+</fims>
