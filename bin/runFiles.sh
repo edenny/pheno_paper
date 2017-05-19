@@ -92,10 +92,12 @@ function output {
     do
         echo java $(prop 'java_options') -jar $(prop 'query_fetcher') \
 	    -i $(prop_data 'output_reasoned_dir')$file.ttl \
+	    -inputFormat "TURTLE" \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
         java $(prop 'java_options') -jar $(prop 'query_fetcher') \
 	    -i $(prop_data 'output_reasoned_dir')$file.ttl \
+	    -inputFormat "TURTLE" \
 	    -o $(prop_data 'output_reasoned_csv_dir') \
 	    -sparql $(prop 'sparql_query') 
     done
@@ -160,10 +162,10 @@ function preProcess {
     echo "#=========================================================="
     echo "# Pre-Process"
     echo "#=========================================================="
-    echo python $(prop 'pre_processor_script') \
+    echo $(prop 'python') $(prop 'pre_processor_script') \
 	 $(prop_data 'input_dir') \
 	 $(prop_data 'output_csv_dir')
-    python $(prop 'pre_processor_script') \
+    $(prop 'python') $(prop 'pre_processor_script') \
 	 $(prop_data 'input_dir') \
 	 $(prop_data 'output_csv_dir')
 }
@@ -192,8 +194,8 @@ function split {
     echo "#=========================================================="
     echo "# Split Files " 
     echo "#=========================================================="
-    echo python fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
-    python fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
+    echo $(prop 'python') fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
+    $(prop 'python') fileSplitter.py  $(prop_data 'output_csv_dir')$inputFilename $(prop_data 'output_csv_split_dir') $(prop 'filesize_limit')
 }
 
 function chooseAll {
@@ -261,8 +263,10 @@ function processLoop {
     # loop results from file choosing
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
-        split 		# split files
+        #split 		# split files
         getSplitFiles	# get all the split files
+        triplify		# triplify
+        reason		# reason
         triplify		# triplify
         reason		# reason
         output 		# output task

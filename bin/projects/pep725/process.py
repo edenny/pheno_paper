@@ -94,7 +94,7 @@ def transform_data(frames, data):
 
     joined_data['observation_id'] = joined_data.apply(lambda x: uuid.uuid4(), axis=1)
     joined_data['specificEpithet'] = joined_data.apply(
-        lambda row: re.sub('^%s' % row['genus'], "", row['species']), axis=1)
+        lambda row: re.sub('^%s' % row['genus'], "", row['species']).strip(), axis=1)
     joined_data['Source'] = 'PEP725'
     joined_data['lower_count'] = 1
     joined_data.index.name = 'record_id'
