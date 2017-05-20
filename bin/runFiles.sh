@@ -122,15 +122,15 @@ function load {
 		--data-binary \
 		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
-	#curl \
- 	#	-Dcom.bigdata.rdf.store.DataLoader.bufferCapacity=100000 \
-	#	-Dcom.bigdata.rdf.store.DataLoader.queueCapacity=10 \
-	#	-sS \
-	#	-X POST \
-	#	-H 'Content-Type:application/xml' \
-	#	--data-binary \
-	#	'@'$(prop_data 'output_reasoned_dir')$file.ttl \
-	#	http://localhost:9999/blazegraph/namespace/$namespace/sparql
+	curl \
+ 		-Dcom.bigdata.rdf.store.DataLoader.bufferCapacity=100000 \
+		-Dcom.bigdata.rdf.store.DataLoader.queueCapacity=10 \
+		-sS \
+		-X POST \
+		-H 'Content-Type:application/xml' \
+		--data-binary \
+		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
+		http://localhost:9999/blazegraph/namespace/$namespace/sparql
     done
 }
 # Triplify 
@@ -263,10 +263,8 @@ function processLoop {
     # loop results from file choosing
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
-        #split 		# split files
+        split 		# split files
         getSplitFiles	# get all the split files
-        triplify		# triplify
-        reason		# reason
         triplify		# triplify
         reason		# reason
         output 		# output task
