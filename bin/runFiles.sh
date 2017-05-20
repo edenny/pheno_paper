@@ -118,7 +118,7 @@ function load {
 		-Dcom.bigdata.rdf.store.DataLoader.queueCapacity=10 \
  		-sS \
 		-X POST \
-		-H 'Content-Type:application/xml' \
+		-H 'Content-Type:text/turtle' \
 		--data-binary \
 		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
@@ -127,7 +127,7 @@ function load {
 		-Dcom.bigdata.rdf.store.DataLoader.queueCapacity=10 \
 		-sS \
 		-X POST \
-		-H 'Content-Type:application/xml' \
+		-H 'Content-Type:text/turtle' \
 		--data-binary \
 		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
