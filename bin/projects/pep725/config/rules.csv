@@ -1,6 +1,6 @@
 sheetname,column,type,list,error level,notes
-Samples,record_id,uniqueValue,,error,
-Samples,record_id,RequiredColumn,,error,
+Samples,observation_id,uniqueValue,,error,
+Samples,observation_id,RequiredColumn,,error,
 Samples,description,RequiredColumn,,error,
 Samples,LAT,RequiredColumn,,error,
 Samples,LON,RequiredColumn,,error,

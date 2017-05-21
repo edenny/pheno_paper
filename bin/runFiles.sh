@@ -7,20 +7,24 @@ usage="
 Script to pre-process, triplify, and reason over phenology data sources 
 #==========================================================
 
-Usage: runFiles.sh {option} {project} {project directory} {namespace (load only)}
-    project             Name of project. Corresponds to FIMS configuration file
-			and preProcessing script locations
-    project_directory   The data processing directory 
-    option              Select an option for running:
-    ---------------------------------------------------
-        init        Pre-process files, reading incoming formats and converting to read to ingest CSV
-        process     Process selected files: split, triplify, reason, post-process
+Usage: runFiles.sh {option} {project} {dataDir} {namespace}
+    project         Name of project. Corresponds to FIMS configuration
+		    file and preProcessing script locations
+    dataDir         The data processing directory 
+    namespace       Optional: for loading only
+    option          Select an option for running:
+        init        Pre-process files, reading incoming formats and 
+		    converting to read to ingest CSV
+        process     Process selected files: split, triplify, reason, 
+		    post-process
         processAll  Process all available files without user input: 
 		    split, triplify, reason, post-process
-        clean       Remove files from output directories except input and output_csv
-        load        Load selected files to SPARQL endpoint.  With this option also must specify namespace
-        loadAll     Load all available files to SPARQL endpoint without user input.  
-		    With this option also must specify namespace
+        clean       Remove files from output directories except input 
+		    and output_csv
+        load        Load selected files to SPARQL endpoint.  With this 
+                    option also must specify namespace
+        loadAll     Load all available files to SPARQL endpoint without 
+		    user input.  With this option also must specify namespace
 
 "
 
@@ -110,14 +114,20 @@ function load {
     for file in ${split_files[@]}
     do
 	echo curl \
+                -Dcom.bigdata.rdf.store.DataLoader.bufferCapacity=100000 \
+		-Dcom.bigdata.rdf.store.DataLoader.queueCapacity=10 \
+ 		-sS \
 		-X POST \
-		-H 'Content-Type:application/xml' \
+		-H 'Content-Type:text/turtle' \
 		--data-binary \
 		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
 	curl \
+ 		-Dcom.bigdata.rdf.store.DataLoader.bufferCapacity=100000 \
+		-Dcom.bigdata.rdf.store.DataLoader.queueCapacity=10 \
+		-sS \
 		-X POST \
-		-H 'Content-Type:application/xml' \
+		-H 'Content-Type:text/turtle' \
 		--data-binary \
 		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
@@ -253,10 +263,10 @@ function processLoop {
     # loop results from file choosing
     for f in ${filesToProcess[@]}; do
         inputFilename=$f
-        #split 		# split files
+        split 		# split files
         getSplitFiles	# get all the split files
-        #triplify		# triplify
-        #reason		# reason
+        triplify		# triplify
+        reason		# reason
         output 		# output task
     done
 }

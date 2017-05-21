@@ -1,5 +1,5 @@
 spreadsheet sheet name,spreadsheet column name,internal uri,datatype,dataformat,defined by,displayAnnotationProperty,definition,entity alias,notes
-Samples,record_id,http://rs.tdwg.org/dwc/terms/EventID,integer,,,,Record Identifier,phenologicalObservingProcess,adding wholePlant to record_id means each observation assumes it is a new plant but since plant ids are not created only thing we can do.
+Samples,observation_id,http://rs.tdwg.org/dwc/terms/EventID,string,,,,Record Identifier,phenologicalObservingProcess,adding wholePlant to observation_id means each observation assumes it is a new plant but since plant ids are not created only thing we can do.
 Samples,LAT,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,,Decimal Latitude,phenologicalObservingProcess,each column can contain multiple entity aliases where it can appear.  Use comma seperation 
 Samples,LON,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,,Decimal Longitude,phenologicalObservingProcess,
 Samples,ALT,http://rs.tdwg.org/dwc/terms/minimumElevationInMeters,string,,,,Minimum Elevation In Meters,phenologicalObservingProcess,

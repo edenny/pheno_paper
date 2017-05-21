@@ -5,8 +5,8 @@
     </metadata>
     <validation>
         <worksheet sheetname="Samples">
-            <rule column="record_id" level="error" type="uniqueValue"/>
-            <rule column="record_id" level="error" type="RequiredColumn"/>
+            <rule column="observation_id" level="error" type="uniqueValue"/>
+            <rule column="observation_id" level="error" type="RequiredColumn"/>
             <rule column="description" level="error" type="RequiredColumn"/>
             <rule column="LAT" level="error" type="RequiredColumn"/>
             <rule column="LON" level="error" type="RequiredColumn"/>
@@ -414,7 +414,7 @@
     </validation>
     <mapping>
         <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" identifier="http://n2t.net/ark:/21547/Ami2" uniqueKey="observation_id" worksheet="Samples">
-            <attribute column="record_id" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+            <attribute column="observation_id" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
                 Record Identifier
             </attribute>
             <attribute column="LAT" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
