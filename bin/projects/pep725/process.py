@@ -40,20 +40,30 @@ def process(input_dir, output_dir):
                                   skipinitialspace=True)
 
     count = 0
-    with open(output_dir + FILES['data'], 'w') as out_file:
-        writer = csv.writer(out_file)
-        writer.writerow(HEADERS)
+    #with open(output_dir + FILES['data'], 'w') as out_file:
+    #print 'out_file = ' + out_file.name
+    #writer = csv.writer(out_file)
+    #writer.writerow(HEADERS)
 
-        data = pd.read_csv(input_dir + FILES['data'], sep=';', header=0,
-                           usecols=['s_id', 'genus_id', 'species_id', 'phase_id', 'year', 'day'], chunksize=100000,
-                           skipinitialspace=True)
+    data = pd.read_csv(input_dir + FILES['data'], sep=';', header=0,
+           usecols=['s_id', 'genus_id', 'species_id', 'phase_id', 'year', 'day'], chunksize=100000,
+           skipinitialspace=True)
 
-        for chunk in data:
-	    count = count + 100000
-            # specify columns - 'record_id'. If leave 'record_id' in the columns, pandas will print an extra
-            # empty column as 'record_id' is the dataFrame index, and pandas doesn't consider the index a column
-	    print "    processing 100000 of " + str(count)
-            transform_data(frames, chunk).to_csv(out_file, columns=HEADERS[1:], mode='a', header=False)
+    for chunk in data:
+        count = count + 100000
+        # specify columns - 'record_id'. If leave 'record_id' in the columns, pandas will print an extra
+        # empty column as 'record_id' is the dataFrame index, and pandas doesn't consider the index a column
+        print "    processing 100000 of " + str(count)
+        df = transform_data(frames, chunk)
+        # get a list of unique genus names
+        genera = df.genus.unique()
+        # write files out by genus
+        for genus in genera:
+            print "       genus = " + genus
+            output_filename_fullpath = output_dir + genus + '.csv'
+            #df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
+            #df.loc[df['Genus'] == genus].to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
+            df.loc[df['genus'] == genus].to_csv(output_filename_fullpath, columns=HEADERS[1:], mode='a', header=False)
 
 
 def transform_data(frames, data):

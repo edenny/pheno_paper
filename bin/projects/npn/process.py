@@ -45,6 +45,9 @@ class processNPN:
 
     def process(self):
         framesDict = {}
+        # we need a dictionary of writeHeaders to store boolean values for each genus 
+        # that  has a header written
+        writeHeaders = {}
         # Loop each directory off of input directory
         for dirname in os.listdir(self.inputDir):
             # make sure we're just dealing with the proper directories 
@@ -62,11 +65,8 @@ class processNPN:
 			chunkSize = 100000
                         tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=chunkSize,dtype=object)
 
-			#masterDF = pd.DataFrame()
-			#result = []
-			writeHeader=True
+			#writeHeader=True
 			for df in tp:
-
 			    # put them back together
 			    #df = pd.concat(tp, ignore_index=True)
 
@@ -78,16 +78,6 @@ class processNPN:
                             # translate values
                             df = self.translate(self.cur_dir +'/intensity_values.csv',cols,'value',df,'Intensity_Value')
     
-
-			    # attempting to convert intensity value to simple integer to make df.loc calls later
-			    # more memory efficent
-			    # first fill nan values to 'unsure' in case this is blank
-			    #df['Phenophase_Status'].fillna(-1,inplace=True)
-			    #df['Phenophase_Status'] = (df['Phenophase_Status']).astype(int)
-			    #df['intensity_boolean'] = 1
-                            #df.loc[(df.Intensity_Value == '-9999') ,'intensity_boolean'] = 0
-			    #df['intensity_boolean'] = (df['intensity_boolean']).astype(int)
-
                             # set upper/lower counts for cases of no intensity value
                             df.loc[(df.Intensity_Value == '-9999') & (df.Phenophase_Status == '0'),'upper_count'] = 0
                             #df.loc[(df.intensity_boolean == 0) & (df.Phenophase_Status == 0),'upper_count'] = 0
@@ -108,19 +98,25 @@ class processNPN:
 			    count = count + chunkSize
 			    print "    processed " + str(chunkSize) + " of " + str(count) + " and appending to outputfile"
 
-			    #result.append(df)
-			    #masterDF.append(df)
+                            # Create output filename by removing first part of filename (datasheet_)
+                            #output_filename = outputfilename.split("_")[1] 
+                            #output_filename_fullpath = self.outputDir + output_filename + '.csv'
     
-  			    # print "    combining dataframes into one"
-			    #masterDF = pd.concat(result,ignore_index=True)
-                            # create output filename by removing first part of filename (datasheet_)
-                            output_filename = outputfilename.split("_")[1] 
-                            output_filename_fullpath = self.outputDir + output_filename + '.csv'
-    
+                            # get a list of unique genus names
+                            genera = df.Genus.unique()
+                            for genus in genera:
+                                output_filename_fullpath = self.outputDir + genus + '.csv'
+                                #df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
+                                df.loc[df['Genus'] == genus].to_csv(
+                                    output_filename_fullpath,
+                                    sep=',', 
+                                    mode='a', 
+                                    header=writeHeaders.get(genus,True)) # if headers value for this genus is not yet set then write True
+			        writeHeaders[genus]=False
+                                
                             # write to CSV output directory
-                            #print "    writing " + output_filename_fullpath
-                            df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
-			    writeHeader=False
+                            #df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
+			    #writeHeader=False
 
 # Argument parser
 parser = argparse.ArgumentParser(description='NPN Parser')
