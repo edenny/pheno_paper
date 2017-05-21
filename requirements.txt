@@ -2,7 +2,6 @@ alabaster==0.7.7
 altgraph==0.10.2
 amqp==1.4.9
 anyjson==0.3.3
-appnope==0.1.0
 argh==0.26.1
 Babel==2.2.0
 backports-abc==0.4
@@ -13,19 +12,10 @@ beautifulsoup4==4.3.2
 billiard==3.3.0.23
 biopython==1.65
 bleach==1.5.0
-bonjour-py==0.3
 celery==3.1.13
 certifi==2015.11.20.1
 configparser==3.5.0
 decorator==4.0.10
-Django==1.7.11
-django-cors-headers==0.12
-django-etl-sync==0.1
-django-filter==0.11.0
-django-haystack==2.4.0
-django-oauth2-provider==0.2.6.1
-djangorestframework==3.1.3
-djangorestframework-csv==1.3.3
 docutils==0.12
 docx==0.2.4
 dot2vue==1.0.0
@@ -33,7 +23,6 @@ ecdsa==0.13
 elasticsearch==1.2.0
 entrypoints==0.2.2
 enum34==1.1.6
-Fabric==1.8.0
 fims-cmdline==0.1.0
 funcsigs==1.0.2
 functools32==3.2.3.post2
