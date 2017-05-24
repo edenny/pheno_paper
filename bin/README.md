@@ -75,3 +75,8 @@ optional arguments:
   --drop-existing  this flag will drop all existing data with the same
                    "source" value.
 ```
+
+Checking on progress of loading:
+```
+curl 'http://localhost:9200/_cat/indices?v'
+```

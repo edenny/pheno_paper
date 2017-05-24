@@ -48,6 +48,7 @@ def load_file(es, file, index_name):
     data = []
 
     with open(file) as f:
+	print "Starting indexing on " + f.name
         reader = csv.DictReader(f)
 
         for row in reader:
