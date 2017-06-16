@@ -267,7 +267,7 @@ function processLoop {
         getSplitFiles	# get all the split files
         triplify		# triplify
         reason		# reason
-        output 		# output task
+        #output 		# output task
     done
 }
 # initialize necessary processing directories, if needed
