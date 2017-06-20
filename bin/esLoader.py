@@ -1,4 +1,4 @@
-import argparse, csv, os
+import argparse, csv, os, datetime
 
 import elasticsearch.helpers
 from elasticsearch import Elasticsearch
@@ -58,6 +58,7 @@ def load_file(es, file, index_name):
 
         for row in reader:
             row['plantStructurePresenceTypes'] = row['plantStructurePresenceTypes'].split("|")
+            row['loaded_ts'] = datetime.datetime.now()
             data.append({k: v for k, v in row.items() if v})  # remove any empty values
 
         elasticsearch.helpers.bulk(client=es, index=index_name, actions=data, doc_type=TYPE, raise_on_error=True,
