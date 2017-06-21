@@ -56,9 +56,9 @@ def split(
     current_out_writer = csv.writer(open(current_out_path, 'w'), delimiter=delimiter)
     current_limit = row_limit
     if keep_headers:
-        headers = reader.next()
+        headers = next(reader)
         current_out_writer.writerow(headers)
-    print '    writing ' + current_out_path
+    print('    writing ' + current_out_path)
     for i, row in enumerate(reader):
         if i + 1 > current_limit:
             current_piece += 1
@@ -70,7 +70,7 @@ def split(
             current_out_writer = csv.writer(open(current_out_path, 'w'), delimiter=delimiter)
             if keep_headers:
                 current_out_writer.writerow(headers)
-            print '    writing ' + current_out_path
+            print('    writing ' + current_out_path)
         current_out_writer.writerow(row)
 
 
