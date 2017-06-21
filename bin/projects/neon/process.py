@@ -1,23 +1,22 @@
 import shutil
-from sets import Set
 
 from xml.etree import ElementTree
 from zipfile import ZipFile
 
-import os, argparse, uuid, re, csv
+import os, argparse, uuid, re, csv, sys
 
 import pandas as pd
 
 NEON_DATA_DIR = 'NEON_obs-phenology-plant'
-HEADERS = ['uid', 'Latitude', 'Longitude', 'Year', 'dayOfYear', 'Source', 'IndividualID', 'genus', 'specificEpithet',
-           'scientificName', 'PhenophaseName', 'lower_count', 'upper_count', 'lower_percent', 'upper_percent']
+HEADERS = ['uid', 'Latitude', 'Longitude', 'Year', 'DayOfYear', 'Source', 'IndividualID', 'genus', 'specificEpithet',
+           'scientificName', 'phenophaseName', 'lower_count', 'upper_count', 'lower_percent', 'upper_percent']
 
 COLUMNS_MAP = {
     'individualID': 'IndividualID',
-    'phenophaseName': 'PhenophaseName',
+    'dayOfYear': 'DayOfYear',
 }
 
-INTENSITY_FILE = 'intensity_values.csv'
+INTENSITY_FILE = 'projects/neon/intensity_values.csv'
 INTENSITY_VALUE_FRAME = pd.read_csv(INTENSITY_FILE, skipinitialspace=True, header=0) if os.path.exists(
     INTENSITY_FILE) else None
 
@@ -32,6 +31,8 @@ def process(input_dir, output_dir, action=GENERATE_DATA):
     elif action == PHENO_DESC:
         generate_phen_descriptions()
     elif action == GENERATE_DATA:
+        import ipdb
+        #ipdb.set_trace()
         generate_data(input_dir, output_dir)
     else:
         raise RuntimeError('undefined action {}'.format(action))
@@ -116,6 +117,9 @@ def transform_data(data, lat, lng):
     data['specificEpithet'] = data.apply(
         lambda row: row.scientificName.split()[1] if pd.notnull(row.scientificName) else "", axis=1)
     data['Year'] = data.apply(lambda row: row['date'].year, axis=1)
+
+    data[list("lower_count")] = data[list("lower_count")].astype(int)
+    data[list("upper_count")] = data[list("upper_count")].astype(int)
 
     df = data.merge(INTENSITY_VALUE_FRAME, left_on='phenophaseIntensity', right_on='value', how='left')
 
