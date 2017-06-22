@@ -56,6 +56,8 @@ def transform_data(occurrences, base_data):
 
     data['source'] = 'ASU'
     data['lower_count'] = 1
+    data["year"] = data["year"].fillna(0.0).astype(int)
+    data["startDayOfYear"] = data["startDayOfYear"].fillna(0.0).astype(int)
 
     return data.rename(columns=COLUMNS_MAP)
 

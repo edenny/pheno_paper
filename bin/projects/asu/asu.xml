@@ -7,12 +7,12 @@
         <worksheet sheetname="Samples">
             <rule column="uid" level="error" type="uniqueValue"/>
             <rule column="uid" level="error" type="RequiredColumn"/>
-            <rule column="individualID" level="error" type="RequiredColumn"/>
+            <rule column="occurrenceID" level="error" type="RequiredColumn"/>
             <rule column="phenophaseName" level="error" type="RequiredColumn"/>
             <rule column="latitude" level="error" type="RequiredColumn"/>
             <rule column="longitude" level="error" type="RequiredColumn"/>
             <rule column="year" level="error" type="RequiredColumn"/>
-            <rule column="dayOfYear" level="error" type="RequiredColumn"/>
+            <rule column="startDayOfYear" level="error" type="RequiredColumn"/>
             <rule column="source" level="error" type="RequiredColumn"/>
             <rule column="phenophaseName" level="error" list="phenophaseName" type="controlledVocabulary"/>
         </worksheet>
