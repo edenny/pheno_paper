@@ -31,8 +31,6 @@ def process(input_dir, output_dir, action=GENERATE_DATA):
     elif action == PHENO_DESC:
         generate_phen_descriptions()
     elif action == GENERATE_DATA:
-        import ipdb
-        #ipdb.set_trace()
         generate_data(input_dir, output_dir)
     else:
         raise RuntimeError('undefined action {}'.format(action))
@@ -101,8 +99,8 @@ def parse_coordinates(xml_file):
     lat = n_bound.text if n_bound is not None else ""
     lng = w_bound.text if w_bound is not None else ""
 
-    # if not lat or not lng:
-    #     raise RuntimeError('missing bounding coordinates for xml_file: {}'.format(xml_file.name))
+    if not lat or not lng:
+        raise RuntimeError('missing bounding coordinates for xml_file: {}'.format(xml_file.name))
 
     return lat, lng
 
@@ -118,9 +116,6 @@ def transform_data(data, lat, lng):
         lambda row: row.scientificName.split()[1] if pd.notnull(row.scientificName) else "", axis=1)
     data['Year'] = data.apply(lambda row: row['date'].year, axis=1)
 
-    data[list("lower_count")] = data[list("lower_count")].astype(int)
-    data[list("upper_count")] = data[list("upper_count")].astype(int)
-
     df = data.merge(INTENSITY_VALUE_FRAME, left_on='phenophaseIntensity', right_on='value', how='left')
 
     # check that we have a 'value' value if we have a phenophaseIntensity value
@@ -134,6 +129,10 @@ def transform_data(data, lat, lng):
     df.loc[df.phenophaseIntensity.isnull() & df.phenophaseStatus.str.match('yes', case=False), 'lower_count'] = 1
     # if phenophaseStatus is 'yes' and no phenophaseIntensity, set lower_count = 1
     df.loc[df.phenophaseIntensity.isnull() & df.phenophaseStatus.str.match('no', case=False), 'upper_count'] = 0
+
+    df["lower_count"] = df["lower_count"].fillna(0.0).astype(int)
+    df["upper_count"] = df["upper_count"].fillna(0.0).astype(int)
+
 
     df.fillna('', inplace=True)  # replace all null values
 
