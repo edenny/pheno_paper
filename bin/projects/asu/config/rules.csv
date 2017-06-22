@@ -1,11 +1,11 @@
 sheetname,column,type,list,error level,notes
 Samples,uid,uniqueValue,,error,
 Samples,uid,RequiredColumn,,error,
-Samples,IndividualID,RequiredColumn,,error,this is a new rule to just specify a single required column
+Samples,individualID,RequiredColumn,,error,this is a new rule to just specify a single required column
 Samples,phenophaseName,RequiredColumn,,error,
-Samples,Latitude,RequiredColumn,,error,
-Samples,Longitude,RequiredColumn,,error,
-Samples,Year,RequiredColumn,,error,
-Samples,DayOfYear,RequiredColumn,,error,
-Samples,Source,RequiredColumn,,error,
+Samples,latitude,RequiredColumn,,error,
+Samples,longitude,RequiredColumn,,error,
+Samples,year,RequiredColumn,,error,
+Samples,dayOfYear,RequiredColumn,,error,
+Samples,source,RequiredColumn,,error,
 Samples,phenophaseName,controlledVocabulary,phenophaseName.csv,error,
