@@ -8,12 +8,13 @@ import os, argparse, uuid, re, csv, sys
 import pandas as pd
 
 NEON_DATA_DIR = 'NEON_obs-phenology-plant'
-HEADERS = ['uid', 'Latitude', 'Longitude', 'Year', 'DayOfYear', 'Source', 'IndividualID', 'genus', 'specificEpithet',
+HEADERS = ['uid', 'latitude', 'longitude', 'year', 'dayOfYear', 'source', 'individualID', 'genus', 'specificEpithet',
            'scientificName', 'phenophaseName', 'lower_count', 'upper_count', 'lower_percent', 'upper_percent']
 
 COLUMNS_MAP = {
-    'individualID': 'IndividualID',
-    'dayOfYear': 'DayOfYear',
+    'Latitude': 'latitude',
+    'Longitude': 'longitude',
+    'Year': 'year',
 }
 
 INTENSITY_FILE = 'projects/neon/intensity_values.csv'
@@ -106,9 +107,9 @@ def parse_coordinates(xml_file):
 
 
 def transform_data(data, lat, lng):
-    data['Source'] = 'NEON'
-    data['Latitude'] = lat
-    data['Longitude'] = lng
+    data['source'] = 'NEON'
+    data['latitude'] = lat
+    data['longitude'] = lng
 
     data['genus'] = data.apply(lambda row: row.scientificName.split()[0] if pd.notnull(row.scientificName) else "",
                                axis=1)
