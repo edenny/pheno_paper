@@ -1,0 +1,138 @@
+<?xml version="1.0" ?>
+<fims>
+    <metadata default_worksheet="Samples" doi="" eml_location="eml_location" ontology_location="ppo.owl" queryTarget="http://data.biscicol.org/ds" shortname="plantPhenologyOntology" target="http://data.biscicol.org/ds/data">
+        This is for testing the conversion of spreadsheets into instance data using the plant phenology ontology.
+    </metadata>
+    <validation>
+        <worksheet sheetname="Samples">
+            <rule column="uid" level="error" type="uniqueValue"/>
+            <rule column="uid" level="error" type="RequiredColumn"/>
+            <rule column="IndividualID" level="error" type="RequiredColumn"/>
+            <rule column="phenophaseName" level="error" type="RequiredColumn"/>
+            <rule column="Latitude" level="error" type="RequiredColumn"/>
+            <rule column="Longitude" level="error" type="RequiredColumn"/>
+            <rule column="Year" level="error" type="RequiredColumn"/>
+            <rule column="DayOfYear" level="error" type="RequiredColumn"/>
+            <rule column="Source" level="error" type="RequiredColumn"/>
+            <rule column="phenophaseName" level="error" list="phenophaseName" type="controlledVocabulary"/>
+        </worksheet>
+        <lists>
+            <list alias="phenophaseName">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
+                    Flowering
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002017">
+                    Fruiting
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002008">
+                    Budding
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002002">
+                    Mostly old
+                </field>
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002002">
+                    Mostly young
+                </field>
+            </list>
+        </lists>
+    </validation>
+    <mapping>
+        <entity conceptAlias="phenologicalObservingProcess" conceptURI="http://purl.obolibrary.org/obo/PPO_0002000" identifier="http://n2t.net/ark:/21547/Anm2" uniqueKey="uid" worksheet="Samples">
+            <attribute column="uid" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/EventID">
+                Record Identifier
+            </attribute>
+            <attribute column="occurrenceID" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/occurrenceID">
+                occurrenceID
+            </attribute>
+            <attribute column="decimalLatitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+                Decimal Latitude
+            </attribute>
+            <attribute column="decimalLongitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+                Decimal Longitude
+            </attribute>
+            <attribute column="year" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
+                The year the observation took place
+            </attribute>
+            <attribute column="startDayOfYear" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/startDayOfYear">
+                Day of year the observation took place
+            </attribute>
+            <attribute column="source" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://purl.org/dc/elements/1.1/creator">
+                Dataset Source
+            </attribute>
+        </entity>
+        <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" identifier="http://n2t.net/ark:/21547/Ano2" uniqueKey="uid" worksheet="Samples">
+            <attribute column="genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/genus">
+                Genus
+            </attribute>
+            <attribute column="specificEpithet" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/specificEpithet">
+                Specific Epithet
+            </attribute>
+            <attribute column="scientificName" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/scientificName">
+                Scientific Name
+            </attribute>
+        </entity>
+        <entity conceptAlias="plantStructurePresence" conceptURI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" identifier="http://n2t.net/ark:/21547/Anl2" uniqueKey="uid" worksheet="Samples">
+            <attribute column="phenophaseName" dataformat="" datatype="string" displayAnnotationProperty="FALSE" group="plantStructurePresence" uri="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">
+                Whole plant phenological stage
+            </attribute>
+        </entity>
+        <entity conceptAlias="measurementDatum" conceptURI="http://purl.obolibrary.org/obo/IAO_0000109" identifier="http://n2t.net/ark:/21547/Ann2" uniqueKey="uid" worksheet="Samples">
+            <attribute column="lower_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001000">
+                The lower value of an intensity value range
+            </attribute>
+            <attribute column="upper_count" dataformat="" datatype="integer" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001001">
+                The upper value of an intensity value range
+            </attribute>
+            <attribute column="lower_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001002">
+                The lower percent of an intensity value range
+            </attribute>
+            <attribute column="upper_percent" dataformat="" datatype="float" displayAnnotationProperty="true" group="measurementDatum" uri="http://purl.obolibrary.org/obo/PPO_0001003">
+                The upper percent of an intensity value range
+            </attribute>
+        </entity>
+        <relation>
+            <subject>
+                plantStructurePresence
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/PPO_0001007
+            </predicate>
+            <object>
+                measurementDatum
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                plantStructurePresence
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/RO_0000080
+            </predicate>
+            <object>
+                wholePlant
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                wholePlant
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/OBI_0000295
+            </predicate>
+            <object>
+                phenologicalObservingProcess
+            </object>
+        </relation>
+        <relation>
+            <subject>
+                phenologicalObservingProcess
+            </subject>
+            <predicate>
+                http://purl.obolibrary.org/obo/OBI_0000299
+            </predicate>
+            <object>
+                measurementDatum
+            </object>
+        </relation>
+    </mapping>
+</fims>
