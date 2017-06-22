@@ -3,11 +3,13 @@ import pandas as pd
 
 ASU_DATA_DIR = 'ASU_Phenology_DWCA'
 HEADERS = ['uid', 'occurrenceID', 'scientificName', 'genus', 'specificEpithet', 'year', 'startDayOfYear',
-           'decimalLatitude', 'decimalLongitude', 'source', 'phenophaseName', 'lower_count', 'upper_count',
+           'latitude', 'longitude', 'source', 'phenophaseName', 'lower_count', 'upper_count',
            'lower_percent', 'upper_percent']
 
 COLUMNS_MAP = {
-    'measurementValue': 'phenophaseName'
+    'measurementValue': 'phenophaseName',
+    'decimalLatitude': 'latitude',
+    'decimalLongitude': 'longitude'
 }
 
 FILES = {

@@ -44,10 +44,10 @@
             <attribute column="occurrenceID" dataformat="" datatype="string" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/occurrenceID">
                 occurrenceID
             </attribute>
-            <attribute column="decimalLatitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
+            <attribute column="latitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLatitude">
                 Decimal Latitude
             </attribute>
-            <attribute column="decimalLongitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
+            <attribute column="longitude" dataformat="" datatype="float" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/decimalLongitude">
                 Decimal Longitude
             </attribute>
             <attribute column="year" dataformat="" datatype="integer" displayAnnotationProperty="true" group="phenologicalObservingProcess" uri="http://rs.tdwg.org/dwc/terms/year">
