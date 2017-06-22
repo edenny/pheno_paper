@@ -1,6 +1,6 @@
 spreadsheet sheet name,spreadsheet column name,internal uri,datatype,dataformat,defined by,displayAnnotationProperty,definition,entity alias,notes
 Samples,uid,http://rs.tdwg.org/dwc/terms/EventID,string,,,,Record Identifier,phenologicalObservingProcess,
-Samples,IndividualID,http://rs.tdwg.org/dwc/terms/organismID,integer,,,,Individual Plant Identifier,wholePlant,This will be mapped to {organism virus or viroid in the ontology}
+Samples,IndividualID,http://rs.tdwg.org/dwc/terms/organismID,string,,,,Individual Plant Identifier,wholePlant,This will be mapped to {organism virus or viroid in the ontology}
 Samples,Latitude,http://rs.tdwg.org/dwc/terms/decimalLatitude,float,,,,Decimal Latitude,phenologicalObservingProcess,each column can contain multiple entity aliases where it can appear.  Use comma seperation 
 Samples,Longitude,http://rs.tdwg.org/dwc/terms/decimalLongitude,float,,,,Decimal Longitude,phenologicalObservingProcess,
 Samples,genus,http://rs.tdwg.org/dwc/terms/genus,string,,,,Genus,wholePlant,

@@ -79,7 +79,7 @@
             </attribute>
         </entity>
         <entity conceptAlias="wholePlant" conceptURI="http://purl.obolibrary.org/obo/PO_0000003" identifier="http://n2t.net/ark:/21547/Aml2" uniqueKey="IndividualID" worksheet="Samples">
-            <attribute column="IndividualID" dataformat="" datatype="integer" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/organismID">
+            <attribute column="IndividualID" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/organismID">
                 Individual Plant Identifier
             </attribute>
             <attribute column="genus" dataformat="" datatype="string" displayAnnotationProperty="true" group="wholePlant" uri="http://rs.tdwg.org/dwc/terms/genus">
