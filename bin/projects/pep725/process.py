@@ -49,6 +49,7 @@ def process(input_dir, output_dir):
            usecols=['s_id', 'genus_id', 'species_id', 'phase_id', 'year', 'day'], chunksize=100000,
            skipinitialspace=True)
 
+    writeHeaders = {}
     for chunk in data:
         count = count + 100000
         # specify columns - 'record_id'. If leave 'record_id' in the columns, pandas will print an extra
@@ -61,9 +62,9 @@ def process(input_dir, output_dir):
         for genus in genera:
             print "       genus = " + genus
             output_filename_fullpath = output_dir + genus + '.csv'
-            #df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
-            #df.loc[df['Genus'] == genus].to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
-            df.loc[df['genus'] == genus].to_csv(output_filename_fullpath, columns=HEADERS[1:], mode='a', header=False)
+            df.loc[df['genus'] == genus].to_csv(output_filename_fullpath, columns=HEADERS[1:], mode='a', header=writeHeaders.get(genus,True))
+
+            writeHeaders[genus]=False
 
 
 def transform_data(frames, data):

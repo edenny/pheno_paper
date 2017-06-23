@@ -1,13 +1,15 @@
-import os, argparse, csv, shutil
+import os, argparse, csv, shutil, uuid
 import pandas as pd
 
 ASU_DATA_DIR = 'ASU_Phenology_DWCA'
-HEADERS = ['occurrenceID', 'scientificName', 'genus', 'specificEpithet', 'year', 'startDayOfYear',
-           'decimalLatitude', 'decimalLongitude', 'source', 'phenophaseName', 'lower_count', 'upper_count',
+HEADERS = ['uid', 'occurrenceID', 'scientificName', 'genus', 'specificEpithet', 'year', 'startDayOfYear',
+           'latitude', 'longitude', 'source', 'phenophaseName', 'lower_count', 'upper_count',
            'lower_percent', 'upper_percent']
 
 COLUMNS_MAP = {
-    'measurementValue': 'phenophaseName'
+    'measurementValue': 'phenophaseName',
+    'decimalLatitude': 'latitude',
+    'decimalLongitude': 'longitude'
 }
 
 FILES = {
@@ -49,10 +51,13 @@ def transform_data(occurrences, base_data):
     data = base_data \
         .merge(occurrences, left_on='coreid', right_on='id', how='left')
 
+    data['uid'] = data.apply(lambda x: uuid.uuid4(), axis=1)
     data.fillna("", inplace=True)  # replace all null values
 
     data['source'] = 'ASU'
     data['lower_count'] = 1
+    data["year"] = data["year"].fillna(0.0).astype(int)
+    data["startDayOfYear"] = data["startDayOfYear"].fillna(0.0).astype(int)
 
     return data.rename(columns=COLUMNS_MAP)
 

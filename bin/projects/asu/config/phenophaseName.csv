@@ -1,0 +1,6 @@
+field,defined_by,Notes
+Flowering,{open flower presence},Derived from the measurementOrFAct Value field
+Fruiting,{ripening fruit presence},Derived from the measurementOrFAct Value field
+Budding,{breaking bud presence},Derived from the measurementOrFAct Value field
+"Mostly old",{plant structure presence},Derived from the measurementOrFAct Value field
+"Mostly young",{plant structure presence},Derived from the measurementOrFAct Value field

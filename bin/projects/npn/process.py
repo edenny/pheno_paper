@@ -65,7 +65,6 @@ class processNPN:
 			chunkSize = 100000
                         tp = pd.read_csv(dirname+'/'+filename, sep=',', header=0,iterator=True, chunksize=chunkSize,dtype=object)
 
-			#writeHeader=True
 			for df in tp:
 			    # put them back together
 			    #df = pd.concat(tp, ignore_index=True)
@@ -107,6 +106,7 @@ class processNPN:
                             for genus in genera:
                                 output_filename_fullpath = self.outputDir + genus + '.csv'
                                 #df.to_csv(output_filename_fullpath,sep=',', mode='a', header=writeHeader)
+				print "        genus = " + genus
                                 df.loc[df['Genus'] == genus].to_csv(
                                     output_filename_fullpath,
                                     sep=',', 

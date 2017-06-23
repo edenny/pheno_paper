@@ -1,4 +1,4 @@
-import argparse, csv, os
+import argparse, csv, os, datetime
 
 import elasticsearch.helpers
 from elasticsearch import Elasticsearch
@@ -38,9 +38,14 @@ def load(data_dir, drop_existing=False):
     doc_count = 0
 
     for file in get_files(data_dir):
-        doc_count += load_file(es, file, index_name)
+        try:
+            doc_count += load_file(es, file, index_name)
+        except RuntimeError as e:
+            print(e)
+            print("Failed to load file {}".format(file))
 
-    print "Indexed {} documents total".format(doc_count)
+
+    print("Indexed {} documents total".format(doc_count))
 
 
 def load_file(es, file, index_name):
@@ -48,16 +53,18 @@ def load_file(es, file, index_name):
     data = []
 
     with open(file) as f:
+        print("Starting indexing on " + f.name)
         reader = csv.DictReader(f)
 
         for row in reader:
             row['plantStructurePresenceTypes'] = row['plantStructurePresenceTypes'].split("|")
+            row['loaded_ts'] = datetime.datetime.now()
             data.append({k: v for k, v in row.items() if v})  # remove any empty values
 
         elasticsearch.helpers.bulk(client=es, index=index_name, actions=data, doc_type=TYPE, raise_on_error=True,
                                    chunk_size=10000, request_timeout=60)
         doc_count += len(data)
-        print "Indexed {} documents in {}".format(doc_count, f.name)
+        print("Indexed {} documents in {}".format(doc_count, f.name))
 
     return doc_count
 

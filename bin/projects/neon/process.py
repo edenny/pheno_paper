@@ -1,23 +1,23 @@
 import shutil
-from sets import Set
 
 from xml.etree import ElementTree
 from zipfile import ZipFile
 
-import os, argparse, uuid, re, csv
+import os, argparse, uuid, re, csv, sys
 
 import pandas as pd
 
 NEON_DATA_DIR = 'NEON_obs-phenology-plant'
-HEADERS = ['uid', 'Latitude', 'Longitude', 'Year', 'dayOfYear', 'Source', 'IndividualID', 'genus', 'specificEpithet',
-           'scientificName', 'PhenophaseName', 'lower_count', 'upper_count', 'lower_percent', 'upper_percent']
+HEADERS = ['uid', 'latitude', 'longitude', 'year', 'dayOfYear', 'source', 'individualID', 'genus', 'specificEpithet',
+           'scientificName', 'phenophaseName', 'lower_count', 'upper_count', 'lower_percent', 'upper_percent']
 
 COLUMNS_MAP = {
-    'individualID': 'IndividualID',
-    'phenophaseName': 'PhenophaseName',
+    'Latitude': 'latitude',
+    'Longitude': 'longitude',
+    'Year': 'year',
 }
 
-INTENSITY_FILE = 'intensity_values.csv'
+INTENSITY_FILE = 'projects/neon/intensity_values.csv'
 INTENSITY_VALUE_FRAME = pd.read_csv(INTENSITY_FILE, skipinitialspace=True, header=0) if os.path.exists(
     INTENSITY_FILE) else None
 
@@ -100,16 +100,16 @@ def parse_coordinates(xml_file):
     lat = n_bound.text if n_bound is not None else ""
     lng = w_bound.text if w_bound is not None else ""
 
-    # if not lat or not lng:
-    #     raise RuntimeError('missing bounding coordinates for xml_file: {}'.format(xml_file.name))
+    if not lat or not lng:
+        raise RuntimeError('missing bounding coordinates for xml_file: {}'.format(xml_file.name))
 
     return lat, lng
 
 
 def transform_data(data, lat, lng):
-    data['Source'] = 'NEON'
-    data['Latitude'] = lat
-    data['Longitude'] = lng
+    data['source'] = 'NEON'
+    data['latitude'] = lat
+    data['longitude'] = lng
 
     data['genus'] = data.apply(lambda row: row.scientificName.split()[0] if pd.notnull(row.scientificName) else "",
                                axis=1)
@@ -130,6 +130,10 @@ def transform_data(data, lat, lng):
     df.loc[df.phenophaseIntensity.isnull() & df.phenophaseStatus.str.match('yes', case=False), 'lower_count'] = 1
     # if phenophaseStatus is 'yes' and no phenophaseIntensity, set lower_count = 1
     df.loc[df.phenophaseIntensity.isnull() & df.phenophaseStatus.str.match('no', case=False), 'upper_count'] = 0
+
+    df["lower_count"] = df["lower_count"].fillna(0.0).astype(int)
+    df["upper_count"] = df["upper_count"].fillna(0.0).astype(int)
+
 
     df.fillna('', inplace=True)  # replace all null values
 
