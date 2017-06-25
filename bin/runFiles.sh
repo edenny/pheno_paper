@@ -25,6 +25,8 @@ Usage: runFiles.sh {option} {project} {dataDir} {namespace}
                     option also must specify namespace
         loadAll     Load all available files to SPARQL endpoint without 
 		    user input.  With this option also must specify namespace
+        output      Generate output csvs from reasoned data
+        loadEs      Load output csvs into ElasticSearch
 
 "
 
@@ -132,6 +134,16 @@ function load {
 		'@'$(prop_data 'output_reasoned_dir')$file.ttl \
 		http://localhost:9999/blazegraph/namespace/$namespace/sparql
     done
+}
+# load reasoned csv file into elasticsearch
+function loadEs {
+    echo "#=========================================================="
+    echo "# LoadEs"
+    echo "#=========================================================="
+    echo $(prop 'python') esLoader.py \
+	 $(prop_data 'output_reasoned_csv_dir')
+    $(prop 'python') esLoader.py \
+	 $(prop_data 'output_reasoned_csv_dir')
 }
 # Triplify 
 # execute the triplify process for a list of files
@@ -267,7 +279,7 @@ function processLoop {
         getSplitFiles	# get all the split files
         triplify		# triplify
         reason		# reason
-        #output 		# output task
+        output 		# output task
     done
 }
 # initialize necessary processing directories, if needed
@@ -349,6 +361,26 @@ if [ "$option" == "loadAll" ] ; then
         inputFilename=$f
         getSplitFiles	# get all the split files
         load	
+    done
+    exit
+fi
+# output the reasoned files to csv
+if [ "$option" == "output" ] ; then
+    fileChooser
+    for f in ${filesToProcess[@]}; do
+        inputFilename=$f
+        getSplitFiles
+        output
+    done
+    exit
+fi
+# load the reasoned csvs into elasticsearch
+if [ "$option" == "loadEs" ] ; then
+    fileChooser
+    for f in ${filesToProcess[@]}; do
+        inputFilename=$f
+        getSplitFiles
+        loadEs
     done
     exit
 fi
