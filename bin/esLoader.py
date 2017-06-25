@@ -23,6 +23,7 @@ from elasticsearch import Elasticsearch, RequestsHttpConnection, serializer, com
 ALIAS_NAME = 'ppo'
 TYPE = 'record'
 
+
 # see https://github.com/elastic/elasticsearch-py/issues/374
 class JSONSerializerPython2(serializer.JSONSerializer):
     """Override elasticsearch library serializer to ensure it encodes utf characters during json dump.
@@ -30,6 +31,7 @@ class JSONSerializerPython2(serializer.JSONSerializer):
     A description of how ensure_ascii encodes unicode characters to ensure they can be sent across the wire
     as ascii can be found here: https://docs.python.org/2/library/json.html#basic-usage
     """
+
     def dumps(self, data):
         # don't serialize strings
         if isinstance(data, compat.string_types):
@@ -38,6 +40,7 @@ class JSONSerializerPython2(serializer.JSONSerializer):
             return json.dumps(data, default=self.default, ensure_ascii=True)
         except (ValueError, TypeError) as e:
             raise exceptions.SerializationError(data, e)
+
 
 def load(data_dir, drop_existing=False):
     es = Elasticsearch(serializer=JSONSerializerPython2())
@@ -59,7 +62,6 @@ def load(data_dir, drop_existing=False):
             print(e)
             print("Failed to load file {}".format(file))
 
-
     print("Indexed {} documents total".format(doc_count))
 
 
@@ -67,7 +69,7 @@ def load_file(es, file, index_name):
     doc_count = 0
     data = []
 
-    #with codecs.open(file, 'r', 'ascii') as f:
+    # with codecs.open(file, 'r', 'ascii') as f:
     with open(file) as f:
         print("Starting indexing on " + f.name)
         reader = csv.DictReader(f)
@@ -77,11 +79,11 @@ def load_file(es, file, index_name):
             row['loaded_ts'] = datetime.datetime.now()
             data.append({k: v for k, v in row.items() if v})  # remove any empty values
 
-        #try:
+        # try:
         elasticsearch.helpers.bulk(client=es, index=index_name, actions=data, doc_type=TYPE, raise_on_error=True,
                                    chunk_size=10000, request_timeout=60)
-        #except Exception:
-            #print(sys
+        # except Exception:
+        # print(sys
         doc_count += len(data)
         print("Indexed {} documents in {}".format(doc_count, f.name))
 
@@ -134,4 +136,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    load(args.data_dir.strip(), args.drop_existing or False);
+    load(args.data_dir.strip(), args.drop_existing or False)

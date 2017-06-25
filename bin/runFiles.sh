@@ -142,6 +142,7 @@ function loadEs {
     echo "#=========================================================="
     echo $(prop 'python') esLoader.py \
 	 $(prop_data 'output_reasoned_csv_dir')
+
     $(prop 'python') esLoader.py \
 	 $(prop_data 'output_reasoned_csv_dir')
 }
