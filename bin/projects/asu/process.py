@@ -19,6 +19,8 @@ FILES = {
     'measurements': os.path.join(ASU_DATA_DIR, 'measurementOrFact.csv')
 }
 
+INVALID_RECORDS = pd.DataFrame()
+
 
 def process(input_dir, output_dir):
     clean(output_dir)
@@ -46,18 +48,36 @@ def process(input_dir, output_dir):
 
     out_file.close()
 
+    # write invalid records to file
+    with open(os.path.join(output_dir, 'invalid_data.csv'), 'w') as i_file:
+        INVALID_RECORDS.to_csv(i_file, columns=HEADERS, header=True, index=False)
+
 
 def transform_data(occurrences, base_data):
+    global INVALID_RECORDS
+
     data = base_data \
         .merge(occurrences, left_on='coreid', right_on='id', how='left')
 
     data['uid'] = data.apply(lambda x: uuid.uuid4(), axis=1)
+    # data = data.replace(r'\s+', pd.np.nan, regex=True)
+
+    # remove invalid records to write to a separate file later
+    INVALID_RECORDS = INVALID_RECORDS.append(data[data.decimalLatitude.isnull()])
+    data = data.dropna(subset=['decimalLatitude'])
+    INVALID_RECORDS = INVALID_RECORDS.append(data[data.decimalLongitude.isnull()])
+    data = data.dropna(subset=['decimalLongitude'])
+    INVALID_RECORDS = INVALID_RECORDS.append(data[data.year.isnull()])
+    data = data.dropna(subset=['year'])
+    INVALID_RECORDS = INVALID_RECORDS.append(data[data.startDayOfYear.isnull()])
+    data = data.dropna(subset=['startDayOfYear'])
+
     data.fillna("", inplace=True)  # replace all null values
 
     data['source'] = 'ASU'
     data['lower_count'] = 1
-    data["year"] = data["year"].fillna(0.0).astype(int)
-    data["startDayOfYear"] = data["startDayOfYear"].fillna(0.0).astype(int)
+    data["year"] = data["year"].astype(int)
+    data["startDayOfYear"] = data["startDayOfYear"].astype(int)
 
     return data.rename(columns=COLUMNS_MAP)
 
