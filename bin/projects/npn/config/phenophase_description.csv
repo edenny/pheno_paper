@@ -4,7 +4,7 @@ field,defined_by
 >=50% of needles colored (larch),{senescing leaf presence}
 >=50% of needles fallen (larch),{abscised leaf presence}
 >=75% of full leaf size (deciduous),{mature leaf presence}
-All leaf buds broken (lilac/honeysuckle),{breaking bud presence}
+All leaf buds broken (lilac/honeysuckle),{expanding leaf presence}
 All leaves colored (deciduous),{senescing leaf presence}
 All leaves fallen (deciduous),{abscised leaf presence}
 All leaves withered (herbaceous and grasses),{senescing leaf presence}
@@ -22,8 +22,8 @@ Emerging needles (pines),{breaking bud presence}
 End bloom (historic lilac/eastern honeysuckle),{open flower presence}
 End bloom (historic western honeysuckle),{open flower presence}
 End of flowering (lilac/honeysuckle),{open flower presence}
-Falling leaves,{senescing leaf presence}
-Falling needles,{senescing leaf presence}
+Falling leaves,{abscised leaf presence}
+Falling needles,{abscised leaf presence}
 First bloom (historic eastern lilac),{open flower presence}
 First bloom (historic honeysuckle),{open flower presence}
 First bloom (historic western lilac),{open flower presence}
@@ -42,17 +42,17 @@ Full flowering (honeysuckle),{open flower presence}
 Full flowering (lilac),{open flower presence}
 Full leaf (historic lilac/honeysuckle),{mature leaf presence}
 Full pollen release (angiosperms),{pollen-releasing flower presence}
-Full pollen release (conifers),{open pollen cone presence}
+Full pollen release (conifers),{pollen-releasing pollen cone presence}
 Full red berries (historic western honeysuckle),{ripening fruit presence}
 Full shriveled berries (historic western honeysuckle),{ripening fruit presence}
 Increasing leaf size,{expanding leaf presence}
 Initial growth (forbs),{new above-ground shoot-borne shoot system presence}
 Initial growth (grasses/sedges),{new above-ground shoot-borne shoot system presence}
-Leaves,{leaf presence}
-Leaves (forbs),{leaf presence}
-Leaves (grasses),{leaf presence}
-Leaves (sedges),{leaf presence}
-Needles (deciduous),{leaf presence}
+Leaves,{unfolded leaf presence}
+Leaves (forbs),{unfolded leaf presence}
+Leaves (grasses),{unfolded leaf presence}
+Leaves (sedges),{unfoled leaf presence}
+Needles (deciduous),{unfolded leaf presence}
 New side branches (rockweed),{plant structure presence}
 Open flowers,{open flower presence}
 Open flowers (1 location),{open flower presence}
@@ -61,7 +61,7 @@ Open flowers (honeysuckle),{open flower presence}
 Open flowers (lilac),{open flower presence}
 Open pollen cones (conifers),{open pollen cone presence}
 Pollen cones (conifers),{pollen cone presence}
-Pollen release (conifers),{open pollen cone presence}
+Pollen release (conifers),{pollen-releasing pollen cone presence}
 Pollen release (flowers),{pollen-releasing flower presence}
 Recent cone or seed drop,{abscised cone or seed presence}
 Recent fruit or seed drop,{abscised fruit or seed presence}
@@ -72,9 +72,9 @@ Ripe seed cones,{ripening seed cone presence}
 Ripe seeds (grasses),{seed cone presence}
 Smooth inflated receptacles,{plant structure presence}
 Torn receptacles,{plant structure presence}
-Unripe seed cones,{seed cone presence}
-Young leaves (forbs),{expanding leaf presence}
-Young leaves (tree/shrub),{expanding leaf presence}
-Young needles (conifers),{expanding leaf presence}
-Young needles (pines),{expanding leaf presence}
-Young unfolded leaves (evergreen 1 location),{expanding leaf presence}
+Unripe seed cones,{unripe seed cone presence}
+Young leaves (forbs),{young leaf presence}
+Young leaves (tree/shrub),{young leaf presence}
+Young needles (conifers),{young leaf presence}
+Young needles (pines),{young leaf presence}
+Young unfolded leaves (evergreen 1 location),{unfolding leaf presence}
