@@ -18,6 +18,9 @@
         </worksheet>
         <lists>
             <list alias="phenophaseName">
+                <field defined_by="http://purl.obolibrary.org/obo/PPO_0002011">
+                    Reproductive
+                </field>
                 <field defined_by="http://purl.obolibrary.org/obo/PPO_0002014">
                     Flowering
                 </field>
