@@ -3,7 +3,7 @@ field,defined_by
 >=50% of leaves fallen (deciduous),{abscised leaf presence}
 >=50% of needles colored (larch),{senescing leaf presence}
 >=50% of needles fallen (larch),{abscised leaf presence}
->=75% of full leaf size (deciduous),{mature leaf presence}
+>=75% of full leaf size (deciduous),{expanding leaf presence}
 All leaf buds broken (lilac/honeysuckle),{expanding leaf presence}
 All leaves colored (deciduous),{senescing leaf presence}
 All leaves fallen (deciduous),{abscised leaf presence}
@@ -27,7 +27,7 @@ Falling needles,{abscised leaf presence}
 First bloom (historic eastern lilac),{open flower presence}
 First bloom (historic honeysuckle),{open flower presence}
 First bloom (historic western lilac),{open flower presence}
-First leaf (historic lilac/honeysuckle),{expanding leaf presence}
+First leaf (historic lilac/honeysuckle),{breaking bud presence}
 First red berry (historic western honeysuckle),{ripening fruit presence}
 First shriveled berry (historic western honeysuckle),{ripening fruit presence}
 Flat receptacles,{plant structure presence}
@@ -40,7 +40,7 @@ Full bloom (historic lilac/western honeysuckle),{open flower presence}
 Full flowering (50%),{open flower presence}
 Full flowering (honeysuckle),{open flower presence}
 Full flowering (lilac),{open flower presence}
-Full leaf (historic lilac/honeysuckle),{mature leaf presence}
+Full leaf (historic lilac/honeysuckle),{expanding leaf presence}
 Full pollen release (angiosperms),{pollen-releasing flower presence}
 Full pollen release (conifers),{pollen-releasing pollen cone presence}
 Full red berries (historic western honeysuckle),{ripening fruit presence}
@@ -77,4 +77,4 @@ Young leaves (forbs),{young leaf presence}
 Young leaves (tree/shrub),{young leaf presence}
 Young needles (conifers),{young leaf presence}
 Young needles (pines),{young leaf presence}
-Young unfolded leaves (evergreen 1 location),{unfolding leaf presence}
+Young unfolded leaves (evergreen 1 location),{young leaf presence}
